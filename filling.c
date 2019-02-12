@@ -48,3 +48,15 @@ void	fill_zero(char *buf, int size, int fill)
 		fill--;
 	}
 }
+
+void	fill2(char *str, int len)
+{
+	int	i;
+
+	i = -1;
+	while (++i < len)
+	{
+		str[i] = ' ';
+		ft_putnbr(len);
+	}
+}

@@ -6,10 +6,9 @@
 /*   By: akorol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 17:05:50 by akorol            #+#    #+#             */
-/*   Updated: 2019/01/15 15:13:49 by akorol           ###   ########.fr       */
+/*   Updated: 2019/02/12 14:02:48 by akorol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -38,7 +37,7 @@ void	pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 			loc = double_percent_sign(loc, lopata);			// Handle pointer
 		}
 		// ft_putchar('%');
-		// ft_putchar(*point);
+		// ft_putchar(loc);
 		// ft_putchar('%');
 		customize_flags(loc, lopata);
 		// ft_putchar('%');
@@ -72,7 +71,8 @@ int	main()
 	
 	// ft_printf("Privet%   9.4  d ", 34);
 	// ft_putstr("|");
-	printf("Privet%   9.4 d 67 d", 34, 24);
+	ft_printf("% -2.5 wm", 34);
+	printf("% -2.5 wm", 34);
 	// printf("%+1.2d", 1);
 	// printf("%d", ft_atoi("010"));
 	// printf("%8.5d", 9034);

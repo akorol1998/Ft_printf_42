@@ -82,7 +82,7 @@ char const	*double_percent_sign(char const *fmt, t_nigga **nig)
 		ft_putstr(fmt);
 		ft_putstr("$");
 	}
-	return (fmt);
+	return (++fmt);
 }
 
 void	custom_width(char const *s, t_nigga **nig)

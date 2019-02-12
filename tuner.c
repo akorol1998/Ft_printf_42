@@ -16,17 +16,17 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 {
 	char	*buf;
 
-	if (!(*nig)->conv)
-		ft_putstr("pickachu!!!!");
 	if ((*nig)->conv && ft_strlen(*point))
 	{
 		if (!(*nig)->percent && *(*nig)->conv == 'd')
 		{
+			ft_putstr("d conversion\n");
 			buf = process_piece(*point, nig);			// Shift a little bit in the future
 			buf = conversion_d(buf, nig, args);
 		}
 		if (*(*nig)->conv == 'c')
 		{
+			ft_putstr("c conversion\n");
 			buf = process_piece_c(*point, nig);
 			conversion_c(buf, nig, args);
 		}
