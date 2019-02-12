@@ -14,33 +14,38 @@
 #include "ft_printf.h"
 
 // Extracts the string with format flags and somehow processes it
-
+ 
 void	pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 {
-	char const	*point;	
+	char const	*point;
+	char const	*loc;
 	t_nigga		*head;
 
-	point = fmt;
+	point = ft_strdup(fmt);
+	loc = point;
 	head = (*lopata);
-	while (*point)
+	while (*loc)
 	{
 		// ft_putchar('b');
-		// ft_putchar(*point);
+		// ft_putstr(loc);
 		// ft_putchar('b');
-		point = customize_string(point, lopata);
-		// ft_putchar('s');
-		// ft_putstr(point);
-		// ft_putchar('s');
-		if (*point)
-			point = double_percent_sign(point + 1, lopata);			// Handle pointer
+		loc = customize_string(loc, lopata);
+		ft_putchar('s');
+		ft_putstr(loc);
+		ft_putchar('s');
+		if (*loc)
+		{
+			loc = double_percent_sign(loc, lopata);			// Handle pointer
+		}
 		// ft_putchar('%');
 		// ft_putchar(*point);
 		// ft_putchar('%');
-		customize_flags(point, lopata);
-		(*lopata) = tuner(&point, lopata, args);							// Tunner has to process my structure, string and decide what convertion to use
-		// ft_putchar('|');
-		// ft_putchar(*point);
-	// ft_putchar('|');
+		customize_flags(loc, lopata);
+		// ft_putchar('%');
+		(*lopata) = tuner(&loc, lopata, args);							// Tunner has to process my structure, string and decide what convertion to use
+		ft_putchar('|');
+		ft_putstr(loc);
+		ft_putchar('|');
 	}
 
 	// printf("%c", *(point));
@@ -63,9 +68,11 @@ int	main()
 {
 	// ft_printf("%+04d", 4);
 	// ft_printf("%+5.3d", 4);		// CHeck this one
-	ft_printf("% +0.0d", 0);
-	ft_putstr("|");
-	printf("%+# 0.0d", 0);
+	// ft_printf("%  ", 22);
+	
+	// ft_printf("Privet%   9.4  d ", 34);
+	// ft_putstr("|");
+	printf("Privet%   9.4 d 67 d", 34, 24);
 	// printf("%+1.2d", 1);
 	// printf("%d", ft_atoi("010"));
 	// printf("%8.5d", 9034);

@@ -24,7 +24,8 @@ typedef	struct		s_nigga
 	char			sign;
 	char			minus;
 	char			plus;
-		char			blank;
+	char			blank;
+	int				arg;
 	int				invalid;
 	int				m_s;
 	int				p_s;
@@ -35,6 +36,13 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void				pre_tuner(char const **str, t_nigga **nig);
+void				align_c(char *buf, t_nigga **nig, va_list args);
+void				conversion_c(char *buf, t_nigga **nig, va_list args);
+int					separation_vol3(char const *str);
+void				separation_vol2(char const * str, int *min, int len);
+int				 	separation(char const *str, int len);
+char				*process_piece_c(char const *str, t_nigga **nig);
 char				*mod_itoa(long long value, t_nigga **nig);
 void				exp_digits(char *buf, t_nigga **nig);
 void				flag_tuning(t_nigga **nig);
@@ -44,6 +52,7 @@ char				*open_d_conversion(t_nigga **nig, va_list args);
 t_nigga				*tuner(char const **point, t_nigga **nig, va_list args);
 char				*ft_itoa_base(uintmax_t value, int base);
 void				customize_flags(char const *s, t_nigga **nig);
+void				customize_flags_2(char const *s, int i, t_nigga **lopata);
 char const			*customize_string(char const *str, t_nigga **nig);
 void				fill_my_nigga(t_nigga **nig);
 char const			*double_percent_sign(char const *fmt, t_nigga **nig);

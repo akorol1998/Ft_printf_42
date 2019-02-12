@@ -16,26 +16,30 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 {
 	char	*buf;
 
-	if (ft_strlen(*point))
+	if (!(*nig)->conv)
+		ft_putstr("pickachu!!!!");
+	if ((*nig)->conv && ft_strlen(*point))
 	{
-		buf = process_piece(*point, nig);			// Shift a little bit in the future
-	// ft_putstr(" |");
-		// ft_putstr("| ");
-		// ft_putstr(*point);
-
+		if (!(*nig)->percent && *(*nig)->conv == 'd')
+		{
+			buf = process_piece(*point, nig);			// Shift a little bit in the future
+			buf = conversion_d(buf, nig, args);
+		}
+		if (*(*nig)->conv == 'c')
+		{
+			buf = process_piece_c(*point, nig);
+			conversion_c(buf, nig, args);
+		}
 	}
-	// ft_putstr("11");
-	if (*(*nig)->conv == 'd')
+	else if (!(*nig)->conv)
 	{
-		ft_putstr("lol");
-		buf = conversion_d(buf, nig, args);
+		ft_putstr("pocker");
+		pre_tuner(point, nig);
+		ft_putstr("pocker");
 	}
-	if (*(*nig)->conv == '\0')
-	{
-		(*nig) = (*nig)->next;	
-		return (*nig);
-	}
-	// ft_putstr((*nig)->out);
+	ft_putstr((*nig)->out);
+	ft_putstr("mama");
+	// ft_putnbr((*nig)->percent);
 	*point = (*nig)->conv + 1;
 	(*nig) = (*nig)->next;
 	fill_my_nigga(nig);
@@ -83,6 +87,46 @@ void	push(char * dest, char *src)
 	}
 }
 
+void	sign_func_1(char **buf, char *digits, t_nigga **nig)
+{
+	int		m;
+	int		p;
+	int		len;
+	char	*tmp;
+
+	len = ft_strlen(digits);
+	m = (*nig)->m_s;
+	p = (*nig)->p_s;
+	ft_putchar('#');
+	if (m > p && len < p)
+		(*buf)[m - p - 1] = '-';
+	else if (m > p && len >= p && p)
+	{
+		ft_putchar('b');
+		(*buf)[m - len - 1] = '-';
+	}
+	else if (m > p && len > p && (*nig)->zero)
+	{
+		// ft_putchar('\n');
+		ft_putchar('^');
+		// ft_putchar('\n');
+		(*buf)[0] = '-';
+	}
+	else if (m > p && len >= p)
+	{
+		ft_putchar('a');
+		(*buf)[m - len - 1] = '-';
+	}
+	else if ((p > m) || (m > p && len > p && len == m) || p == m)
+	{
+		tmp = (*buf);
+		ft_putchar('b');
+		(*buf) = ft_strjoin("-", (*buf));
+		free(tmp);
+		// ft_putstr((*buf));
+	}
+}
+
 void	sign_func(char **buf, char *digits, t_nigga **nig)
 {
 	int		m;
@@ -93,48 +137,9 @@ void	sign_func(char **buf, char *digits, t_nigga **nig)
 	len = ft_strlen(digits);
 	m = (*nig)->m_s;
 	p = (*nig)->p_s;
-
-	// ft_putstr("123");
 	if ((*nig)->sign == '-')
 	{
-		ft_putchar('#');
-		if (m > p && len < p)
-			(*buf)[m - p - 1] = '-';
-		else if (m > p && len >= p && p)
-		{
-			ft_putchar('b');
-			(*buf)[m - len - 1] = '-';
-		}
-		else if (m > p && len > p && (*nig)->zero)
-		{
-			// ft_putchar('\n');
-			ft_putchar('^');
-			// ft_putchar('\n');
-			(*buf)[0] = '-';
-		}
-		else if (m > p && len >= p)
-		{
-			ft_putchar('a');
-			(*buf)[m - len - 1] = '-';
-		}
-		else if ((p > m) || (m > p && len > p && len == m) || p == m)
-		{
-			tmp = (*buf);
-			ft_putchar('b');
-			(*buf) = ft_strjoin("-", (*buf));
-			free(tmp);
-			// ft_putstr((*buf));
-		}
-		// if (p < m && len < p)
-		// 	(*buf)[m - p - 1] = '-';
-		// else if (p < m && len > p)
-		// 	(*buf)[m - len - 1] = '-';
-		// else if (p > m)
-		// {
-		// 	tmp = (*buf);
-		// 	(*buf) = ft_strjoin("-", (*buf));
-		// 	free(tmp);
-		// }
+		sign_func_1(buf, digits, nig);
 	}
 	if ((*nig)->blank && (*nig)->sign == '+')
 	{
@@ -152,7 +157,7 @@ void	sign_func(char **buf, char *digits, t_nigga **nig)
 		// ft_putstr(*buf);
 		if (m > p && len < p)
 			(*buf)[m - p - 1] = '+';
-		else if (m > p && len >= p && p)
+		else if (m > p && len >= p && len < m && p)
 		{
 			ft_putchar('b');
 			(*buf)[m - len - 1] = '+';
@@ -164,12 +169,12 @@ void	sign_func(char **buf, char *digits, t_nigga **nig)
 			// ft_putchar('\n');
 			(*buf)[0] = '+';
 		}
-		else if (m > p && len >= p)
-		{
-			ft_putchar('a');
-			(*buf)[m - len - 1] = '+';
-		}
-		else if ((p > m) || (m > p && len > p && len == m) || p == m)
+		// else if (m > p && len >= p)
+		// {
+		// 	ft_putchar('a');
+		// 	(*buf)[m - len - 1] = '+';
+		// }
+		else if ((p > m) || (m > p && len > p && len >= m) || p == m)
 		{
 			tmp = (*buf);
 			ft_putchar('b');
@@ -177,6 +182,8 @@ void	sign_func(char **buf, char *digits, t_nigga **nig)
 			free(tmp);
 			// ft_putstr((*buf));
 		}
+		else
+			(*buf)[ft_strlen((*buf)) - len - 1] = '+';
 	}
 }
 
@@ -266,7 +273,10 @@ void	minus_flag(t_nigga **nig)
 
 	j = -1;
 	if ((*nig)->sign == '+' && (*nig)->blank && !(*nig)->plus)
+	{
+		printf("hi");
 		f = 1;
+	}
 	while (++j < i)
 	{
 		if (dest[j] != ' ')
@@ -290,6 +300,7 @@ char	*conversion_d(char *buf, t_nigga **nig, va_list args)
 	// zero_func(&buf);
 	// ft_putstr(buf);
 	digits = open_d_conversion(nig, args);
+	ft_putstr("11111111");
 	merging(dest, digits, nig);
 	if ((*nig)->minus)
 	{
@@ -298,7 +309,6 @@ char	*conversion_d(char *buf, t_nigga **nig, va_list args)
 		minus_flag(nig);
 	}
 	ft_putstr("|");
-	ft_putstr((*nig)->out);
 	// system("leaks a.out");
 	// '-, '+', '#' flags
 	return (dest);
