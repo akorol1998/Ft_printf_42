@@ -71,8 +71,8 @@ int	main()
 	
 	// ft_printf("Privet%   9.4  d ", 34);
 	// ft_putstr("|");
-	ft_printf("% -2.5 wm", 34);
-	printf("% -2.5 wm", 34);
+	// ft_printf("%% -8.5d", 34);
+	printf("%5.3s", "magnum");
 	// printf("%+1.2d", 1);
 	// printf("%d", ft_atoi("010"));
 	// printf("%8.5d", 9034);
@@ -83,3 +83,8 @@ int	main()
 	return (0);
 }
 
+// 1. Checking wether we have a precision:
+// if it`s lower than argument - we create new string from our argument
+// 2. Checking again the value of new string and minimum width if it exist
+// 3. Checking wether minimum width is bigger than the length of the argument, if yes - allocating new string for that 
+// 4. Checking the '-' flags and adjusting our string properly

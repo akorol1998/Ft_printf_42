@@ -36,6 +36,7 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void				process_piece_s(char *fmt, t_nigga **nig);
 void				fill2(char *str, int len);
 void				pre_tuner(char const **str, t_nigga **nig);
 void				align_c(char *buf, t_nigga **nig, va_list args);

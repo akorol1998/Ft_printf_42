@@ -57,6 +57,6 @@ void	fill2(char *str, int len)
 	while (++i < len)
 	{
 		str[i] = ' ';
-		ft_putnbr(len);
+		// ft_putnbr(len);
 	}
 }

@@ -18,7 +18,7 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 
 	if ((*nig)->conv && ft_strlen(*point))
 	{
-		if (!(*nig)->percent && *(*nig)->conv == 'd')
+		if (*(*nig)->conv == 'd')
 		{
 			ft_putstr("d conversion\n");
 			buf = process_piece(*point, nig);			// Shift a little bit in the future
@@ -30,17 +30,23 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 			buf = process_piece_c(*point, nig);
 			conversion_c(buf, nig, args);
 		}
+		if (*(*nig)->conv == 's')
+		{
+			ft_putstr("\n<s conversion");
+			process_piece_s(*point, nig);
+			ft_putstr("end of conversion>\n");
+		}
 	}
-	else if (!(*nig)->conv)
+	if (!(*nig)->conv)
 	{
 		ft_putstr("pocker");
 		pre_tuner(point, nig);
 		ft_putstr("pocker");
 	}
+	else
+		*point = (*nig)->conv + 1;
 	ft_putstr((*nig)->out);
 	ft_putstr("mama");
-	// ft_putnbr((*nig)->percent);
-	*point = (*nig)->conv + 1;
 	(*nig) = (*nig)->next;
 	fill_my_nigga(nig);
 	return (*nig);
@@ -313,3 +319,4 @@ char	*conversion_d(char *buf, t_nigga **nig, va_list args)
 	// '-, '+', '#' flags
 	return (dest);
 }
+	
