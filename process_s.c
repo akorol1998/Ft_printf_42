@@ -21,31 +21,97 @@
 void	pick_width(char *fmt, t_nigga **nig)
 {
 	int		i;
-	char	*
+	int		res;
+	char	*buf;
 
 	i = 0;
 	while (fmt && fmt[i] && ft_isdigit(fmt[i]))
 		++i;
-
+	buf = ft_strsub(fmt, 0, i);
+	(*nig)->m_s = ft_atoi(buf);
+	free(buf);
 }
 
-void	process_piece_s(char *fmt, t_nigga **nig)
+void	pick_precision(char *fmt, t_nigga **nig)
+{
+	int		i;
+	int		res;
+	char	*buf;
+
+	i = 0;
+	while (fmt && fmt[i] && ft_isdigit(fmt[i]))
+		++i;
+	buf = ft_strsub(fmt, 0, i);
+	(*nig)->p_s = ft_atoi(buf);
+	free(buf);
+}
+
+void    custom_strcpy(char *str1, char *str2)
+{
+	size_t	i;
+	size_t	j;
+
+	j = ft_strlen(str2);
+	i = 0;
+	while (i < j)
+	{
+		str1[i] = str2[i];
+		i++;
+	}
+	ft_putstr(str1);
+}
+
+void	length_comparator(t_nigga **nig, va_list args)
+{
+	char	*str;
+	char	*tmp;
+	char	*final;
+
+	str = va_arg(args, char *);
+	if ((*nig)->p_s < ft_strlen(str) && (*nig)->dot)
+		tmp = ft_strsub(str, 0, (*nig)->p_s);
+	else
+		tmp = str;
+	if ((*nig)->m_s > ft_strlen(tmp))
+	{
+		final = ft_strnew((*nig)->m_s);
+		fill2(final, (*nig)->m_s);
+		if (!(*nig)->minus)
+			custom_strcpy(final + (*nig)->m_s - ft_strlen(tmp), tmp);
+		else
+			custom_strcpy(final, tmp);
+	}
+	else
+		final = tmp;
+	last_piece(final, nig);
+}
+
+void	process_piece_s(char const *fmt, t_nigga **nig, va_list args)
 {
 	char	*buf;
 	char	*p;
 
-	buf = *fmt;
-	
-	p = ft_strchr(buf, '.')
+	buf = (char *)fmt;
+	p = ft_strchr(buf, '.');
 	if (p)
 	{
-		while (buf && *buf && ft_isdigit(*buf) && *buf != '.')
-			buf++;
-		if (*buf == '.')
-			(*nig)->m_s = 0;
-		else
-			pick_width(buf, nig);
-		pick_precision(buf, nig);
+		(*nig)->dot = 1;
+		pick_precision(++p, nig);
 	}
-	pick_numbers(buf, nig);
+	while (buf && *buf && !ft_isdigit(*buf) && *buf != '.')
+			buf++;
+	if (*buf == '.')
+		(*nig)->m_s = 0;
+	pick_width(buf, nig);
+	ft_putnbr((*nig)->plus);
+	length_comparator(nig, args);
+	ft_putstr("\n<");
+	ft_putnbr((*nig)->m_s);
+	ft_putstr(">\n");
+	ft_putstr("\n<");
+	ft_putnbr((*nig)->p_s);
+	ft_putstr(">\n");
+	ft_putstr("\n<");
+	ft_putstr((*nig)->out);
+	ft_putstr(">\n");
 }

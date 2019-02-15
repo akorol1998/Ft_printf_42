@@ -1,4 +1,5 @@
 /* ************************************************************************** */
+
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   tuner.c                                            :+:      :+:    :+:   */
@@ -33,7 +34,7 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 		if (*(*nig)->conv == 's')
 		{
 			ft_putstr("\n<s conversion");
-			process_piece_s(*point, nig);
+			process_piece_s(*point, nig, args);
 			ft_putstr("end of conversion>\n");
 		}
 	}
@@ -45,8 +46,9 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 	}
 	else
 		*point = (*nig)->conv + 1;
+	ft_putstr("\n<");
 	ft_putstr((*nig)->out);
-	ft_putstr("mama");
+	ft_putstr(">\n");
 	(*nig) = (*nig)->next;
 	fill_my_nigga(nig);
 	return (*nig);

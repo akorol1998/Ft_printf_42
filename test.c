@@ -72,7 +72,7 @@ int	main()
 	// ft_printf("Privet%   9.4  d ", 34);
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
-	printf("%5.3s", "magnum");
+	printf("\n<%10p>\n", 'k');
 	// printf("%+1.2d", 1);
 	// printf("%d", ft_atoi("010"));
 	// printf("%8.5d", 9034);

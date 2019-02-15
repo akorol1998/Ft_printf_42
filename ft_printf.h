@@ -36,7 +36,12 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
-void				process_piece_s(char *fmt, t_nigga **nig);
+void				pick_width(char *fmt, t_nigga **nig);
+void				pick_precision(char *fmt, t_nigga **nig);
+void			    custom_strcpy(char *str1, char *str2);
+void				length_comparator(t_nigga **nig, va_list args);
+void				last_piece(char	*fin, t_nigga **nig);
+void				process_piece_s(char const *fmt, t_nigga **nig, va_list args);
 void				fill2(char *str, int len);
 void				pre_tuner(char const **str, t_nigga **nig);
 void				align_c(char *buf, t_nigga **nig, va_list args);
