@@ -36,6 +36,11 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void				sign_func_o(char **buf, char *digits, t_nigga **nig);
+void				merging_o(char *dest, char *digits, t_nigga **nig);
+char				*open_o_conv(t_nigga **nig, va_list args);
+char				*conv_o(char *buf, t_nigga **nig, va_list args);
+void				process_piece_p(char const *fmt, t_nigga **nig, va_list args);
 void				pick_width(char *fmt, t_nigga **nig);
 void				pick_precision(char *fmt, t_nigga **nig);
 void			    custom_strcpy(char *str1, char *str2);
@@ -54,6 +59,13 @@ char				*mod_itoa(long long value, t_nigga **nig);
 void				exp_digits(char *buf, t_nigga **nig);
 void				flag_tuning(t_nigga **nig);
 char const			*next(char const *fmt);
+void				push(char * dest, char *src);
+void				sign_func_1(char **buf, char *digits, t_nigga **nig);
+void				sign_func(char **buf, char *digits, t_nigga **nig);
+void				sign_func_2(char **buf, char *digits, int len, t_nigga **nig);
+void				sign_digits_func(char *dest, char **digits, t_nigga **nig);
+void				merging(char *dest, char *digits, t_nigga **nig);
+void				minus_flag(t_nigga **nig);
 char				*conversion_d(char *buf, t_nigga **nig, va_list args);
 char				*open_d_conversion(t_nigga **nig, va_list args);
 t_nigga				*tuner(char const **point, t_nigga **nig, va_list args);

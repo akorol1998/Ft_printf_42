@@ -66,25 +66,30 @@ int	ft_printf(const char *restrict fmt, ...)
 int	main()
 {
 	// ft_printf("%+04d", 4);
-	// ft_printf("%+5.3d", 4);		// CHeck this one
+	
 	// ft_printf("%  ", 22);
 	
 	// ft_printf("Privet%   9.4  d ", 34);
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
-	printf("\n<%10p>\n", 'k');
+	char	*str = "kick-ass";
+	short i = 25;
+
+	// unsigned long p = c;
+	// ft_printf("lock%-15d", i); // Some problems here !!
+	// ft_printf("lock%-5.3d", i);		// CHeck this one
+	// ft_printf("lock%+-5.3d", i);		// CHeck this one
+	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
+	ft_printf("%5.4o", i);
+	// printf("<%s>", i);
 	// printf("%+1.2d", 1);
 	// printf("%d", ft_atoi("010"));
 	// printf("%8.5d", 9034);
 
-	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
+	
 	// printf("%c ewfweg", 0);				//
 	// printf("%100%");
 	return (0);
 }
 
-// 1. Checking wether we have a precision:
-// if it`s lower than argument - we create new string from our argument
-// 2. Checking again the value of new string and minimum width if it exist
-// 3. Checking wether minimum width is bigger than the length of the argument, if yes - allocating new string for that 
-// 4. Checking the '-' flags and adjusting our string properly
+// Octal has no flag for '+'
