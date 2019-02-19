@@ -19,30 +19,72 @@ long double	casting_f(t_nigga **nig, va_list args)
 	return (buf);
 }
 
+char		*tuning_f_1(double num, t_nigga **nig)
+{
+	long long int		i;
+	long long int		buf;
+	long long int		a;
+
+	i = -1;
+	buf = 0;
+	while (++i < (*nig)->p_s)
+	{
+		buf *= 10;
+		num *= 10;
+		a = num;
+		buf += a % 10;
+	}
+	a = num * 10;
+	// a %= 10;
+	printf("\nGeorge Orwell <%lld>", a);
+	if (((a = num * 10) % 10) > 4 && (*nig)->p_s > 0)
+	{
+		printf("\nGeorge Orwell <%lld>", buf);
+		buf++;
+	}
+	return (mod_itoa(buf, nig));
+}
+
+char		*tuning_f_2(double num, t_nigga **nig)
+{
+	long long int		value;
+	long long int		var;
+
+	var = num;
+	value = num * 10;
+	value %= 10;
+	printf("\n my value %d", value);
+	if (value > 4)
+		var++;
+	return (mod_itoa(var, nig));
+}
+
 void		tuning_f(t_nigga **nig, va_list args)
 {
 	double	num;
-	char	*arr;
-	int		a;
-	int		b;
-	int		i;
+	char	*buf;
+	char	*part_1;
+	char	*part_2;
 
-	i = 0;
 	num = casting_f(nig, args);
-	arr = ft_strnew((*nig)->p_s);
-	b = num;
-	while (i < (*nig)->p_s)
+	part_1 = tuning_f_2(num, nig);
+	part_2 = tuning_f_1(num, nig);
+	buf = part_1;
+	if ((*nig)->p_s)
 	{
-		num *= 10;
-		a = num;
-		a %= 10;
-		arr[i] = a + '0';
-		++i;
+		part_1 = ft_strjoin(part_1, ".");
+		free(buf);
+		buf = part_1;
 	}
-	if (((a = num * 10) % 10) > 4)
-		arr[i - 1]++;
-	printf("\n<%s>", arr);
+	if (*part_2 != '0')
+	{
+		part_1 = ft_strjoin(part_1, part_2);
+		free(buf);	
+	}
+	printf("\n<%s>", part_1);
+	printf("\n<%s>", part_2);
 }
+// Try to 
 
 char		*piece_f_shit(char const *str, t_nigga **nig, va_list args)
 {

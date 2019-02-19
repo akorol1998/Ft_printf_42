@@ -74,7 +74,7 @@ int	main()
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
 	int		i = -94;
-	double  d = 5.567;
+	double  d = 199999.47597;
 
 	// unsigned long p = c;
 	// ft_printf("lock%-15d", i); // Some problems here !!
@@ -82,7 +82,8 @@ int	main()
 	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
 	// ft_printf("lock%# 10.o", i);
 
-	ft_printf("%6f", d);
+	ft_printf("%6.4f", d);
+	printf("%6.4f", d);
 	// printf("lock%%% 6f", d);
 	// printf("% #5.4o", i);
 	// printf("<%s>", i);
