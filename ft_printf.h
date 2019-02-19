@@ -36,6 +36,7 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+char				*piece_f_shit(char const *str, t_nigga **nig, va_list args);
 char				*open_u_conv(t_nigga **nig, va_list args);
 char				*conv_u(char *buf, t_nigga **nig, va_list args);
 void				sign_func_o(char **buf, char *digits, t_nigga **nig);

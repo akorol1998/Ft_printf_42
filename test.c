@@ -73,7 +73,8 @@ int	main()
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
-	int i = -94;
+	int		i = -94;
+	double  d = 5.567;
 
 	// unsigned long p = c;
 	// ft_printf("lock%-15d", i); // Some problems here !!
@@ -81,8 +82,8 @@ int	main()
 	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
 	// ft_printf("lock%# 10.o", i);
 
-	ft_printf("lock%%% 6.4p", str);
-	printf("lock%%% 6.4p", str);
+	ft_printf("%6f", d);
+	// printf("lock%%% 6f", d);
 	// printf("% #5.4o", i);
 	// printf("<%s>", i);
 	// printf("%+1.2d", 1);
@@ -100,11 +101,11 @@ int	main()
 // 3. Precision by default outputs 6 digits after point
 // 4. Have to manage precision 0, in which case we output only the first part of the number
 // 5. Need to compare width and how big is the argument, basically if the width <= "argument`s length" - then we 
-//  gonna strjoin any " ", "-", "+", buf if the width is bigger then the argument`s length we gonna just insert those signs
+//  gonna strjoin any " ", "-", "+", buf if the width is bigger then the argument`s length we gonna just put inside those signs
 
 // '0' is ignored when '-' and ' ' is ignored when '+'
 
-// So firstly - we convert our argument into double, then into a string
+// So firstly - we convert our argument to the double, then to the a string
 // 2. Taking it`s length and comparing with the given one
 // 3. Creating buffer of a needed size
 // 4. Adding flags
