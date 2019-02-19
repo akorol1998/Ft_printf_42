@@ -52,9 +52,6 @@ char	*process_piece(char const *str, t_nigga **nig)
 			{
 				// ft_putchar('1');
 				// ft_putchar('\n');
-				// ft_putstr("| ");
-				// ft_putnbr((*nig)->m_s);
-				// ft_putstr(" |");
 				fill_zero(buf, (*nig)->m_s, (*nig)->m_s);
 				// ft_putstr(buf);
 			}

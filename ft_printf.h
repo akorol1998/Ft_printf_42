@@ -36,6 +36,8 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+char				*open_u_conv(t_nigga **nig, va_list args);
+char				*conv_u(char *buf, t_nigga **nig, va_list args);
 void				sign_func_o(char **buf, char *digits, t_nigga **nig);
 void				merging_o(char *dest, char *digits, t_nigga **nig);
 char				*open_o_conv(t_nigga **nig, va_list args);
@@ -51,7 +53,7 @@ void				fill2(char *str, int len);
 void				pre_tuner(char const **str, t_nigga **nig);
 void				align_c(char *buf, t_nigga **nig, va_list args);
 void				conversion_c(char *buf, t_nigga **nig, va_list args);
-int					separation_vol3(char const *str);
+int					separation_vol3(char const *str, t_nigga **nig);
 void				separation_vol2(char const * str, int *min, int len);
 int				 	separation(char const *str, int len);
 char				*process_piece_c(char const *str, t_nigga **nig);
@@ -65,7 +67,7 @@ void				sign_func(char **buf, char *digits, t_nigga **nig);
 void				sign_func_2(char **buf, char *digits, int len, t_nigga **nig);
 void				sign_digits_func(char *dest, char **digits, t_nigga **nig);
 void				merging(char *dest, char *digits, t_nigga **nig);
-void				minus_flag(t_nigga **nig);
+void				minus_flag(char *str, t_nigga **nig);
 char				*conversion_d(char *buf, t_nigga **nig, va_list args);
 char				*open_d_conversion(t_nigga **nig, va_list args);
 t_nigga				*tuner(char const **point, t_nigga **nig, va_list args);

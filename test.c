@@ -39,12 +39,12 @@ void	pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 		// ft_putchar('%');
 		// ft_putchar(loc);
 		// ft_putchar('%');
+		ft_putstr("\n|>");
+		ft_putnbr((*lopata)->zero);
+		ft_putstr("|>\n");
 		customize_flags(loc, lopata);
 		// ft_putchar('%');
 		(*lopata) = tuner(&loc, lopata, args);							// Tunner has to process my structure, string and decide what convertion to use
-		ft_putchar('|');
-		ft_putstr(loc);
-		ft_putchar('|');
 	}
 
 	// printf("%c", *(point));
@@ -73,14 +73,17 @@ int	main()
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
-	short i = 25;
+	int i = -94;
 
 	// unsigned long p = c;
 	// ft_printf("lock%-15d", i); // Some problems here !!
-	// ft_printf("lock%-5.3d", i);		// CHeck this one
 	// ft_printf("lock%+-5.3d", i);		// CHeck this one
 	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
-	ft_printf("%5.4o", i);
+	// ft_printf("lock%# 10.o", i);
+
+	ft_printf("lock%%% 6.4p", str);
+	printf("lock%%% 6.4p", str);
+	// printf("% #5.4o", i);
 	// printf("<%s>", i);
 	// printf("%+1.2d", 1);
 	// printf("%d", ft_atoi("010"));
@@ -92,4 +95,17 @@ int	main()
 	return (0);
 }
 
-// Octal has no flag for '+'
+// 1. "f" flag the processing is prettyr the same as of the "d" flag can use part of it
+// 2. Precision and width are again searched for 
+// 3. Precision by default outputs 6 digits after point
+// 4. Have to manage precision 0, in which case we output only the first part of the number
+// 5. Need to compare width and how big is the argument, basically if the width <= "argument`s length" - then we 
+//  gonna strjoin any " ", "-", "+", buf if the width is bigger then the argument`s length we gonna just insert those signs
+
+// '0' is ignored when '-' and ' ' is ignored when '+'
+
+// So firstly - we convert our argument into double, then into a string
+// 2. Taking it`s length and comparing with the given one
+// 3. Creating buffer of a needed size
+// 4. Adding flags
+// 5. Enjoy

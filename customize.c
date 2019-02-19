@@ -29,16 +29,16 @@ char const	*customize_string(char const *str, t_nigga **lopata)
 	// ft_putnbr(i);
 	// ft_putstr("norm string $\n");
 	// ft_putnbr((*lopata)->percent);
-	i += (*lopata)->percent;
+	// i += (*lopata)->percent;
 	// ft_putstr(str);	
 	if (i)
 	{
 		if (!(*lopata)->out)
 		{
-			ft_putstr("fooooooof");
+			ft_putstr("\n<Custom");
 			(*lopata)->out = ft_strsub(str, 0, i);			// Need one more condition for strjoin of lopata and str
 			ft_putstr((*lopata)->out);
-			ft_putstr("faf");
+			ft_putstr("Custom>\n");
 		}
 		else
 		{
@@ -62,13 +62,10 @@ char const	*double_percent_sign(char const *fmt, t_nigga **nig)
 
 	while (fmt && *(fmt + 1) == '%')
 	{
-		if ((*nig)->percent)
-		{
-			ft_putstr("");	
-			(*nig)->percent = 0;
-		}
-		else
-			(*nig)->percent += 1;
+		// if ((*nig)->percent)
+		// 	(*nig)->percent = 0;
+		// else
+		// 	(*nig)->percent += 1;
 		if (!(*nig)->out)
 			(*nig)->out = ft_strsub(fmt, 0, 1);
 		else
@@ -77,17 +74,19 @@ char const	*double_percent_sign(char const *fmt, t_nigga **nig)
 			(*nig)->out = ft_strjoin((*nig)->out, ft_strsub(fmt, 0, 1));
 			free(buf);
 		}
+		ft_putstr("\n$");
+		ft_putstr(fmt + 2);
+		ft_putstr("$\n");
 		fmt = customize_string(fmt + 2, nig);
-		ft_putstr("$");
-		ft_putstr(fmt);
-		ft_putstr("$");
 	}
 	return (++fmt);
 }
 
 void	custom_width(char const *s, t_nigga **nig)
 {
+	ft_putstr("\n<W");
 	ft_putchar(*s);
+	ft_putstr("W>\n");
 	if (*s != *(s + 1))
 		(*nig)->width = *s;
 	else
@@ -106,7 +105,8 @@ void	customize_flags_2(char const *s, int i, t_nigga **lopata)
 			(*lopata)->hash = s[i];
 		if (s[i] == ' ')
 			(*lopata)->blank = s[i];
-		if (!(*lopata)->zero && s[i] == '0' && !ft_isdigit(s[i - 1]))
+		if (!(*lopata)->zero && s[i] == '0' &&
+			!ft_isdigit(s[i - 1]) && s[i - 1] != '.')
 			(*lopata)->zero = 1;
 		if (s[i] != '-' && s[i] != '+' && s[i] != ' ' && s[i] != '#')
 			(*lopata)->invalid = 1;

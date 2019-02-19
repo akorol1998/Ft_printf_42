@@ -1,5 +1,4 @@
 /* ************************************************************************** */
-
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   tuner.c                                            :+:      :+:    :+:   */
@@ -19,6 +18,7 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 
 	ft_putstr("\n<");
 	ft_putstr((*nig)->conv);
+	ft_putstr((*nig)->out);
 	ft_putstr(">\n");
 	if ((*nig)->conv && ft_strlen(*point))
 	{
@@ -46,16 +46,21 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 			process_piece_p(*point, nig, args);
 			ft_putstr("end of conversion>\n");
 		}
-		else if (*(*nig)->conv == 'o')
+		else if (*(*nig)->conv == 'o' || *(*nig)->conv == 'u')
 		{
 			ft_putstr("\n<o conversion");
 			buf = process_piece(*point, nig);
-			buf = conv_o()
-			ft_putstr("\n<");
-			ft_putstr(buf);
-			ft_putstr(">\n");
-
+			if (*(*nig)->conv == 'u')
+				buf = conv_u(buf, nig, args);
+			else
+				buf = conv_o(buf, nig, args);
 			// process_piece_p(*point, nig, args);
+			ft_putstr("end of conversion>\n");
+		}
+		else if (*(nig)->conv == 'f')
+		{
+			ft_putstr("\n<p conversion");
+			piece_f_shit(*point, nig, args);
 			ft_putstr("end of conversion>\n");
 		}
 	}
@@ -67,9 +72,8 @@ t_nigga	*tuner(char const **point, t_nigga **nig, va_list args)
 	}
 	else
 		*point = (*nig)->conv + 1;
-	ft_putstr("\n<");
 	ft_putstr((*nig)->out);
-	ft_putstr(">\n");
+	ft_putstr("\n");
 	(*nig) = (*nig)->next;
 	fill_my_nigga(nig);
 	return (*nig);

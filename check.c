@@ -26,6 +26,7 @@ char		*check_for_size(char const *str, char *p, t_nigga **nig)
 	int		a;
 
 	ft_putchar('^');
+	
 	check_min_width(str, nig);
 	ft_putchar('$');
 	check_precision(p, nig);

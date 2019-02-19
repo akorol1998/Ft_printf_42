@@ -57,12 +57,6 @@ char	*conv_o(char *buf, t_nigga **nig, va_list args)
 	}
 	ft_putstr("11111111");
 	merging_o(dest, digits, nig);
-	if ((*nig)->minus)
-	{
-		ft_putstr(dest);
-		ft_putstr("^ ");
-		minus_flag(nig);
-	}
 	ft_putstr("|");
 	// system("leaks a.out");
 	// '-, '+', '#' flags
@@ -104,9 +98,13 @@ void	merging_o(char *dest, char *digits, t_nigga **nig)
 		sign_func_o(&dest, digits, nig);
 	}
 	else
-	{
-		// sign_digits_func(dest, &digits, nig);
 		dest = digits;
+	// sign_digits_func(dest, &digits, nig);
+	if ((*nig)->minus)
+	{
+		ft_putstr(dest);
+		ft_putstr("^ ");
+		minus_flag(dest, nig);
 	}
 	if ((*nig)->out)
 	{

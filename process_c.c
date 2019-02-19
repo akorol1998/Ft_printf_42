@@ -35,39 +35,33 @@ int 	separation(char const *str, int len)
 	return (min);
 }
 
-int		separation_vol3(char const *str)
+int		separation_vol3(char const *str, t_nigga **nig)
 {
 	int			i;
 	int			j;
-	char		*dig;
 	int			min;
 
 	min = 0;
-	dig = NULL;
 	i = -1;
 	// ft_putstr("sep3");
-	while (str[i] && str[++i] != 'c')
+	while (str[i] && str[++i] != *(*nig)->conv)
 	{
 		j = 0;
 		// ft_putstr(str);
 		// ft_putnbr(i);
-		while (str[i + j] && ft_isdigit(str[i + j]) && (str[i + j] != '0' || ft_isdigit(str[i + j - 1])))
+		while (str[i + j] && ft_isdigit(str[i + j]) &&
+			(str[i + j] != '0' || ft_isdigit(str[i + j - 1])))
 		{
 			++j;
 			if (!ft_isdigit(str[i + j]))
 			{
-				if (dig)
-					free(dig);
-				dig = ft_strsub(str, i, j);	
 				// ft_putstr(dig);
 				// ft_putchar('\n');
-				min = ft_atoi(dig);
+				min = ft_atoi(ft_strsub(str, i, j));
 			}
 		}
 		i += j;
 	}
-	if (dig)
-		free(dig);
 	return (min);
 }
 
@@ -106,11 +100,11 @@ char	*process_piece_c(char const *str, t_nigga **nig)
 		if (ft_isdigit(*(p + 1)))
 			size = separation(str, p - str);
 		else
-			size = separation_vol3(str);	
+			size = separation_vol3(str, nig);	
 	}
 	else
 	{
-		size = separation_vol3(str);
+		size = separation_vol3(str, nig);
 	}
 
 	// printf("%d", size);

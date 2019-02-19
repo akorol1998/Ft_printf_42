@@ -18,18 +18,14 @@ char	*conversion_d(char *buf, t_nigga **nig, va_list args)
 	char 	*dest;
 
 	dest = buf;
-
 	// zero_func(&buf);
 	// ft_putstr(buf);
 	digits = open_d_conversion(nig, args);
 	ft_putstr("11111111");
 	merging(dest, digits, nig);
-	if ((*nig)->minus)
-	{
-		ft_putstr(dest);
-		ft_putstr("^ ");
-		minus_flag(nig);
-	}
+	ft_putstr("\n<");
+	ft_putstr((*nig)->out);
+	ft_putstr(">\n");
 	ft_putstr("|");
 	// system("leaks a.out");
 	// '-, '+', '#' flags
@@ -87,7 +83,7 @@ void	minus_flag_2(char *dest, int *len, int *i)
 	}
 }
 
-void	minus_flag(t_nigga **nig)
+void	minus_flag(char *str, t_nigga **nig)
 {
 	char	*dest;
 	int		len;
@@ -98,15 +94,24 @@ void	minus_flag(t_nigga **nig)
 	i = 0;
 	len = 0;
 	f = 0;
-	dest = (*nig)->out;
+	dest = str;
 	minus_flag_2(dest, &len, &i); // Seg fault;
 	j = -1;
-	if ((*nig)->sign == '+' && (*nig)->blank && !(*nig)->plus)
+	if ((*nig)->sign == '+' && (*nig)->blank && !(*nig)->plus && *(*nig)->conv != 'o')		// Made changes here
+	{
+		ft_putstr("\npokemon");
 		f = 1;
+	}
+	ft_putstr("\npokemon");
+	ft_putstr(dest);
+	ft_putstr("pokemon\n");
 	while (++j < i)
 	{
 		if (dest[j] != ' ')
 		{
+
+			ft_putnbr(j - len + f);
+			ft_putchar('\n');
 			dest[j - len + f] = dest[j];
 			if (j - len + f != j)
 				dest[j] = ' ';

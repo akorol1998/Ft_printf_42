@@ -67,7 +67,7 @@ void	sign_func(char **buf, char *digits, t_nigga **nig)
 	{
 		sign_func_1(buf, digits, nig);
 	}
-	if ((*nig)->blank && (*nig)->sign == '+')
+	if ((*nig)->blank && (*nig)->sign == '+' && !(*nig)->plus)
 	{
 		// ft_putstr(*buf);
 		if (len == m || p >= m )
@@ -76,6 +76,9 @@ void	sign_func(char **buf, char *digits, t_nigga **nig)
 				(*buf) = ft_strjoin(" ", tmp);
 				free(tmp);
 				++m;
+				ft_putstr("\n@");
+				ft_putstr(*buf);
+				ft_putstr("@\n");
 			}
 	}
 	sign_func_2(buf, digits, len, nig);
@@ -90,7 +93,9 @@ void	sign_func_2(char **buf, char *digits, int len, t_nigga **nig)
 	p = (*nig)->p_s;
 	if ((*nig)->sign == '+' && (*nig)->plus == '+')
 	{
+		// ft_putstr("\n+");
 		// ft_putstr(*buf);
+		// ft_putstr("+\n");
 		if (m > p && len < p)
 			(*buf)[m - p - 1] = '+';
 		else if (m > p && len >= p && len < m && p)
@@ -139,12 +144,15 @@ void	sign_digits_func(char *dest, char **digits, t_nigga **nig)
 		*digits = ft_strjoin(" ", tmp);
 		free(tmp);
 	}
-	if ((*nig)->plus == '+')
+	if ((*nig)->plus == '+' && (*nig)->sign == '+')
 	{
 		if ((*nig)->blank && (*nig)->sign == '+')
 			*digits[0] = '+';
 		else
 		{
+			ft_putstr("\nCheck");
+			ft_putstr(*digits);
+			ft_putstr("Check\n");
 			tmp = *digits;
 			(*digits) = ft_strjoin("+", *digits);
 			free(tmp);
@@ -158,6 +166,7 @@ void	merging(char *dest, char *digits, t_nigga **nig)
 	char	*del;
 
 	// ft_putstr(dest);
+	
 	if (dest)
 		len = ft_strlen(dest) - ft_strlen(digits);
 	if (dest && ft_strlen(dest) && len >= 0)
@@ -169,6 +178,12 @@ void	merging(char *dest, char *digits, t_nigga **nig)
 	{
 		sign_digits_func(dest, &digits, nig);
 		dest = digits;
+	}
+	if ((*nig)->minus)
+	{
+		ft_putstr(dest);
+		ft_putstr("^ ");
+		minus_flag(dest, nig);
 	}
 	if ((*nig)->out)
 	{
