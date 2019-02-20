@@ -60,3 +60,12 @@ void	fill2(char *str, int len)
 		// ft_putnbr(len);
 	}
 }
+
+void	fill_wz_zero(char *str)
+{
+	while (str && *str)
+	{
+		*str = *str == ' ' ? '0' : *str;
+		str++;
+	}
+}

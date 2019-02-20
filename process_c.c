@@ -20,6 +20,7 @@ void	separation_vol2(char const * str, int *min, int len)
 			{
 				dig = ft_strsub(str, i, j);	
 				*min = ft_atoi(dig);
+				free(dig);
 			}
 		}
 		i += j;
@@ -40,6 +41,7 @@ int		separation_vol3(char const *str, t_nigga **nig)
 	int			i;
 	int			j;
 	int			min;
+	char		*trash;
 
 	min = 0;
 	i = -1;
@@ -56,8 +58,9 @@ int		separation_vol3(char const *str, t_nigga **nig)
 			if (!ft_isdigit(str[i + j]))
 			{
 				// ft_putstr(dig);
-				// ft_putchar('\n');
-				min = ft_atoi(ft_strsub(str, i, j));
+				trash = ft_strsub(str, i, j);
+				min = ft_atoi(trash);
+				free(trash);
 			}
 		}
 		i += j;

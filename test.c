@@ -74,7 +74,7 @@ int	main()
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
 	int		i = -94;
-	double  d = 199999.47597;
+	double  d = 16.0042695;
 
 	// unsigned long p = c;
 	// ft_printf("lock%-15d", i); // Some problems here !!
@@ -82,8 +82,8 @@ int	main()
 	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
 	// ft_printf("lock%# 10.o", i);
 
-	ft_printf("%6.4f", d);
-	printf("%6.4f", d);
+	ft_printf("% +0-14f", d);
+	printf("\n<% +0-14f>", d);
 	// printf("lock%%% 6f", d);
 	// printf("% #5.4o", i);
 	// printf("<%s>", i);
@@ -111,3 +111,6 @@ int	main()
 // 3. Creating buffer of a needed size
 // 4. Adding flags
 // 5. Enjoy
+
+
+// if zeros and have to put sign put it into the '0' index otherwise

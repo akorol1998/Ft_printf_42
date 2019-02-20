@@ -19,14 +19,19 @@ long double	casting_f(t_nigga **nig, va_list args)
 	return (buf);
 }
 
-char		*tuning_f_1(double num, t_nigga **nig)
+char		*tuning_f_2(double num, t_nigga **nig)
 {
-	long long int		i;
-	long long int		buf;
-	long long int		a;
+	int		i;
+	int		buf;
+	int		a;
 
+	
 	i = -1;
 	buf = 0;
+	a = num;
+	printf("\nPrivet alahakbar%d", a);
+	num = num - a;
+	printf("\nPrivet alahakbar%f", num);
 	while (++i < (*nig)->p_s)
 	{
 		buf *= 10;
@@ -35,27 +40,32 @@ char		*tuning_f_1(double num, t_nigga **nig)
 		buf += a % 10;
 	}
 	a = num * 10;
-	// a %= 10;
-	printf("\nGeorge Orwell <%lld>", a);
+	a *= a < 0 ? -1 : 1;
+	num *= num < 0 ? -1 : 1;
+	printf("\nGeorge Orwell <%d>", buf);
 	if (((a = num * 10) % 10) > 4 && (*nig)->p_s > 0)
 	{
-		printf("\nGeorge Orwell <%lld>", buf);
-		buf++;
+		printf("\nGeorge Orwell <%d>", buf);
+		buf += buf < 0 ? -1 : 1;
 	}
 	return (mod_itoa(buf, nig));
 }
 
-char		*tuning_f_2(double num, t_nigga **nig)
+char		*tuning_f_1(double num, t_nigga **nig)
 {
-	long long int		value;
-	long long int		var;
+	int		value;
+	int		var;
 
 	var = num;
 	value = num * 10;
 	value %= 10;
-	printf("\n my value %d", value);
-	if (value > 4)
-		var++;
+	value *= value < 0 ? -1 : 1;
+	// var *= var < 0 ? -1 : 1;
+	printf("\n my value %d and another one %d", value, var);
+	if (value > 4 && !(*nig)->p_s)
+	{
+		var += var < 0 ? -1 : 1;
+	}
 	return (mod_itoa(var, nig));
 }
 
@@ -67,8 +77,9 @@ void		tuning_f(t_nigga **nig, va_list args)
 	char	*part_2;
 
 	num = casting_f(nig, args);
-	part_1 = tuning_f_2(num, nig);
-	part_2 = tuning_f_1(num, nig);
+	part_1 = tuning_f_1(num, nig);
+	part_2 = tuning_f_2(num, nig);
+	(*nig)->sign = num < 0 ? '-' : '+';
 	buf = part_1;
 	if ((*nig)->p_s)
 	{
@@ -79,10 +90,11 @@ void		tuning_f(t_nigga **nig, va_list args)
 	if (*part_2 != '0')
 	{
 		part_1 = ft_strjoin(part_1, part_2);
-		free(buf);	
+		free(buf);
 	}
-	printf("\n<%s>", part_1);
-	printf("\n<%s>", part_2);
+	buf_tuning_f(part_1, nig);
+
+	printf("\n<%s>", (*nig)->out);
 }
 // Try to 
 
@@ -115,6 +127,3 @@ char		*piece_f_shit(char const *str, t_nigga **nig, va_list args)
 
 	printf("\nm_s %d\np_s%d", (*nig)->m_s, (*nig)->p_s);
 }
-
-// double = 5.567;
-// int	= d * 10;

@@ -83,7 +83,6 @@ char	*mod_itoa(long long value, t_nigga **nig)
 		str[i] = (value % 10) + 48;
 		value /= 10;
 	}
-	// ft_putstr(str);
 	return (str);
 }
 

@@ -36,6 +36,11 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+char				*string_tuning_f(char *buf, char *str, t_nigga **nig);
+void				add_sign_f(char *str, t_nigga **nig);
+void				buf_tuning_f(char *str, t_nigga **nig);
+void				fill_wz_zero(char *str);
+char				*join_sign_f(char	*str, t_nigga **nig);
 char				*piece_f_shit(char const *str, t_nigga **nig, va_list args);
 char				*open_u_conv(t_nigga **nig, va_list args);
 char				*conv_u(char *buf, t_nigga **nig, va_list args);
