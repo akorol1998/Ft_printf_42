@@ -12,6 +12,32 @@
 
 #include "ft_printf.h"
 
+char		*remainder_zeros(double *num, int *i, t_nigga **nig)
+{
+	char	*buffer;
+	double	copy;
+	int		counter;
+	int		a;
+
+	copy = *num;
+	counter	= 0;
+	while ((a = (copy * 10)) == 0 && ++(*i) < (*nig)->p_s)
+	{
+		copy *= 10;
+		counter++;
+		ft_putnbr(counter);
+	}
+	buffer = ft_strnew(counter);
+	fill2(buffer, counter);
+	fill_wz_zero(buffer);
+	while (counter)
+	{
+		*num *= 10;
+		counter--;
+	}
+	return (buffer);
+}
+
 char		*join_sign_f(char *str, t_nigga **nig)
 {
 	char	*buf;
@@ -92,6 +118,7 @@ void		buf_tuning_f(char *str, t_nigga **nig)
 		else
 			buf = join_sign_f(str, nig);
 	}
+	// hash_case_f(buf, nig);
 	if ((*nig)->out)
 	{
 		trash = (*nig)->out;

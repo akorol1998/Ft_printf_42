@@ -6,7 +6,7 @@
 #    By: akorol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 16:52:16 by akorol            #+#    #+#              #
-#    Updated: 2019/01/09 17:33:59 by akorol           ###   ########.fr        #
+#    Updated: 2019/02/25 17:22:05 by akorol           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC =   ft_bzero.c \
         ft_strcmp.c \
         ft_strncmp.c \
         ft_atoi.c \
+		ft_islower.c \
         ft_isalpha.c \
         ft_isdigit.c \
         ft_isalnum.c \

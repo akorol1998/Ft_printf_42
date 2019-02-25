@@ -69,3 +69,11 @@ void	fill_wz_zero(char *str)
 		str++;
 	}
 }
+
+// char	*zero_merge(char *holder, int buf, t_nigga **nig)
+// {
+// 	char	*new;
+
+// 	new = ft_strjoin(holder, mod_itoa(buf, nig));
+// 	return (new);
+// }

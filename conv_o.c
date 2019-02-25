@@ -55,9 +55,9 @@ char	*conv_o(char *buf, t_nigga **nig, va_list args)
 		digits = ft_strjoin("0", digits);
 		free(del);
 	}
-	ft_putstr("11111111");
+	// ft_putstr("11111111");
 	merging_o(dest, digits, nig);
-	ft_putstr("|");
+	// ft_putstr("|");
 	// system("leaks a.out");
 	// '-, '+', '#' flags
 	return (dest);

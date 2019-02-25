@@ -36,12 +36,15 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+char				*hex_converter(t_nigga **, va_list args);
+void				useful_function(char **tmp, t_nigga **nig);
+char				*remainder_zeros(double *num, int *i, t_nigga **nig);
 char				*string_tuning_f(char *buf, char *str, t_nigga **nig);
 void				add_sign_f(char *str, t_nigga **nig);
 void				buf_tuning_f(char *str, t_nigga **nig);
 void				fill_wz_zero(char *str);
 char				*join_sign_f(char	*str, t_nigga **nig);
-char				*piece_f_shit(char const *str, t_nigga **nig, va_list args);
+void				piece_f_shit(char const *str, t_nigga **nig, va_list args);
 char				*open_u_conv(t_nigga **nig, va_list args);
 char				*conv_u(char *buf, t_nigga **nig, va_list args);
 void				sign_func_o(char **buf, char *digits, t_nigga **nig);
@@ -76,7 +79,7 @@ void				merging(char *dest, char *digits, t_nigga **nig);
 void				minus_flag(char *str, t_nigga **nig);
 char				*conversion_d(char *buf, t_nigga **nig, va_list args);
 char				*open_d_conversion(t_nigga **nig, va_list args);
-t_nigga				*tuner(char const **point, t_nigga **nig, va_list args);
+void				tuner(char const **point, t_nigga **nig, va_list args);
 char				*ft_itoa_base(uintmax_t value, int base);
 void				customize_flags(char const *s, t_nigga **nig);
 void				customize_flags_2(char const *s, int i, t_nigga **lopata);

@@ -21,17 +21,21 @@ long double	casting_f(t_nigga **nig, va_list args)
 
 char		*tuning_f_2(double num, t_nigga **nig)
 {
+	char	*holder;
 	int		i;
 	int		buf;
 	int		a;
 
 	
+	// ft_putstr("3___3");
 	i = -1;
 	buf = 0;
 	a = num;
-	printf("\nPrivet alahakbar%d", a);
 	num = num - a;
-	printf("\nPrivet alahakbar%f", num);
+	// ft_putstr("4___4");
+	holder = remainder_zeros(&num, &i, nig);
+	// ft_putstr("5___5");
+	// printf("\nPrivet alahakbar%f", num);
 	while (++i < (*nig)->p_s)
 	{
 		buf *= 10;
@@ -39,16 +43,19 @@ char		*tuning_f_2(double num, t_nigga **nig)
 		a = num;
 		buf += a % 10;
 	}
-	a = num * 10;
+	// a = num * 10;
 	a *= a < 0 ? -1 : 1;
 	num *= num < 0 ? -1 : 1;
-	printf("\nGeorge Orwell <%d>", buf);
+	// printf("\nGeorge Orwell <%d>", buf);
 	if (((a = num * 10) % 10) > 4 && (*nig)->p_s > 0)
 	{
-		printf("\nGeorge Orwell <%d>", buf);
+		// printf("\nGeorge Orwell <%d>", buf);
 		buf += buf < 0 ? -1 : 1;
 	}
-	return (mod_itoa(buf, nig));
+	if (buf == 0)
+		return (holder);
+	else
+		return (ft_strjoin(holder, mod_itoa(buf, nig)));
 }
 
 char		*tuning_f_1(double num, t_nigga **nig)
@@ -61,7 +68,7 @@ char		*tuning_f_1(double num, t_nigga **nig)
 	value %= 10;
 	value *= value < 0 ? -1 : 1;
 	// var *= var < 0 ? -1 : 1;
-	printf("\n my value %d and another one %d", value, var);
+	// printf("\n my value %d and another one %d", value, var);
 	if (value > 4 && !(*nig)->p_s)
 	{
 		var += var < 0 ? -1 : 1;
@@ -79,26 +86,25 @@ void		tuning_f(t_nigga **nig, va_list args)
 	num = casting_f(nig, args);
 	part_1 = tuning_f_1(num, nig);
 	part_2 = tuning_f_2(num, nig);
-	(*nig)->sign = num < 0 ? '-' : '+';
+	(*nig)->sign = num < 0  ? '-' : '+';
 	buf = part_1;
-	if ((*nig)->p_s)
+	if ((*nig)->p_s || (*nig)->hash)
 	{
 		part_1 = ft_strjoin(part_1, ".");
 		free(buf);
 		buf = part_1;
 	}
-	if (*part_2 != '0')
+	if ((*nig)->p_s > 0)
 	{
 		part_1 = ft_strjoin(part_1, part_2);
 		free(buf);
 	}
 	buf_tuning_f(part_1, nig);
-
 	printf("\n<%s>", (*nig)->out);
 }
 // Try to 
 
-char		*piece_f_shit(char const *str, t_nigga **nig, va_list args)
+void		piece_f_shit(char const *str, t_nigga **nig, va_list args)
 {
 	char		*buf;
 	char		*p;
@@ -124,6 +130,4 @@ char		*piece_f_shit(char const *str, t_nigga **nig, va_list args)
 	else
 		(*nig)->m_s = separation_vol3(str, nig);
 	tuning_f(nig, args);
-
-	printf("\nm_s %d\np_s%d", (*nig)->m_s, (*nig)->p_s);
 }

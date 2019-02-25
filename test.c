@@ -13,12 +13,40 @@
 #include "ft_printf.h"
 
 // Extracts the string with format flags and somehow processes it
- 
+void	concatenating(t_nigga *nig)
+{
+	char	*main;
+	char	*trash;
+	t_nigga	*node;
+
+	node = nig;
+	main = NULL;
+	while (node)
+	{
+		ft_putstr("########################");
+		if (main && node->out)
+		{
+			trash = main;
+			main = ft_strjoin(main, node->out);
+			free(trash);
+		}
+		else if (node->out)
+			main = ft_strdup(node->out);
+		free(node->out);
+		node = node->next;
+	}
+	ft_putstr("\n^");
+	ft_putstr(main);
+	ft_putstr("^\n");
+}
+
+
 void	pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 {
 	char const	*point;
 	char const	*loc;
 	t_nigga		*head;
+	t_nigga		*del;
 
 	point = ft_strdup(fmt);
 	loc = point;
@@ -29,9 +57,9 @@ void	pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 		// ft_putstr(loc);
 		// ft_putchar('b');
 		loc = customize_string(loc, lopata);
-		ft_putchar('s');
-		ft_putstr(loc);
-		ft_putchar('s');
+		// ft_putchar('s');
+		// ft_putstr(loc);
+		// ft_putchar('s');
 		if (*loc)
 		{
 			loc = double_percent_sign(loc, lopata);			// Handle pointer
@@ -39,13 +67,14 @@ void	pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 		// ft_putchar('%');
 		// ft_putchar(loc);
 		// ft_putchar('%');
-		ft_putstr("\n|>");
-		ft_putnbr((*lopata)->zero);
-		ft_putstr("|>\n");
+		// ft_putstr("\n|>");
+		// ft_putnbr((*lopata)->zero);
+		// ft_putstr("|>\n");
 		customize_flags(loc, lopata);
-		// ft_putchar('%');
-		(*lopata) = tuner(&loc, lopata, args);							// Tunner has to process my structure, string and decide what convertion to use
+		del = *lopata;
+		tuner(&loc, lopata, args);
 	}
+	concatenating(head);
 
 	// printf("%c", *(point));
 }
@@ -73,17 +102,21 @@ int	main()
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
-	int		i = -94;
-	double  d = 16.0042695;
+	unsigned int i = 2394;
+	double  d = 566662;
 
 	// unsigned long p = c;
 	// ft_printf("lock%-15d", i); // Some problems here !!
 	// ft_printf("lock%+-5.3d", i);		// CHeck this one
 	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
 	// ft_printf("lock%# 10.o", i);
+	// ft_printf("%1.5f", -0.0000); 	//Not working right
 
-	ft_printf("% +0-14f", d);
-	printf("\n<% +0-14f>", d);
+	// ft_printf("%p", str);
+	ft_printf("%-16.5X", i);
+	printf("%-16.5X", i);
+
+
 	// printf("lock%%% 6f", d);
 	// printf("% #5.4o", i);
 	// printf("<%s>", i);

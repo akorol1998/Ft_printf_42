@@ -1,7 +1,7 @@
 
 #include "ft_printf.h"
 
-void	separation_vol2(char const * str, int *min, int len)
+void	separation_vol2(char const *str, int *min, int len)
 {
 	int			i;
 	int			j;
@@ -23,6 +23,7 @@ void	separation_vol2(char const * str, int *min, int len)
 				free(dig);
 			}
 		}
+
 		i += j;
 	}
 }
@@ -79,6 +80,7 @@ char	*fill_for_c(int size, t_nigga **nig)
 	{
 		while (++i < size)
 			tab[i] = '0';
+
 	}
 	else
 	{
@@ -101,9 +103,13 @@ char	*process_piece_c(char const *str, t_nigga **nig)
 	if (p)
 	{
 		if (ft_isdigit(*(p + 1)))
+		{
 			size = separation(str, p - str);
+		}
 		else
+		{
 			size = separation_vol3(str, nig);	
+		}
 	}
 	else
 	{
@@ -112,7 +118,6 @@ char	*process_piece_c(char const *str, t_nigga **nig)
 
 	// printf("%d", size);
 	buf = fill_for_c(size, nig);
-	// ft_putstr(buf);
+	ft_putstr(buf);
 	return (buf);
-	printf("%p", str);
 }
