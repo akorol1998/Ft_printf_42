@@ -36,6 +36,8 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void				hex_zeros(char *buf);
+void				piece_hex_shit(char const *str, t_nigga **nig, va_list args);
 char				*hex_converter(t_nigga **, va_list args);
 void				useful_function(char **tmp, t_nigga **nig);
 char				*remainder_zeros(double *num, int *i, t_nigga **nig);

@@ -115,9 +115,6 @@ char	*process_piece_c(char const *str, t_nigga **nig)
 	{
 		size = separation_vol3(str, nig);
 	}
-
-	// printf("%d", size);
 	buf = fill_for_c(size, nig);
-	ft_putstr(buf);
 	return (buf);
 }

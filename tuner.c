@@ -42,7 +42,7 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 			process_piece_s(*point, nig, args);
 			ft_putstr("end of conversion>\n");
 		}
-		else if (c == 'p' || c == 'x' || c == 'X')
+		else if (c == 'p')
 		{
 			ft_putstr("\n<p conversion");
 			process_piece_p(*point, nig, args);
@@ -63,6 +63,12 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		{
 			ft_putstr("\n<f conversion");
 			piece_f_shit(*point, nig, args);
+			ft_putstr("end of conversion>\n");
+		}
+		else if (c == 'x' || c == 'X')
+		{
+			ft_putstr("\n<x conversion");
+			piece_hex_shit(*point, nig, args)
 			ft_putstr("end of conversion>\n");
 		}
 	}
