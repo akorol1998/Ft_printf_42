@@ -6,7 +6,7 @@
 #    By: akorol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 16:52:16 by akorol            #+#    #+#              #
-#    Updated: 2019/02/25 17:22:05 by akorol           ###   ########.fr        #
+#    Updated: 2019/02/27 10:12:39 by akorol           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,9 @@ SRC =   ft_bzero.c \
         ft_lstiter.c \
         ft_lstmap.c \
 		get_next_line.c \
-		ft_add_break.c
+		ft_add_break.c \
+		ft_min.c \
+		ft_max.c \
 
 CFLAGS = -Wextra -Wall -Werror
 

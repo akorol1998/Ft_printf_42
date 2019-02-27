@@ -105,13 +105,4 @@ void	process_piece_s(char const *fmt, t_nigga **nig, va_list args)
 	pick_width(buf, nig);
 	ft_putnbr((*nig)->plus);
 	length_comparator(nig, args);
-	ft_putstr("\n<");
-	ft_putnbr((*nig)->m_s);
-	ft_putstr(">\n");
-	ft_putstr("\n<");
-	ft_putnbr((*nig)->p_s);
-	ft_putstr(">\n");
-	ft_putstr("\n<");
-	ft_putstr((*nig)->out);
-	ft_putstr(">\n");
 }

@@ -4,6 +4,9 @@ void	last_piece(char	*fin, t_nigga **nig)
 {
 	char	*buf;
 
+	buf = fin;
+	fin = ft_strjoin("0x", fin);
+	free(buf);
 	if ((*nig)->out)
 	{
 		buf = (*nig)->out;

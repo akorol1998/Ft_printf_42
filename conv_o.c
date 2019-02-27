@@ -57,8 +57,8 @@ char	*conv_o(char *buf, t_nigga **nig, va_list args)
 	}
 	// ft_putstr("11111111");
 	merging_o(dest, digits, nig);
+	free(digits);	
 	// ft_putstr("|");
-	// system("leaks a.out");
 	// '-, '+', '#' flags
 	return (dest);
 }
@@ -87,6 +87,7 @@ void	merging_o(char *dest, char *digits, t_nigga **nig)
 	ft_putstr("\n#");
 	ft_putstr(dest);
 	ft_putstr("#\n");
+
 	if (dest)
 		len = ft_strlen(dest) - ft_strlen(digits);
 	if (dest && ft_strlen(dest) && len >= 0)
@@ -99,7 +100,6 @@ void	merging_o(char *dest, char *digits, t_nigga **nig)
 	}
 	else
 		dest = digits;
-	// sign_digits_func(dest, &digits, nig);
 	if ((*nig)->minus)
 	{
 		ft_putstr(dest);

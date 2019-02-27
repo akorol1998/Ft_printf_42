@@ -16,6 +16,7 @@ char	*create_buffer(int	size)
 {
 	char	*buf;
 
+	// system("leaks a.out");
 	buf = ft_strnew(size);
 	return (buf);
 }
@@ -25,20 +26,21 @@ char		*check_for_size(char const *str, char *p, t_nigga **nig)
 	char	*buf;
 	int		a;
 
-	ft_putchar('^');
-	
 	check_min_width(str, nig);
 	ft_putchar('$');
 	check_precision(p, nig);
+	// system("leaks a.out");
 	ft_putchar('&');
 	if ((*nig)->m_s > (*nig)->p_s)
 	{
 		buf = create_buffer((*nig)->m_s);
+		// system("leaks a.out");
 	}
 	else
+	{
 		buf = create_buffer((*nig)->p_s);
-	// ft_putnbr(*p_s);
-	// ft_putnbr(*m_s);
+		// system("leaks a.out");
+	}
 	return (buf);
 }
 
@@ -62,15 +64,17 @@ void		check_min_width(char const *str, t_nigga **nig)
 		buf = ft_strsub(str, 0, i);
 		i = ft_atoi(buf);
 	}
-	// ft_putnbr(i);								// output here
+	free(buf);
 	(*nig)->m_s = i;
 }
 
-// counts the number of chars after "." if it exists
+// counts the number of  after "." if it exists
 
 void		check_precision(char const *str, t_nigga **nig)
 {
 	int		i;
+	int		num;
+	char	*buf;
 
 	i = 0;
 	str = find_precision_digits(str, nig);
@@ -85,7 +89,14 @@ void		check_precision(char const *str, t_nigga **nig)
 	while (str && ft_isdigit(str[i]))
 		i++;
 	// ft_putstr("112");
-	i = i ? ft_atoi(ft_strsub(str, 0, i)): 0;
+	buf = ft_strsub(str, 0, i);
+	num = ft_atoi(buf);
+	// system("leaks a.out");
+	if(i)
+		i = num;
+	else
+		i = 0;
+	free(buf);
 	// ft_putnbr(i);								// output here
 	(*nig)->p_s = i;
 }

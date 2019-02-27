@@ -30,20 +30,14 @@ char	*process_piece(char const *str, t_nigga **nig)
 	flag = 0;
 	if ((p = ft_strchr(str, '.')))
 	{
-		// ft_putstr("hhhhh\n");
-		// ft_putstr(str);
 		buf = check_for_size(str, p + 1, nig);
+		// system("leaks a.out");
 	}
 	else
 	{
-		// Problem here!
 		check_precision(str, nig);
 		(*nig)->m_s = (*nig)->p_s;
 		(*nig)->p_s = 0;
-		// ft_putchar('\n');
-		// ft_putstr("| ");
-		// ft_putnbr((*nig)->m_s);
-		// ft_putstr(" |");
 		if (((*nig)->m_s))				//Write unique  function that will search for digits only ( swap p_s and m_s)
 		{
 			ft_putchar('2');

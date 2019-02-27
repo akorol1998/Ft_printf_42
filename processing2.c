@@ -23,12 +23,7 @@ char const		*find_width_digits(char const *str, t_nigga **nig)
 	while (*str && *str != '.')
 	{
 		if (ft_isdigit(*str))
-		{
-			// if (*str != '0')
 			return (str);
-			// else
-			// 	(*nig)->zero = 1;
-		}
 		str++;
 	}
 	return (NULL);
@@ -39,16 +34,10 @@ char const		*find_precision_digits(char const *str, t_nigga **nig)
 	while (*str)
 	{
 		if (ft_isdigit(*str))
-		{
-			// if (*str != '0')
 			return (str);
-			// else
-			// 	(*nig)->zero = 1;
-		}
 		str++;
 	}
 	return (NULL);
-	// ft_putchar('!');
 }
 
 char const	*next(char const *fmt)
@@ -58,9 +47,6 @@ char const	*next(char const *fmt)
 	new = ft_strchr(fmt, '%');
 	return (new);
 }
-
-
-// Need my own itoa
 
 char	*mod_itoa(long long value, t_nigga **nig)
 {

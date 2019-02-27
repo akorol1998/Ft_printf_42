@@ -17,11 +17,11 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 	char	*buf;
 	char	c;
 
-	c = *(*nig)->conv;
-	// ft_putstr("\n<");
-	// ft_putstr((*nig)->conv);
-	// ft_putstr((*nig)->out);
-	// ft_putstr(">\n");
+	ft_putstr("\n%");
+	ft_putstr(" Boo ");
+	ft_putstr("%\n");
+	buf = NULL;
+	c = *(*nig)->conv;	
 	if ((*nig)->conv && ft_strlen(*point))
 	{
 		if (c == 'd' || c == 'i')
@@ -50,14 +50,14 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		}
 		else if (c == 'o' || c == 'u')
 		{
-			ft_putstr("\n<o conversion");
-			buf = process_piece(*point, nig);
+			buf = process_piece(*point, nig);			
 			if (c == 'u')
 				buf = conv_u(buf, nig, args);
 			else
+			{
 				buf = conv_o(buf, nig, args);
-			// process_piece_p(*point, nig, args);
-			ft_putstr("end of conversion>\n");
+				// system("leaks a.out");
+			}
 		}
 		else if (c == 'f')
 		{
@@ -68,21 +68,22 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		else if (c == 'x' || c == 'X')
 		{
 			ft_putstr("\n<x conversion");
-			piece_hex_shit(*point, nig, args)
+			piece_hex_shit(*point, nig, args);
 			ft_putstr("end of conversion>\n");
 		}
+		if (buf)
+			free(buf);
 	}
 	if (!(*nig)->conv)
 	{
-		// ft_putstr("pocker");
+
+		ft_putstr("pocker");
 		pre_tuner(point, nig);
-		// ft_putstr("pocker");
+		ft_putstr("pocker");
 	}
 	else
 		*point = (*nig)->conv + 1;
-	// printf("\nAddress [%p]", *nig);
 	fill_my_nigga(&(*nig)->next);
-	(*nig) = (*nig)->next;
-	// printf("\nAddress [%p]", *nig);
-	// printf("\n%p", *nig);
+	(*nig) = (*nig)->next;	
+	// system("leaks a.out");
 }

@@ -12,18 +12,29 @@
 
 #include "ft_printf.h"
 
-// Extracts the string with format flags and somehow processes it
-void	concatenating(t_nigga *nig)
+void		pure_nigga(t_nigga *nig)
+{
+	t_nigga *node;
+
+	while (nig)
+	{
+		node = nig;
+		nig = nig->next;
+		free(node);
+	}
+}
+
+int			concatenating(t_nigga *nig, va_list args)
 {
 	char	*main;
 	char	*trash;
 	t_nigga	*node;
+	int		i;
 
 	node = nig;
 	main = NULL;
 	while (node)
 	{
-		ft_putstr("########################");
 		if (main && node->out)
 		{
 			trash = main;
@@ -35,51 +46,52 @@ void	concatenating(t_nigga *nig)
 		free(node->out);
 		node = node->next;
 	}
-	ft_putstr("\n^");
+	ft_putstr("\n");
 	ft_putstr(main);
-	ft_putstr("^\n");
+	ft_putstr("\n");
+	pure_nigga(nig);
+	va_end(args);
+	free(main);
+	return (ft_strlen(main));
 }
 
 
-void	pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
+int			pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 {
 	char const	*point;
 	char const	*loc;
 	t_nigga		*head;
 	t_nigga		*del;
+	int			i;
 
 	point = ft_strdup(fmt);
 	loc = point;
 	head = (*lopata);
 	while (*loc)
 	{
-		// ft_putchar('b');
-		// ft_putstr(loc);
-		// ft_putchar('b');
 		loc = customize_string(loc, lopata);
 		// ft_putchar('s');
 		// ft_putstr(loc);
 		// ft_putchar('s');
 		if (*loc)
-		{
 			loc = double_percent_sign(loc, lopata);			// Handle pointer
-		}
-		// ft_putchar('%');
-		// ft_putchar(loc);
-		// ft_putchar('%');
 		// ft_putstr("\n|>");
 		// ft_putnbr((*lopata)->zero);
 		// ft_putstr("|>\n");
 		customize_flags(loc, lopata);
 		del = *lopata;
-		tuner(&loc, lopata, args);
+		if ((*lopata)->conv)
+			tuner(&loc, lopata, args);
+		// system("leaks a.out");
+		// ft_putstr("\nb");
+		// ft_putstr(loc);
+		// ft_putstr("b\n");
 	}
-	concatenating(head);
-
-	// printf("%c", *(point));
+	free((void *)point);
+	return (concatenating(head, args));
 }
 
-int	ft_printf(const char *restrict fmt, ...)
+int			ft_printf(const char *restrict fmt, ...)
 {
 	va_list	args;
 	t_nigga	*nig;
@@ -88,8 +100,7 @@ int	ft_printf(const char *restrict fmt, ...)
 	fill_my_nigga(&nig);
 	// ft_putnbr(nig->percent);
 	va_start(args, fmt);
-	pick_up_args(args, fmt, &nig);
-	return (0);
+	return (pick_up_args(args, fmt, &nig));
 }
 
 int	main()
@@ -102,19 +113,18 @@ int	main()
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
-	unsigned int i = 232394;
+	unsigned int i = 2322;
 	double  d = 544434;
 
 	// unsigned long p = c;
-	// ft_printf("lock%-15d", i); // Some problems here !!
-	// ft_printf("lock%+-5.3d", i);		// CHeck this one
 	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
 	// ft_printf("lock%# 10.o", i);
 	// ft_printf("%1.5f", -0.0000); 	//Not working right
 
 	// ft_printf("%p", str);
-	ft_printf("%4X", i);
-	printf("%#10.8X", i);
+	ft_printf("123%#15.9o%%", i);	// This one passes the tests
+	// system("leaks a.out");	
+	printf("123%#15.9o%%\n", i);
 
 
 	// printf("lock%%% 6f", d);

@@ -6,7 +6,7 @@
 /*   By: akorol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 13:52:34 by akorol            #+#    #+#             */
-/*   Updated: 2019/01/09 16:04:05 by akorol           ###   ########.fr       */
+/*   Updated: 2019/02/27 10:11:15 by akorol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
 char				*ft_replace(char *s1, const char *s2, int len);
 void				ft_putendl(char const *s);
 void				ft_putstr(char const *str);

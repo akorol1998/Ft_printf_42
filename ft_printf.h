@@ -36,7 +36,8 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
-void				hex_zeros(char *buf);
+int					concatenating(t_nigga *nig, va_list args);
+void				hex_capital(char *buf);
 void				piece_hex_shit(char const *str, t_nigga **nig, va_list args);
 char				*hex_converter(t_nigga **, va_list args);
 void				useful_function(char **tmp, t_nigga **nig);
@@ -99,7 +100,7 @@ void				check_precision(char const *str, t_nigga **nig);
 char				*check_for_size(char const *str, char *p, t_nigga **nig);
 int					ft_printf(const char *restrict fmt, ...);
 char				*process_piece(char const *str, t_nigga **nig);
-void				pick_up_args(va_list args,
+int					pick_up_args(va_list args,
 		char const *fmt, t_nigga **nig);
 
 #endif

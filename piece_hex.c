@@ -20,15 +20,15 @@
 
 #include "ft_printf.h"
 
-void		hex_zeros(char *buf)
+void		hex_capital(char *buf)
 {
 	int		i;
 
 	i = -1;
 	while (buf[++i])
 	{
-		if (buf[i] == ' ' || buf[i] == 'x')
-			buf[i] = '0';
+		if (buf[i] >= 'a' && buf[i] <= 'z')
+			buf[i] = buf[i] - 32;
 	}
 }
 
@@ -55,59 +55,133 @@ void		hex_add(int	min, char *buf, t_nigga **nig)
 	}
 }
 
-char		*string_hex_tuning(char *buf, char *tmp, t_nigga **nig)
+void		zero_tunage(char **tmp, t_nigga **nig)
+{
+	char	*arr1;
+	char	*trash;
+	int		len;
+
+	len = ft_strlen(*tmp);
+	if ((*nig)->p_s > len)
+	{
+		arr1 = ft_strnew((*nig)->p_s);
+		fill2(arr1, (*nig)->p_s);
+		fill_wz_zero(arr1);
+		custom_strcpy(arr1 + (*nig)->p_s - len, *tmp);
+		free(*tmp);
+		(*tmp) = arr1;
+		ft_putstr("\n$");
+		ft_putstr(*tmp);
+		ft_putstr("$\n");
+	}
+	else if (!(*nig)->p_s && (*nig)->zero && !(*nig)->minus)
+	{
+		arr1 = ft_strnew((*nig)->m_s);
+		fill2(arr1, (*nig)->m_s);
+		fill_wz_zero(arr1);
+		custom_strcpy(arr1 + (*nig)->m_s - len, *tmp);
+		free(*tmp);
+		(*tmp) = arr1;
+		if ((*nig)->hash)
+			(*tmp)[1] = 'x';
+	}
+	if (((*nig)->hash && (*nig)->p_s > len) ||
+		((*tmp)[0] != '0' && (*tmp)[1] != 'x' && (*nig)->hash))
+	{
+		ft_putstr("\n(");
+		ft_putstr(*tmp);
+		ft_putstr(")\n");
+		trash = *tmp;
+		*tmp = ft_strjoin("0x", trash);
+		free(trash);
+	}
+	if ((*tmp)[1] != 'x' && (*nig)->hash)
+	{
+		(*tmp)[0] = '0';
+		(*tmp)[1] = 'x';
+	}
+}
+
+// Creating out BUFFER
+
+char		*string_hex_tuning(int len, char *buf, char *tmp, t_nigga **nig)
 {
 	int			min;
 	char		*trash;
 
-	min = (*nig)->m_s > (*nig)->p_s ? (*nig)->m_s : (*nig)->p_s;
-	buf	= ft_strnew(min);
-	fill2(buf, min);
-	if ((*nig)->hash && min - ft_strlen(tmp) < 2)
-	{
-		trash = buf;
-		buf = ft_strjoin(" ", buf);
-		free(trash);
-	}
+	buf	= ft_strnew(len);
+	fill2(buf, len);
+	zero_tunage(&tmp, nig);
 	if ((*nig)->minus)
-	{
-		if ((*nig)->hash)
-			custom_strcpy(buf + 2, tmp);
-		else
-			custom_strcpy(buf + 2, tmp);
-	}
+		custom_strcpy(buf, tmp);
 	else
 		custom_strcpy(buf + ft_strlen(buf) - ft_strlen(tmp), tmp);
-	if ((*nig)->zero && (*nig)->minus)
-		hex_zeros(buf);
-	else if (((*nig)->p_s > (*nig)->m_s || (*nig)->zero) && !(*nig)->minus)
-		hex_zeros(buf + ft_strlen(buf) - (*nig)->p_s);
-	if ((*nig)->hash)
-	{
-		if ((*nig)->minus)
-			buf[1] = 'x';
-		else
-			hex_add(min, buf, nig);
-	}
+	free(tmp);
+	return (buf);
 }
 
-void		hex_setup(char *tmp, t_nigga **nig)
+
+//  PLaying with WIDTH and RECISION
+ 
+char		*hex_setup(char *tmp, t_nigga **nig)
 {
 	char		*buf;
+	int			len;
 
 	buf = NULL;
-	
-	if ((*nig)->m_s > ft_strlen(tmp) || (*nig)->p_s > ft_strlen(tmp))
-		buf = string_hex_tuning(buf, tmp, nig);
+	len = ft_strlen(tmp);
+	if ((*nig)->hash)
+	{
+		if (((*nig)->m_s > len || (*nig)->p_s > len))
+		{	
+			if ((*nig)->p_s + 2 < (*nig)->m_s)
+			{
+				if ((*nig)->m_s - len < 2)
+					(*nig)->m_s++;
+				buf = string_hex_tuning((*nig)->m_s, buf, tmp, nig);
+			}
+			else
+				buf = string_hex_tuning((*nig)->p_s + 2, buf, tmp, nig);
+		}
+		else
+			buf = ft_strjoin("0x", tmp);
+	}
+	else
+	{
+		if ((*nig)->m_s > len || (*nig)->p_s > len)
+			buf = string_hex_tuning(ft_max((*nig)->m_s, (*nig)->p_s), buf, tmp, nig);
+		else
+			buf = tmp;
+	}
+	return (buf);
 }
 
 void		tuning_hex(t_nigga **nig, va_list args)
 {
 	char 	*tmp;
+	char	*result;
 
 	tmp = hex_converter(nig, args);
-	hex_setup(tmp, nig);
-	useful_function(&tmp, nig);
+	result = hex_setup(tmp, nig);
+	if (*(*nig)->conv == 'X')
+		hex_capital(result);
+	if ((*nig)->out)
+	{
+		tmp = (*nig)->out;
+		(*nig)->out = ft_strjoin((*nig)->out, result);
+		free(tmp);
+	}
+	else
+	{
+		(*nig)->out = ft_strdup(result);
+		free(result);
+	}
+	// system("leaks a.out");
+	ft_putstr("\n<");
+	ft_putstr(result);
+	ft_putstr(">\n");
+
+	// useful_function(&tmp, nig);
 
 }
 
