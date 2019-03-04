@@ -43,5 +43,6 @@ char	*conv_u(char *buf, t_nigga **nig, va_list args)
 	// ft_putstr("|");
 	// system("leaks a.out");
 	// '-, '+', '#' flags
+	free(digits);
 	return (dest);
 }

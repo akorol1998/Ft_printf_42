@@ -28,11 +28,10 @@ char	*process_piece(char const *str, t_nigga **nig)
 
 	buf = NULL;
 	flag = 0;
+
+
 	if ((p = ft_strchr(str, '.')))
-	{
 		buf = check_for_size(str, p + 1, nig);
-		// system("leaks a.out");
-	}
 	else
 	{
 		check_precision(str, nig);
@@ -62,6 +61,8 @@ char	*process_piece(char const *str, t_nigga **nig)
 	}
 	if (!buf)
 		ft_putstr("Jjjwwwqqqqqqqqq");
-	// ft_putstr(buf);
+	ft_putstr("\n...");
+	ft_putstr(buf);
+	ft_putstr("...\n");
 	return (buf);
 }

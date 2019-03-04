@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf.h"	
 
 
 void	sign_func_1(char **buf, char *digits, t_nigga **nig)
@@ -88,7 +88,9 @@ void	sign_func_2(char **buf, char *digits, int len, t_nigga **nig)
 	int		m;
 	int		p;
 	char	*tmp;
+	int		i;
 
+	i = -1;
 	m = (*nig)->m_s;
 	p = (*nig)->p_s;
 	if ((*nig)->sign == '+' && (*nig)->plus == '+')
@@ -103,24 +105,31 @@ void	sign_func_2(char **buf, char *digits, int len, t_nigga **nig)
 			ft_putchar('b');
 			(*buf)[m - len - 1] = '+';
 		}
+		else if (m > p && !p && (*nig)->zero)
+		{
+			while (!ft_isdigit((*buf)[++i]))
+				;
+			(*buf)[i - 1] = '+';
+		}
 		else if (m > p && len > p && (*nig)->zero)
 		{
-			// ft_putchar('\n');
-			ft_putchar('^');
-			// ft_putchar('\n');
+			ft_putstr("\n|||");
+			ft_putstr(digits);
+			ft_putstr("|||\n");
 			(*buf)[0] = '+';
 		}
-		// else if (m > p && len >= p)
-		// {
-		// 	ft_putchar('a');
-		// 	(*buf)[m - len - 1] = '+';
-		// }
 		else if ((p > m) || (m > p && len > p && len >= m) || p == m)
 		{
+			ft_putstr("\n<<");
+			ft_putstr(tmp);
+			ft_putstr(">>\n");
+			
+
 			tmp = (*buf);
-			ft_putchar('b');
-			(*buf) = ft_strjoin("+", (*buf));
+
+			(*buf) = ft_strjoin("+", tmp);
 			free(tmp);
+			// free(tmp);																		// Here are be problems !!!
 			// ft_putstr((*buf));
 		}
 		else
@@ -134,26 +143,26 @@ void	sign_digits_func(char *dest, char **digits, t_nigga **nig)
 
 	if ((*nig)->sign == '-')
 	{
-		tmp = *digits;
+		tmp = (*digits);
 		(*digits) = ft_strjoin("-", *digits);
 		free(tmp);
 	}
 	else if ((*nig)->sign == '+' && (*nig)->blank)
 	{
 		tmp = *digits;
-		*digits = ft_strjoin(" ", tmp);
+		(*digits) = ft_strjoin(" ", tmp);
 		free(tmp);
 	}
 	if ((*nig)->plus == '+' && (*nig)->sign == '+')
 	{
 		if ((*nig)->blank && (*nig)->sign == '+')
-			*digits[0] = '+';
+			(*digits)[0] = '+';
 		else
 		{
 			ft_putstr("\nCheck");
 			ft_putstr(*digits);
 			ft_putstr("Check\n");
-			tmp = *digits;
+			tmp = (*digits);
 			(*digits) = ft_strjoin("+", *digits);
 			free(tmp);
 		}
@@ -166,7 +175,6 @@ void	merging(char *dest, char *digits, t_nigga **nig)
 	char	*del;
 
 	// ft_putstr(dest);
-	
 	if (dest)
 		len = ft_strlen(dest) - ft_strlen(digits);
 	if (dest && ft_strlen(dest) && len >= 0)
@@ -193,5 +201,5 @@ void	merging(char *dest, char *digits, t_nigga **nig)
 	}
 	else
 		(*nig)->out = dest;	
-	// ft_putstr(dest);
+	free(digits);
 }

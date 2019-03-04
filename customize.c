@@ -16,14 +16,15 @@ char const	*customize_string(char const *str, t_nigga **lopata)
 {
 	int		i;
 	char	*del;
+	char	*trash;
 
 	i = 0;
 	while (str[i] && str[i] != '%')
 	{
 		i++;
-		ft_putstr("\nhere");
-		ft_putstr(" O_o ");
-		ft_putstr("here\n");
+		// ft_putstr("\nhere");
+		// ft_putstr(" O_o ");
+		// ft_putstr("here\n");
 		if (str[i] == '%')
 			(*lopata)->arg = 1;
 	}
@@ -37,9 +38,11 @@ char const	*customize_string(char const *str, t_nigga **lopata)
 		else
 		{
 			del = (*lopata)->out;
-			(*lopata)->out = ft_strjoin((*lopata)->out, ft_strsub(str, 0, i));
+			trash = ft_strsub(str, 0, i);
+			(*lopata)->out = ft_strjoin((*lopata)->out, trash);
 			ft_putstr((*lopata)->out);
 			free(del);
+			free(trash);
 		}
 	}
 	return (str + i);
@@ -59,7 +62,7 @@ char const	*double_percent_sign(char const *fmt, t_nigga **nig)
 			(*nig)->out = ft_strjoin((*nig)->out, ft_strsub(fmt, 0, 1));
 			free(buf);
 		}
-		fmt = customize_string(fmt + 2, nig);
+		fmt = customize_string(fmt + 2, nig);		
 	}
 	return (++fmt);
 }
@@ -78,7 +81,7 @@ void	custom_width(char const *s, t_nigga **nig)
 void	customize_flags_2(char const *s, int i, t_nigga **lopata)
 {
 	if ((s[i] == 'l' || s[i] == 'h' || s[i] == 'L') && !(*lopata)->width)
-			custom_width((s), lopata);
+			custom_width((s + i), lopata);
 		if (s[i] == '-')
 			(*lopata)->minus = s[i];
 		if (s[i] == '+')

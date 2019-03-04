@@ -46,9 +46,7 @@ int			concatenating(t_nigga *nig, va_list args)
 		free(node->out);
 		node = node->next;
 	}
-	ft_putstr("\n");
 	ft_putstr(main);
-	ft_putstr("\n");
 	pure_nigga(nig);
 	va_end(args);
 	free(main);
@@ -75,6 +73,7 @@ int			pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 		// ft_putchar('s');
 		if (*loc)
 			loc = double_percent_sign(loc, lopata);			// Handle pointer
+		// system("leaks a.out");
 		// ft_putstr("\n|>");
 		// ft_putnbr((*lopata)->zero);
 		// ft_putstr("|>\n");
@@ -113,19 +112,26 @@ int	main()
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
-	unsigned int i = 2322;
+	unsigned int i = 9265;
 	double  d = 544434;
+	char	c = 76;
 
 	// unsigned long p = c;
 	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
 	// ft_printf("lock%# 10.o", i);
 	// ft_printf("%1.5f", -0.0000); 	//Not working right
+	// printf("123%#233.5c%  we rt ery% regre %o ef", i, str);
 
 	// ft_printf("%p", str);
-	ft_printf("123%#15.9o%%", i);	// This one passes the tests
-	// system("leaks a.out");	
-	printf("123%#15.9o%%\n", i);
+	ft_printf("\n[%0+10.23i%% regre %c ef", i, c);	// This one passes the tests
+	printf("\n[%0+10.23i%% regre %c ef", i, c);
+	system("leaks a.out");
+	
 
+
+	// 	ft_putstr("\n<");
+	// ft_putstr("LEAK");
+	// ft_putstr(">\n");
 
 	// printf("lock%%% 6f", d);
 	// printf("% #5.4o", i);

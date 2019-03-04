@@ -66,10 +66,15 @@ void	length_comparator(t_nigga **nig, va_list args)
 	char	*str;
 	char	*tmp;
 	char	*final;
+	int		flag;
 
 	str = va_arg(args, char *);
+	flag = 0;
 	if ((*nig)->p_s < ft_strlen(str) && (*nig)->dot)
+	{
+		flag = 1;
 		tmp = ft_strsub(str, 0, (*nig)->p_s);
+	}
 	else
 		tmp = str;
 	if ((*nig)->m_s > ft_strlen(tmp))
@@ -80,10 +85,18 @@ void	length_comparator(t_nigga **nig, va_list args)
 			custom_strcpy(final + (*nig)->m_s - ft_strlen(tmp), tmp);
 		else
 			custom_strcpy(final, tmp);
+		concatenate(final, nig);
+		free(final);
+		if (flag)
+			free(tmp);
 	}
 	else
+	{
 		final = tmp;
-	last_piece(final, nig);
+		concatenate(final, nig);
+		if (flag)
+			free(final);
+	}
 }
 
 void	process_piece_s(char const *fmt, t_nigga **nig, va_list args)
@@ -105,4 +118,5 @@ void	process_piece_s(char const *fmt, t_nigga **nig, va_list args)
 	pick_width(buf, nig);
 	ft_putnbr((*nig)->plus);
 	length_comparator(nig, args);
+	// system("leaks a.out");
 }

@@ -18,15 +18,17 @@ char	*conversion_d(char *buf, t_nigga **nig, va_list args)
 	char 	*dest;
 
 	dest = buf;
-	// zero_func(&buf);
-	// ft_putstr(buf);
-	digits = open_d_conversion(nig, args);
-	// ft_putstr("11111111");
+	digits = open_d_conversion(nig, args);	
+
+	ft_putstr("\n...");
+	ft_putstr(dest);
+	ft_putstr("...\n");
 	merging(dest, digits, nig);
 	// ft_putstr("\n<");
 	// ft_putstr((*nig)->out);
 	// ft_putstr(">\n");
 	// ft_putstr("|");
+	// free(digits);
 	// system("leaks a.out");
 	// '-, '+', '#' flags
 	return (dest);
@@ -44,6 +46,8 @@ char	*open_d_conversion(t_nigga **nig, va_list args)
 	else if ((*nig)->width == 'L')								//careful here with 'L'
 	{
 		ft_putchar('L');
+		// ft_putnbr(va_arg(args, long long));
+		// ft_putchar('L');
 		buf = mod_itoa(va_arg(args, long long), nig);
 	}
 	else if ((*nig)->width == 'h')

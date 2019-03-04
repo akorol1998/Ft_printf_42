@@ -15,7 +15,9 @@
 void	align_c(char *buf, t_nigga **nig, va_list args)
 {
 	char	*tmp;
+	int		flag;
 
+	flag = 0;
 	if (*buf)
 	{
 		if ((*nig)->minus)
@@ -30,6 +32,7 @@ void	align_c(char *buf, t_nigga **nig, va_list args)
 	{
 		buf = ft_strnew(1);
 		buf[0] = va_arg(args, int);
+		flag = 1;
 	}
 	if ((*nig)->out)
 	{
@@ -39,6 +42,8 @@ void	align_c(char *buf, t_nigga **nig, va_list args)
 	}
 	else
 		(*nig)->out = buf;
+	if (flag)
+		free(buf);
 }
 
 void	conversion_c(char *buf, t_nigga **nig, va_list args)

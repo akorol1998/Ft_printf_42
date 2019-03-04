@@ -36,6 +36,7 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void				concatenate(char *fin, t_nigga **nig);
 int					concatenating(t_nigga *nig, va_list args);
 void				hex_capital(char *buf);
 void				piece_hex_shit(char const *str, t_nigga **nig, va_list args);

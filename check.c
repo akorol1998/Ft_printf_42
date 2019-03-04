@@ -27,7 +27,8 @@ char		*check_for_size(char const *str, char *p, t_nigga **nig)
 	int		a;
 
 	check_min_width(str, nig);
-	ft_putchar('$');
+
+	// ft_putchar('$');
 	check_precision(p, nig);
 	// system("leaks a.out");
 	ft_putchar('&');
@@ -47,24 +48,44 @@ char		*check_for_size(char const *str, char *p, t_nigga **nig)
 void		check_min_width(char const *str, t_nigga **nig)
 {
 	int		i;
+	int		count;
+	int		pos;
 	char	*buf;
 
 	i = 0;
+	count = 0;
+	pos = 0;
 	str = find_width_digits(str, nig);
+
 	// str = find_precision_digits(str, nig);
-	ft_putstr(str);
+	// ft_putstr("\nPickachu");
+	// ft_putstr(" LOOP ");
+	// ft_putstr("Pickachu\n");
+	ft_putnbr((*nig)->zero);
 	while (str && str[i] != '.')
 	{
-		// ft_putchar('^');
 		if (ft_isdigit(str[i]))
-			i++;
+		{
+			if (!ft_isdigit(str[i - 1]))
+			{
+				pos = i;
+				count = 0;
+			}
+			count++;
+		}
+		i++;
+		// ft_putstr("\nPickachu");
+		// ft_putstr(" LOOP ");
+		// ft_putstr("Pickachu\n");
 	}
-	if (i)
+	ft_putnbr(pos);
+	ft_putnbr(count);
+	if (count)
 	{
-		buf = ft_strsub(str, 0, i);
+		buf = ft_strsub(str, pos, count);
 		i = ft_atoi(buf);
+		free(buf);
 	}
-	free(buf);
 	(*nig)->m_s = i;
 }
 
@@ -89,15 +110,17 @@ void		check_precision(char const *str, t_nigga **nig)
 	while (str && ft_isdigit(str[i]))
 		i++;
 	// ft_putstr("112");
+
 	buf = ft_strsub(str, 0, i);
-	num = ft_atoi(buf);
+
+
 	// system("leaks a.out");
 	if(i)
-		i = num;
+		i = ft_atoi(buf);
 	else
 		i = 0;
 	free(buf);
-	// ft_putnbr(i);								// output here
+
 	(*nig)->p_s = i;
 }
 

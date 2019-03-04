@@ -33,8 +33,12 @@ char const		*find_precision_digits(char const *str, t_nigga **nig)
 {
 	while (*str)
 	{
+		ft_putstr("\nPickachu");
+		ft_putstr(" LOOP ");
+		ft_putstr("Pickachu\n");
 		if (ft_isdigit(*str))
 			return (str);
+
 		str++;
 	}
 	return (NULL);

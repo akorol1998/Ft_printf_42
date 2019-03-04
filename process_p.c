@@ -14,12 +14,14 @@
 
 void		converter_p(t_nigga **nig, va_list args)
 {
-	unsigned long	buf;
 	char			*tmp;
 	char			*final;
 
 	if (*(*nig)->conv == 'p')
 		tmp = ft_itoa_base(va_arg(args, unsigned long), 16);
+	final = tmp;
+	tmp = ft_strjoin("0x", final);
+	free(final);
 	if ((*nig)->m_s > ft_strlen(tmp))
 	{
 		final = ft_strnew((*nig)->m_s);
@@ -28,10 +30,15 @@ void		converter_p(t_nigga **nig, va_list args)
 			custom_strcpy(final + (*nig)->m_s - ft_strlen(tmp), tmp);
 		else
 			custom_strcpy(final, tmp);
+		last_piece(final, nig);
+		free(tmp);
 	}
 	else
+	{
 		final = tmp;
-	last_piece(final, nig);
+		last_piece(final, nig);
+	}
+
 }
 
 void		process_piece_p(char const *fmt, t_nigga **nig, va_list args)
