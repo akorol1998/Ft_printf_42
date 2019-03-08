@@ -43,16 +43,20 @@ int			concatenating(t_nigga *nig, va_list args)
 		}
 		else if (node->out)
 			main = ft_strdup(node->out);
-		free(node->out);
+		ft_putstr("\n<<<<");
+		ft_putstr(main);
+		ft_putstr(">>>>\n");
+		if (node->out)
+			free(node->out);
 		node = node->next;
 	}
+
 	ft_putstr(main);
 	pure_nigga(nig);
 	va_end(args);
 	free(main);
 	return (ft_strlen(main));
 }
-
 
 int			pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 {
@@ -78,15 +82,19 @@ int			pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 		// ft_putnbr((*lopata)->zero);
 		// ft_putstr("|>\n");
 		customize_flags(loc, lopata);
-		del = *lopata;
+		// del = *lopata;
+
 		if ((*lopata)->conv)
+		{
 			tuner(&loc, lopata, args);
-		// system("leaks a.out");
+		}
+		system("leaks a.out");
 		// ft_putstr("\nb");
 		// ft_putstr(loc);
 		// ft_putstr("b\n");
 	}
 	free((void *)point);
+
 	return (concatenating(head, args));
 }
 
@@ -123,9 +131,11 @@ int	main()
 	// printf("123%#233.5c%  we rt ery% regre %o ef", i, str);
 
 	// ft_printf("%p", str);
-	ft_printf("\n[%0+10.23i%% regre %c ef", i, c);	// This one passes the tests
-	printf("\n[%0+10.23i%% regre %c ef", i, c);
-	system("leaks a.out");
+	ft_printf("\n[%0+0.1i%% regre ", i);	// This one passes the tests
+	printf("\n[%0+0.1i%% regre %s ef", i, str);
+	// system("leaks a.out");
+	
+	// system("leaks a.out");
 	
 
 

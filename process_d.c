@@ -12,18 +12,22 @@
 
 #include "ft_printf.h"
 
-char	*conversion_d(char *buf, t_nigga **nig, va_list args)
+void	conversion_d(char **buf, t_nigga **nig, va_list args)
 {
 	char 	*digits;
 	char 	*dest;
 
-	dest = buf;
+	dest = (*buf);
 	digits = open_d_conversion(nig, args);	
 
 	ft_putstr("\n...");
 	ft_putstr(dest);
 	ft_putstr("...\n");
-	merging(dest, digits, nig);
+	merging(&dest, &digits, nig);
+	if (digits)
+		free(digits);
+	(*buf) = NULL;
+
 	// ft_putstr("\n<");
 	// ft_putstr((*nig)->out);
 	// ft_putstr(">\n");
@@ -31,7 +35,6 @@ char	*conversion_d(char *buf, t_nigga **nig, va_list args)
 	// free(digits);
 	// system("leaks a.out");
 	// '-, '+', '#' flags
-	return (dest);
 }
 
 char	*open_d_conversion(t_nigga **nig, va_list args)

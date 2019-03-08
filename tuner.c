@@ -22,22 +22,25 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 	ft_putstr("%\n");
 	buf = NULL;
 	c = *(*nig)->conv;
+	// system("leaks a.out");
 	if ((*nig)->conv && ft_strlen(*point))
 	{
 		if (c == 'd' || c == 'i')
 		{
 			ft_putstr("d conversion\n");
-
 			buf = process_piece(*point, nig);			// Shift a little bit in the future
 			// free(buf);
-			buf = conversion_d(buf, nig, args);
+			conversion_d(&buf, nig, args);
+			// free(buf);
 			
 		}
 		else if (c == 'c')
 		{
 			ft_putstr("c conversion\n");
 			buf = process_piece_c(*point, nig);
+
 			conversion_c(buf, nig, args);
+
 		}
 		else if (c == 's')
 		{
@@ -77,8 +80,10 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 			piece_hex_shit(*point, nig, args);
 			ft_putstr("end of conversion>\n");
 		}
+		ft_putstr("hi");
 		if (buf)
 			free(buf);
+		ft_putstr("bye");
 	}
 	if (!(*nig)->conv)
 	{
@@ -91,5 +96,6 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		*point = (*nig)->conv + 1;
 	fill_my_nigga(&(*nig)->next);
 	(*nig) = (*nig)->next;	
+
 	// system("leaks a.out");
 }

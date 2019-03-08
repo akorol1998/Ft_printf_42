@@ -120,16 +120,13 @@ void	sign_func_2(char **buf, char *digits, int len, t_nigga **nig)
 		}
 		else if ((p > m) || (m > p && len > p && len >= m) || p == m)
 		{
-			ft_putstr("\n<<");
-			ft_putstr(tmp);
-			ft_putstr(">>\n");
-			
-
+			// ft_putstr("\n<<");
+			// printf("\naddres %p",*buf);
+			// printf("\naddres %p",*buf);
+			// ft_putstr(">>\n");
 			tmp = (*buf);
-
-			(*buf) = ft_strjoin("+", tmp);
-			free(tmp);
-			// free(tmp);																		// Here are be problems !!!
+			(*buf) = ft_strjoin("+", (*buf));
+			free(tmp);																		// Here are be problems !!!
 			// ft_putstr((*buf));
 		}
 		else
@@ -153,7 +150,7 @@ void	sign_digits_func(char *dest, char **digits, t_nigga **nig)
 		(*digits) = ft_strjoin(" ", tmp);
 		free(tmp);
 	}
-	if ((*nig)->plus == '+' && (*nig)->sign == '+')
+	if ((*nig)->plus && (*nig)->sign == '+')
 	{
 		if ((*nig)->blank && (*nig)->sign == '+')
 			(*digits)[0] = '+';
@@ -169,37 +166,44 @@ void	sign_digits_func(char *dest, char **digits, t_nigga **nig)
 	}
 }
 
-void	merging(char *dest, char *digits, t_nigga **nig)
+void	merging(char **dest, char **digits, t_nigga **nig)
 {
 	int		len;
 	char	*del;
 
-	// ft_putstr(dest);
-	if (dest)
-		len = ft_strlen(dest) - ft_strlen(digits);
-	if (dest && ft_strlen(dest) && len >= 0)
+	if ((*dest))
+		len = ft_strlen((*dest)) - ft_strlen((*digits));
+	if ((*dest) && ft_strlen((*dest)) && len >= 0)
 	{
-		push(dest + len, digits);		// Careful, may leak!
-		sign_func(&dest, digits, nig);
+		push((*dest) + len, (*digits));		// Careful, may leak!
+		sign_func((dest), (*digits), nig);
 	}
 	else
 	{
-		sign_digits_func(dest, &digits, nig);
-		dest = digits;
+		ft_putstr("YOOOOOO");
+		sign_digits_func((*dest), digits, nig);
+		(*dest) = ft_strdup(*digits);
+		free(*digits);
+		(*digits) = NULL;
 	}
 	if ((*nig)->minus)
 	{
-		ft_putstr(dest);
-		ft_putstr("^ ");
-		minus_flag(dest, nig);
+		// ft_putstr("\nKOKOKOKOKOKOKOKOKOKO");
+		ft_putstr((*dest));
+		minus_flag((*dest), nig);
 	}
 	if ((*nig)->out)
 	{
+		ft_putstr("DEeeeebuuuugging");
 		del = (*nig)->out;
-		(*nig)->out = ft_strjoin((*nig)->out, dest);	
+		(*nig)->out = ft_strjoin((*nig)->out, (*dest));	
 		free(del);
+		// free(*dest);
 	}
 	else
-		(*nig)->out = dest;	
-	free(digits);
+	{
+		(*nig)->out = ft_strdup((*dest));
+	}
+	free(*dest);
+	(*dest) = NULL;
 }
