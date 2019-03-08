@@ -41,27 +41,27 @@ char	*open_o_conv(t_nigga **nig, va_list args)
 	return (buf);
 }
 
-char	*conv_o(char *buf, t_nigga **nig, va_list args)
-{
-	char 	*digits;
-	char 	*del;
-	char 	*dest;
+// char	*conv_o(t_nigga **nig, va_list args)
+// {
+// 	char 	*digits;
+// 	char 	*del;
+// 	char 	*dest;
 
-	dest = buf;
-	digits = open_o_conv(nig, args);
-	if ((*nig)->hash)
-	{
-		del = digits;
-		digits = ft_strjoin("0", digits);
-		free(del);
-	}
-	// ft_putstr("11111111");
-	merging_o(dest, digits, nig);
-	free(digits);	
-	// ft_putstr("|");
-	// '-, '+', '#' flags
-	return (dest);
-}
+// 	dest = buf;
+// 	digits = open_o_conv(nig, args);
+// 	if ((*nig)->hash)
+// 	{
+// 		del = digits;
+// 		digits = ft_strjoin("0", digits);
+// 		free(del);
+// 	}
+// 	// ft_putstr("11111111");
+// 	merging_o(dest, digits, nig);
+// 	free(digits);	
+// 	// ft_putstr("|");
+// 	// '-, '+', '#' flags
+// 	return (dest);
+// }
 
 void	sign_func_o(char **buf, char *digits, t_nigga **nig)
 {

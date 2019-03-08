@@ -21,29 +21,6 @@ char	*create_buffer(int	size)
 	return (buf);
 }
 
-char		*check_for_size(char const *str, char *p, t_nigga **nig)
-{
-	char	*buf;
-	int		a;
-
-	check_min_width(str, nig);
-
-	// ft_putchar('$');
-	check_precision(p, nig);
-	// system("leaks a.out");
-	ft_putchar('&');
-	if ((*nig)->m_s > (*nig)->p_s)
-	{
-		buf = create_buffer((*nig)->m_s);
-		// system("leaks a.out");
-	}
-	else
-	{
-		buf = create_buffer((*nig)->p_s);
-		// system("leaks a.out");
-	}
-	return (buf);
-}
 
 void		check_min_width(char const *str, t_nigga **nig)
 {
@@ -62,7 +39,7 @@ void		check_min_width(char const *str, t_nigga **nig)
 	// ft_putstr(" LOOP ");
 	// ft_putstr("Pickachu\n");
 	ft_putnbr((*nig)->zero);
-	while (str && str[i] != '.')
+	while (str && str[i] && str[i] != '.')
 	{
 		if (ft_isdigit(str[i]))
 		{

@@ -88,7 +88,7 @@ int			pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 		{
 			tuner(&loc, lopata, args);
 		}
-		system("leaks a.out");
+		// system("leaks a.out");
 		// ft_putstr("\nb");
 		// ft_putstr(loc);
 		// ft_putstr("b\n");
@@ -129,10 +129,11 @@ int	main()
 	// ft_printf("lock%# 10.o", i);
 	// ft_printf("%1.5f", -0.0000); 	//Not working right
 	// printf("123%#233.5c%  we rt ery% regre %o ef", i, str);
-
+	// ft_printf("\n[%0+9i%% regre %s ef", i, str);	// Got problems
 	// ft_printf("%p", str);
-	ft_printf("\n[%0+0.1i%% regre ", i);	// This one passes the tests
-	printf("\n[%0+0.1i%% regre %s ef", i, str);
+	
+	ft_printf("\n[% +i]", i);
+	printf("\n[% 4i]", i);
 	// system("leaks a.out");
 	
 	// system("leaks a.out");
@@ -157,4 +158,5 @@ int	main()
 }
 
 
+//
 

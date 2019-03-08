@@ -28,17 +28,13 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		if (c == 'd' || c == 'i')
 		{
 			ft_putstr("d conversion\n");
-			buf = process_piece(*point, nig);			// Shift a little bit in the future
-			// free(buf);
-			conversion_d(&buf, nig, args);
-			// free(buf);
-			
+			process_piece(*point, nig);			// Shift a little bit in the future
+			conversion_d(nig, args);
 		}
 		else if (c == 'c')
 		{
 			ft_putstr("c conversion\n");
 			buf = process_piece_c(*point, nig);
-
 			conversion_c(buf, nig, args);
 
 		}
@@ -57,16 +53,9 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		}
 		else if (c == 'o' || c == 'u')
 		{
-			buf = process_piece(*point, nig);
-			if (c == 'u')
-			{
-				buf = conv_u(buf, nig, args);
-			}
-			else
-			{
-				buf = conv_o(buf, nig, args);
+			process_piece(*point, nig);
+			conv_u(nig, args);
 				// system("leaks a.out");
-			}
 		}
 		else if (c == 'f')
 		{
