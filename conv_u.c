@@ -81,22 +81,35 @@ char	*cond_b(char *digits, t_nigga **nig)
 	return (temp);
 }
 
+void	check_weather_o(char *digits, char **temp, t_nigga **nig)
+{
+	if ((*nig)->hash && *(*nig)->conv == 'o')
+		(*temp) = ft_strjoin("0", digits);
+	else
+		(*temp) = ft_strdup(digits);
+}
+
 char	*cond_a(int g, int len, char *digits, t_nigga **nig)
 {
 	char	*temp;
 	char	*box;
 
 	if ((*nig)->p_s > len)
-		temp = cond_part_1(nig);
-	else if ((*nig)->zero && !(*nig)->p_s && (*nig)->minus != '-')
-		temp = cond_part_2(nig);
-	else
 	{
-		if ((*nig)->hash && *(*nig)->conv == 'o')
-			temp = ft_strjoin("0", digits);
-		else
-			temp = ft_strdup(digits);
+		temp = cond_part_1(nig);
+		custom_strcpy(temp + ft_strlen(temp) - ft_strlen(digits), digits);
+		ft_putstr(temp);
 	}
+	else if ((*nig)->zero && !(*nig)->p_s && (*nig)->minus != '-')
+	{
+		temp = cond_part_2(nig);
+		custom_strcpy(temp + ft_strlen(temp) - ft_strlen(digits), digits);
+		ft_putstr("\n<<");
+		ft_putstr(">>\n");
+	}
+	else
+		check_weather_o(digits, &temp, nig);
+	g = ft_strlen(temp) > g ? ft_strlen(temp) : g;
 	box = ft_strnew(g);
 	fill2(box, g);
 	if ((*nig)->minus)

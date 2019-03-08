@@ -132,8 +132,8 @@ int	main()
 	// ft_printf("\n[%0+9i%% regre %s ef", i, str);	// Got problems
 	// ft_printf("%p", str);
 	
-	ft_printf("\n[% +i]", i);
-	printf("\n[% 4i]", i);
+	ft_printf("\n[% #2o]", i);
+	printf("\n[% #2o]", i);
 	// system("leaks a.out");
 	
 	// system("leaks a.out");
