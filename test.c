@@ -43,14 +43,10 @@ int			concatenating(t_nigga *nig, va_list args)
 		}
 		else if (node->out)
 			main = ft_strdup(node->out);
-		ft_putstr("\n<<<<");
-		ft_putstr(main);
-		ft_putstr(">>>>\n");
 		if (node->out)
 			free(node->out);
 		node = node->next;
 	}
-
 	ft_putstr(main);
 	pure_nigga(nig);
 	va_end(args);
@@ -72,29 +68,13 @@ int			pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 	while (*loc)
 	{
 		loc = customize_string(loc, lopata);
-		// ft_putchar('s');
-		// ft_putstr(loc);
-		// ft_putchar('s');
 		if (*loc)
-			loc = double_percent_sign(loc, lopata);			// Handle pointer
-		// system("leaks a.out");
-		// ft_putstr("\n|>");
-		// ft_putnbr((*lopata)->zero);
-		// ft_putstr("|>\n");
+			loc = double_percent_sign(loc, lopata);
 		customize_flags(loc, lopata);
-		// del = *lopata;
-
 		if ((*lopata)->conv)
-		{
 			tuner(&loc, lopata, args);
-		}
-		// system("leaks a.out");
-		// ft_putstr("\nb");
-		// ft_putstr(loc);
-		// ft_putstr("b\n");
 	}
 	free((void *)point);
-
 	return (concatenating(head, args));
 }
 
@@ -105,7 +85,6 @@ int			ft_printf(const char *restrict fmt, ...)
 
 	nig = NULL;
 	fill_my_nigga(&nig);
-	// ft_putnbr(nig->percent);
 	va_start(args, fmt);
 	return (pick_up_args(args, fmt, &nig));
 }
@@ -121,20 +100,20 @@ int	main()
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
 	unsigned int i = 9265;
-	double  d = 544434;
+	double  d = 5443.7932;
 	char	c = 76;
 
 	// unsigned long p = c;
-	// printf("%0.0d ewfweg", 0);			// PAY ATTENTION TO THESE CASES
-	// ft_printf("lock%# 10.o", i);
+
+	// ft_printf("\n[%0+9x%% re45gre %s ef", i, str);
 	// ft_printf("%1.5f", -0.0000); 	//Not working right
-	// printf("123%#233.5c%  we rt ery% regre %o ef", i, str);
-	// ft_printf("\n[%0+9i%% regre %s ef", i, str);	// Got problems
 	// ft_printf("%p", str);
+
+	ft_printf("\n[%- 10.6d%% re45gre %s ef", i, str);
 	
-	ft_printf("\n[% #2o]", i);
-	printf("\n[% #2o]", i);
+	printf("\n[%- 10.6d%% re45gre %s ef", i, str);
 	// system("leaks a.out");
+	
 	
 	// system("leaks a.out");
 	

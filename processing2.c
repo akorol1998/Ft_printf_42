@@ -29,10 +29,12 @@ char const		*find_width_digits(char const *str, t_nigga **nig)
 	return (NULL);
 }
 
-char const		*find_precision_digits(char const *str, t_nigga **nig)
+char const		*find_precision_digits(int	*f, char const *str, t_nigga **nig)
 {
 	while (*str)
 	{
+		if (!ft_isdigit(*str))
+			(*f)++;
 		ft_putstr("\nPickachu");
 		ft_putstr(" LOOP ");
 		ft_putstr("Pickachu\n");

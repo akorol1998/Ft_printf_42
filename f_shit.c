@@ -19,9 +19,27 @@ long double	casting_f(t_nigga **nig, va_list args)
 	return (buf);
 }
 
+char		*tuning_f_3(int	a, char *holder, t_nigga **nig)
+{
+	char	*buf;
+	char	*buf_2;
+
+	if (a == 0)
+		return (holder);
+	else
+	{
+		buf = mod_itoa(a, nig);
+		buf_2 = ft_strjoin(holder, buf);
+		free(holder);
+		free(buf);
+		return (buf_2);
+	}
+}
+
 char		*tuning_f_2(double num, t_nigga **nig)
 {
 	char	*holder;
+	char	*buf_2;
 	int		i;
 	int		buf;
 	int		a;
@@ -52,10 +70,7 @@ char		*tuning_f_2(double num, t_nigga **nig)
 		// printf("\nGeorge Orwell <%d>", buf);
 		buf += buf < 0 ? -1 : 1;
 	}
-	if (buf == 0)
-		return (holder);
-	else
-		return (ft_strjoin(holder, mod_itoa(buf, nig)));
+	return (tuning_f_3(buf, holder, nig));
 }
 
 char		*tuning_f_1(double num, t_nigga **nig)
@@ -83,24 +98,33 @@ void		tuning_f(t_nigga **nig, va_list args)
 	char	*part_1;
 	char	*part_2;
 
+	part_1 = NULL;
+	part_2 = NULL;
 	num = casting_f(nig, args);
 	part_1 = tuning_f_1(num, nig);
 	part_2 = tuning_f_2(num, nig);
 	(*nig)->sign = num < 0  ? '-' : '+';
-	buf = part_1;
 	if ((*nig)->p_s || (*nig)->hash)
 	{
-		part_1 = ft_strjoin(part_1, ".");
-		free(buf);
 		buf = part_1;
+		part_1 = ft_strjoin(part_1, ".");
+		printf("\nheeeeeeeeee [%d]",(*nig)->p_s);
+		free(buf);
 	}
 	if ((*nig)->p_s > 0)
 	{
+		buf = part_1;
 		part_1 = ft_strjoin(part_1, part_2);
+		printf("\nheeeeeeeeee");
 		free(buf);
 	}
+
+	if (part_2)
+		free(part_2);
 	buf_tuning_f(part_1, nig);
-	printf("\n<%s>", (*nig)->out);
+	if (part_1)
+		free(part_1);
+
 }
 // Try to 
 
@@ -129,5 +153,7 @@ void		piece_f_shit(char const *str, t_nigga **nig, va_list args)
 	}
 	else
 		(*nig)->m_s = separation_vol3(str, nig);
+	// system("leaks a.out");
 	tuning_f(nig, args);
+	// system("leaks a.out");
 }

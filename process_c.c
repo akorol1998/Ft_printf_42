@@ -45,13 +45,13 @@ int		separation_vol3(char const *str, t_nigga **nig)
 	char		*trash;
 
 	min = 0;
-	i = -1;
+	i = 0;
 	// ft_putstr("sep3");
-	while (str[i] && str[++i] != *(*nig)->conv)
+	while (str[i] && str[i] != *(*nig)->conv)
 	{
 		j = 0;
-		// ft_putstr(str);
-		// ft_putnbr(i);
+		ft_putstr("\n");
+		ft_putnbr(i);
 		while (str[i + j] && ft_isdigit(str[i + j]) &&
 			(str[i + j] != '0' || ft_isdigit(str[i + j - 1])))
 		{
@@ -64,7 +64,7 @@ int		separation_vol3(char const *str, t_nigga **nig)
 				free(trash);
 			}
 		}
-		i += j;
+		i += j > 0 ? j : 1;
 	}
 	return (min);
 }

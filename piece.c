@@ -27,7 +27,7 @@ void	process_piece(char const *str, t_nigga **nig)
 	if ((p = ft_strchr(str, '.')))
 	{
 		check_min_width(str, nig);
-		check_precision(p, nig);
+		check_precision(p + 1, nig);
 	}
 	else
 	{

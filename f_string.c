@@ -46,12 +46,10 @@ char		*join_sign_f(char *str, t_nigga **nig)
 	if ((*nig)->sign == '-')
 	{
 		str = ft_strjoin("-", buf);
-		free(buf);
 	}
 	else if ((*nig)->plus)
 	{
 		str = ft_strjoin("+", buf);
-		free(buf);
 	}
 	return (str);
 }
@@ -110,15 +108,19 @@ void		buf_tuning_f(char *str, t_nigga **nig)
 
 	buf = NULL;
 	if ((*nig)->m_s > ft_strlen(str))
+	{
 		buf = string_tuning_f(buf, str, nig);
+	}
 	else
 	{
 		if ((*nig)->blank && !(*nig)->plus && (*nig)->sign != '-')
 			buf = ft_strjoin(" ", str);
 		else
 			buf = join_sign_f(str, nig);
+
 	}
-	// hash_case_f(buf, nig);
+
+	// hash_case_f(buf, nig);	
 	if ((*nig)->out)
 	{
 		trash = (*nig)->out;
@@ -128,9 +130,12 @@ void		buf_tuning_f(char *str, t_nigga **nig)
 	else
 	{
 		(*nig)->out = ft_strdup(buf);
-	}
-	if (buf)
 		free(buf);
+	}
+	// free(buf);
+	// printf("suuuuuukkkkaaaaa");
+	// if (buf)
+		
 	// system("leaks a.out");		//search for leaks in the section of grabbing width and precision
 }
 

@@ -94,6 +94,7 @@ char	*cond_a(int g, int len, char *digits, t_nigga **nig)
 	char	*temp;
 	char	*box;
 
+	temp = NULL;
 	if ((*nig)->p_s > len)
 	{
 		temp = cond_part_1(nig);
@@ -116,6 +117,8 @@ char	*cond_a(int g, int len, char *digits, t_nigga **nig)
 		custom_strcpy(box, temp);
 	else
 		custom_strcpy(box + g - ft_strlen(temp), temp);
+	if (temp)
+		free(temp);																	/// wefewgewgewg
 	return (box);
 }
 
@@ -133,7 +136,9 @@ void	conv_u(t_nigga **nig, va_list args)
 		digits = open_o_conv(nig, args);
 	g = find_greater((*nig)->m_s, (*nig)->p_s);
 	if (g > ft_strlen(digits))
+	{
 		transfer = cond_a(g, ft_strlen(digits), digits, nig);
+	}
 	else
 		transfer = cond_b(digits, nig);
 	if ((*nig)->out)

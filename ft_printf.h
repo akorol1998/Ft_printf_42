@@ -36,6 +36,9 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+char				*condition_b(char *digits, t_nigga **nig);
+char				*condition_a(int g, int len, char *digits, t_nigga **nig);
+void				zero_tunage(char **tmp, t_nigga **nig);
 char				*cond_a(int g, int len, char *digits, t_nigga **nig);
 char				*cond_b(char *digits, t_nigga **nig);
 char				*cond_part_2(t_nigga **nig);
@@ -95,7 +98,7 @@ char const			*customize_string(char const *str, t_nigga **nig);
 void				fill_my_nigga(t_nigga **nig);
 char const			*double_percent_sign(char const *fmt, t_nigga **nig);
 char const			*find_width_digits(char const *str, t_nigga **nig);
-char const			*find_precision_digits(char const *str, t_nigga **nig);
+char const			*find_precision_digits(int	*f, char const *str, t_nigga **nig);
 int					find_greater(int a, int b);
 void				fill_zero(char *buf, int size, int fill);
 char				*take_piece(char *point);

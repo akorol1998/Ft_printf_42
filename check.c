@@ -35,11 +35,11 @@ void		check_min_width(char const *str, t_nigga **nig)
 	str = find_width_digits(str, nig);
 
 	// str = find_precision_digits(str, nig);
-	// ft_putstr("\nPickachu");
-	// ft_putstr(" LOOP ");
-	// ft_putstr("Pickachu\n");
+	ft_putstr("\nPickachu");
+	ft_putstr(str);
+	ft_putstr("Pickachu\n");
 	ft_putnbr((*nig)->zero);
-	while (str && str[i] && str[i] != '.')
+	while (str && str[i] && str[i] != '.' && str[i] != *(*nig)->conv)
 	{
 		if (ft_isdigit(str[i]))
 		{
@@ -73,9 +73,11 @@ void		check_precision(char const *str, t_nigga **nig)
 	int		i;
 	int		num;
 	char	*buf;
+	int		flag;
 
 	i = 0;
-	str = find_precision_digits(str, nig);
+	flag = 0;
+	str = find_precision_digits(&flag, str, nig);
 	// if (str && str[i] == '0')
 	// {
 	// 	// ft_putstr(str);
@@ -97,7 +99,11 @@ void		check_precision(char const *str, t_nigga **nig)
 	else
 		i = 0;
 	free(buf);
-
-	(*nig)->p_s = i;
+	if (flag && i)
+	{
+		(*nig)->m_s = i;
+		(*nig)->p_s = 0;
+	}
+	else
+		(*nig)->p_s = i;
 }
-
