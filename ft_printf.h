@@ -36,6 +36,8 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void				check_weather_o(char *digits, char **temp, t_nigga **nig);
+char				*open_u_conversion(t_nigga **nig, va_list args);
 char				*condition_b(char *digits, t_nigga **nig);
 char				*condition_a(int g, int len, char *digits, t_nigga **nig);
 void				zero_tunage(char **tmp, t_nigga **nig);
@@ -49,7 +51,7 @@ void				hex_capital(char *buf);
 void				piece_hex_shit(char const *str, t_nigga **nig, va_list args);
 char				*hex_converter(t_nigga **, va_list args);
 void				useful_function(char **tmp, t_nigga **nig);
-char				*remainder_zeros(double *num, int *i, t_nigga **nig);
+char				*remainder_zeros(double *num, long long *i, t_nigga **nig);
 char				*string_tuning_f(char *buf, char *str, t_nigga **nig);
 void				add_sign_f(char *str, t_nigga **nig);
 void				buf_tuning_f(char *str, t_nigga **nig);
@@ -71,7 +73,7 @@ void				last_piece(char	*fin, t_nigga **nig);
 void				process_piece_s(char const *fmt, t_nigga **nig, va_list args);
 void				fill2(char *str, int len);
 void				pre_tuner(char const **str, t_nigga **nig);
-void				align_c(char *buf, t_nigga **nig, va_list args);
+void				align_c(char *buf, t_nigga **nig);
 void				conversion_c(char *buf, t_nigga **nig, va_list args);
 int					separation_vol3(char const *str, t_nigga **nig);
 void				separation_vol2(char const * str, int *min, int len);

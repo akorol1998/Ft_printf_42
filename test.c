@@ -99,8 +99,8 @@ int	main()
 	// ft_putstr("|");
 	// ft_printf("%% -8.5d", 34);
 	char	*str = "kick-ass";
-	unsigned int i = 9265;
-	double  d = 5443.7932;
+	int 	i = -465;
+	double  d = -123423123213214.7932;
 	char	c = 76;
 
 	// unsigned long p = c;
@@ -109,9 +109,9 @@ int	main()
 	// ft_printf("%1.5f", -0.0000); 	//Not working right
 	// ft_printf("%p", str);
 
-	ft_printf("\n[%- 10.6d%% re45gre %s ef", i, str);
-	
-	printf("\n[%- 10.6d%% re45gre %s ef", i, str);
+	ft_printf("\n[%+5f%% re45gre %s ef", d, str);
+	// ft_printf("\n[%10.6llo", i);
+	printf("\n[%+5f%% re45gre %s ef", d, str);
 	// system("leaks a.out");
 	
 	

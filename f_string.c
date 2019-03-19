@@ -12,12 +12,12 @@
 
 #include "ft_printf.h"
 
-char		*remainder_zeros(double *num, int *i, t_nigga **nig)
+char		*remainder_zeros(double *num, long long *i, t_nigga **nig)
 {
-	char	*buffer;
-	double	copy;
-	int		counter;
-	int		a;
+	char			*buffer;
+	double			copy;
+	long long		counter;
+	long long		a;
 
 	copy = *num;
 	counter	= 0;

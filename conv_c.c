@@ -12,9 +12,23 @@
 
 #include "ft_printf.h"
 
-void	align_c(char *buf, t_nigga **nig, va_list args)
+void		align_c(char *buf, t_nigga **nig)
 {
 	char	*tmp;
+
+	tmp = NULL;
+	if ((*nig)->out)
+	{
+		tmp = (*nig)->out;
+		(*nig)->out = ft_strjoin((*nig)->out, buf);
+		free(tmp);
+	}
+	else
+		(*nig)->out = buf;
+}
+
+void		conversion_c(char *buf, t_nigga **nig, va_list args)
+{
 	int		flag;
 
 	flag = 0;
@@ -34,19 +48,7 @@ void	align_c(char *buf, t_nigga **nig, va_list args)
 		buf[0] = va_arg(args, int);
 		flag = 1;
 	}
-	if ((*nig)->out)
-	{
-		tmp = (*nig)->out;
-		(*nig)->out = ft_strjoin((*nig)->out, buf);
-		free(tmp);
-	}
-	else
-		(*nig)->out = buf;
+	align_c(buf, nig);
 	if (flag)
 		free(buf);
-}
-
-void	conversion_c(char *buf, t_nigga **nig, va_list args)
-{
-	align_c(buf, nig, args);
 }
