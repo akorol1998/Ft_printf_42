@@ -12,49 +12,15 @@
 
 #include "ft_printf.h"
 
-
-int			find_greater(int a, int b)			// Macros
+char const		*next(char const *fmt)
 {
-	return (a > b ? a: b);
-}
-
-char const		*find_width_digits(char const *str, t_nigga **nig)
-{
-	while (*str && *str != '.')
-	{
-		if (ft_isdigit(*str))
-			return (str);
-		str++;
-	}
-	return (NULL);
-}
-
-char const		*find_precision_digits(int	*f, char const *str, t_nigga **nig)
-{
-	while (*str)
-	{
-		if (!ft_isdigit(*str))
-			(*f)++;
-		ft_putstr("\nPickachu");
-		ft_putstr(" LOOP ");
-		ft_putstr("Pickachu\n");
-		if (ft_isdigit(*str))
-			return (str);
-
-		str++;
-	}
-	return (NULL);
-}
-
-char const	*next(char const *fmt)
-{
-	char	*new;
+	char		*new;
 
 	new = ft_strchr(fmt, '%');
 	return (new);
 }
 
-char	*mod_itoa(long long value, t_nigga **nig)
+char			*mod_itoa(long long value, t_nigga **nig)
 {
 	int			i;
 	long long	copy;
@@ -78,25 +44,25 @@ char	*mod_itoa(long long value, t_nigga **nig)
 	return (str);
 }
 
-char    *ft_itoa_base(uintmax_t value, int base)
+char			*ft_itoa_base(uintmax_t value, int base)
 {
-   int         i;
-   uintmax_t   n;
-   char        *nbr;
+	int			i;
+	uintmax_t	n;
+	char		*nbr;
 
-   i = 1;
-   n = value;
-   while ((n /= base) != 0)
-       i++;
-   nbr = (char*)malloc(sizeof(nbr) * i);
-   nbr[i] = '\0';
-   while (i-- > 0)
-   {
-       n = '0';
-       if (value % base > 9)
-           n = 'a' - 10;
-       nbr[i] = (value % base) + n;
-       value = value / base;
-   }
-   return (nbr);
+	i = 1;
+	n = value;
+	while ((n /= base) != 0)
+		i++;
+	nbr = (char*)malloc(sizeof(nbr) * i);
+	nbr[i] = '\0';
+	while (i-- > 0)
+	{
+		n = '0';
+		if (value % base > 9)
+			n = 'a' - 10;
+		nbr[i] = (value % base) + n;
+		value = value / base;
+	}
+	return (nbr);
 }

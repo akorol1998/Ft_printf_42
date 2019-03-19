@@ -55,10 +55,7 @@ void	fill2(char *str, int len)
 
 	i = -1;
 	while (++i < len)
-	{
 		str[i] = ' ';
-		// ft_putnbr(len);
-	}
 }
 
 void	fill_wz_zero(char *str)
@@ -69,11 +66,3 @@ void	fill_wz_zero(char *str)
 		str++;
 	}
 }
-
-// char	*zero_merge(char *holder, int buf, t_nigga **nig)
-// {
-// 	char	*new;
-
-// 	new = ft_strjoin(holder, mod_itoa(buf, nig));
-// 	return (new);
-// }

@@ -47,7 +47,7 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 	{
 		if (c == 'd' || c == 'i')
 		{
-			process_piece(*point, nig);			// Shift a little bit in the future
+			process_piece(*point, nig);
 			conversion_d(nig, args);
 		}
 		else if (c == 'c')
@@ -60,5 +60,5 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		if (buf)
 			free(buf);
 		tuner_part_2(point, nig, args);
-	}	
+	}
 }

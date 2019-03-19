@@ -38,7 +38,6 @@ void		converter_p(t_nigga **nig, va_list args)
 		final = tmp;
 		last_piece(final, nig);
 	}
-
 }
 
 void		process_piece_p(char const *fmt, t_nigga **nig, va_list args)

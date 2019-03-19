@@ -12,32 +12,6 @@
 
 #include "ft_printf.h"
 
-char		*remainder_zeros(double *num, long long *i, t_nigga **nig)
-{
-	char			*buffer;
-	double			copy;
-	long long		counter;
-	long long		a;
-
-	copy = *num;
-	counter	= 0;
-	while ((a = (copy * 10)) == 0 && ++(*i) < (*nig)->p_s)
-	{
-		copy *= 10;
-		counter++;
-		ft_putnbr(counter);
-	}
-	buffer = ft_strnew(counter);
-	fill2(buffer, counter);
-	fill_wz_zero(buffer);
-	while (counter)
-	{
-		*num *= 10;
-		counter--;
-	}
-	return (buffer);
-}
-
 char		*join_sign_f(char *str, t_nigga **nig)
 {
 	char	*buf;
@@ -73,7 +47,7 @@ void		add_sign_f(char *str, t_nigga **nig)
 					*(--str) = '-';
 				else if ((*nig)->plus)
 					*(--str) = '+';
-				break;
+				break ;
 			}
 			str++;
 		}
@@ -101,6 +75,24 @@ char		*string_tuning_f(char *buf, char *str, t_nigga **nig)
 	return (buf);
 }
 
+void		buf_tuning_f_part_1(char *buf, t_nigga **nig)
+{
+	char	*trash;
+
+	trash = NULL;
+	if ((*nig)->out)
+	{
+		trash = (*nig)->out;
+		(*nig)->out = ft_strjoin(trash, buf);
+		free(trash);
+	}
+	else
+	{
+		(*nig)->out = ft_strdup(buf);
+		free(buf);
+	}
+}
+
 void		buf_tuning_f(char *str, t_nigga **nig)
 {
 	char	*buf;
@@ -117,27 +109,6 @@ void		buf_tuning_f(char *str, t_nigga **nig)
 			buf = ft_strjoin(" ", str);
 		else
 			buf = join_sign_f(str, nig);
-
 	}
-
-	// hash_case_f(buf, nig);	
-	if ((*nig)->out)
-	{
-		trash = (*nig)->out;
-		(*nig)->out = ft_strjoin(trash, buf);
-		free(trash);
-	}
-	else
-	{
-		(*nig)->out = ft_strdup(buf);
-		free(buf);
-	}
-	// free(buf);
-	// printf("suuuuuukkkkaaaaa");
-	// if (buf)
-		
-	// system("leaks a.out");		//search for leaks in the section of grabbing width and precision
+	buf_tuning_f_part_1(buf, nig);
 }
-
-
-

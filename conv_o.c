@@ -18,7 +18,7 @@ char	*open_o_conv(t_nigga **nig, va_list args)
 
 	if ((*nig)->width == 'l')
 		buf = ft_itoa_base(va_arg(args, unsigned long), 8);
-	else if ((*nig)->width == 'L')						
+	else if ((*nig)->width == 'L')
 		buf = ft_itoa_base(va_arg(args, unsigned long long), 8);
 	else if ((*nig)->width == 'h')
 		buf = ft_itoa_base((unsigned short)va_arg(args, int), 8);

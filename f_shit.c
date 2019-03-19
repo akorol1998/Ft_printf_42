@@ -50,3 +50,29 @@ void		piece_f_shit(char const *str, t_nigga **nig, va_list args)
 		(*nig)->m_s = separation_vol3(str, nig);
 	tuning_f(nig, args);
 }
+
+char		*remainder_zeros(double *num, long long *i, t_nigga **nig)
+{
+	char			*buffer;
+	double			copy;
+	long long		counter;
+	long long		a;
+
+	copy = *num;
+	counter = 0;
+	while ((a = (copy * 10)) == 0 && ++(*i) < (*nig)->p_s)
+	{
+		copy *= 10;
+		counter++;
+		ft_putnbr(counter);
+	}
+	buffer = ft_strnew(counter);
+	fill2(buffer, counter);
+	fill_wz_zero(buffer);
+	while (counter)
+	{
+		*num *= 10;
+		counter--;
+	}
+	return (buffer);
+}

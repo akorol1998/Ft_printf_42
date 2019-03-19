@@ -85,9 +85,7 @@ void			tuning_hex(t_nigga **nig, va_list args)
 		free(tmp);
 	}
 	else
-	{
 		(*nig)->out = ft_strdup(result);
-	}
 	free(result);
 }
 

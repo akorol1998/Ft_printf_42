@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char	*condition_b_part_1(char *temp, t_nigga **nig)
+char		*condition_b_part_1(char *temp, t_nigga **nig)
 {
 	char	*trash;
 
@@ -32,7 +32,7 @@ char	*condition_b_part_1(char *temp, t_nigga **nig)
 	return (temp);
 }
 
-char	*condition_b(char *digits, t_nigga **nig)
+char		*condition_b(char *digits, t_nigga **nig)
 {
 	char	*temp;
 	char	*trash;
@@ -48,15 +48,4 @@ char	*condition_b(char *digits, t_nigga **nig)
 		temp = ft_strjoin(" ", trash);
 	}
 	return (condition_b_part_1(temp, nig));
-}
-
-void	pre_tuner(char const **str, t_nigga **nig)
-{
-	int	i;
-
-	i = 0;
-	while (*str && (*str)[i] && (*str)[i] != '%')
-		++i;
-	(*str) += i;
-	(*nig)->conv = (*str);
 }
