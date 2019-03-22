@@ -16,7 +16,7 @@ char			*cond_a_part_1(int g, char *temp, t_nigga **nig)
 {
 	char		*box;
 
-	g = ft_strlen(temp) > g ? ft_strlen(temp) : g;
+	g = (int)ft_strlen(temp) > g ? (int)ft_strlen(temp) : g;
 	box = ft_strnew(g);
 	fill2(box, g);
 	if ((*nig)->minus)
@@ -68,7 +68,6 @@ void			conv_u_part_1(char *transfer, char *digits, t_nigga **nig)
 void			conv_u(t_nigga **nig, va_list args)
 {
 	char		*digits;
-	char		*buf;
 	char		*transfer;
 	int			g;
 
@@ -77,7 +76,7 @@ void			conv_u(t_nigga **nig, va_list args)
 	else
 		digits = open_o_conv(nig, args);
 	g = find_greater((*nig)->m_s, (*nig)->p_s);
-	if (g > ft_strlen(digits))
+	if (g > (int)ft_strlen(digits))
 	{
 		transfer = cond_a(g, ft_strlen(digits), digits, nig);
 	}

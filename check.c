@@ -25,7 +25,9 @@ int			check_min_width_2(int count, char const *str,
 {
 	int		i;
 	char	*buf;
+	t_nigga *lol;
 
+	lol = (*nig);
 	buf = ft_strsub(str, pos, count);
 	i = ft_atoi(buf);
 	free(buf);
@@ -63,7 +65,6 @@ void		check_min_width(char const *str, t_nigga **nig)
 void		check_precision(char const *str, t_nigga **nig)
 {
 	int		i;
-	int		num;
 	char	*buf;
 	int		flag;
 

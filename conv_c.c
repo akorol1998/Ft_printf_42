@@ -24,31 +24,28 @@ void		align_c(char *buf, t_nigga **nig)
 		free(tmp);
 	}
 	else
-		(*nig)->out = buf;
+		(*nig)->out = ft_strdup(buf);
 }
 
-void		conversion_c(char *buf, t_nigga **nig, va_list args)
+char		*conversion_c(char *buf, t_nigga **nig, va_list args)
 {
 	int		flag;
 
 	flag = 0;
-	if (*buf)
+	if (ft_strlen(buf))
 	{
 		if ((*nig)->minus)
-		{
-			printf("hello");
 			buf[0] = va_arg(args, int);
-		}
 		else
 			buf[ft_strlen(buf) - 1] = va_arg(args, int);
 	}
 	else
 	{
+		free(buf);
 		buf = ft_strnew(1);
 		buf[0] = va_arg(args, int);
 		flag = 1;
 	}
 	align_c(buf, nig);
-	if (flag)
-		free(buf);
+	return (buf);
 }

@@ -26,45 +26,41 @@ void		custom_strcpy(char *str1, char *str2)
 	}
 }
 
-void		leng_compar_2(char *final, char *tmp, int flag, t_nigga **nig)
+void		leng_compar_2(char *tmp, t_nigga **nig)
 {
-	final = ft_strnew((*nig)->m_s);
-	fill2(final, (*nig)->m_s);
+	char	*final;
+
+	(final) = ft_strnew((*nig)->m_s);
+	fill2((final), (*nig)->m_s);
 	if (!(*nig)->minus)
-		custom_strcpy(final + (*nig)->m_s - ft_strlen(tmp), tmp);
+		custom_strcpy((final) + (*nig)->m_s - ft_strlen(tmp), tmp);
 	else
-		custom_strcpy(final, tmp);
-	concatenate(final, nig);
+		custom_strcpy((final), tmp);
+	concatenate((final), nig);
 	free(final);
-	if (flag)
-		free(tmp);
 }
 
 void		length_comparator(t_nigga **nig, va_list args)
 {
+	char	*buf;
 	char	*str;
 	char	*tmp;
-	char	*final;
-	int		flag;
 
-	str = va_arg(args, char *);
-	flag = 0;
-	if ((*nig)->p_s < ft_strlen(str) && (*nig)->dot)
-	{
-		flag = 1;
+	buf = va_arg(args, char *);
+	if (!buf)
+		str = ft_strdup("(null)");
+	else
+		str = ft_strdup(buf);
+	if ((*nig)->p_s < (int)ft_strlen(str) && (*nig)->dot)
 		tmp = ft_strsub(str, 0, (*nig)->p_s);
-	}
 	else
-		tmp = str;
-	if ((*nig)->m_s > ft_strlen(tmp))
-		leng_compar_2(final, tmp, flag, nig);
+		tmp = ft_strdup(str);
+	if ((*nig)->m_s > (int)ft_strlen(tmp))
+		leng_compar_2(tmp, nig);
 	else
-	{
-		final = tmp;
-		concatenate(final, nig);
-		if (flag)
-			free(final);
-	}
+		concatenate(tmp, nig);
+	free(tmp);
+	free(str);
 }
 
 void		process_piece_s(char const *fmt, t_nigga **nig, va_list args)

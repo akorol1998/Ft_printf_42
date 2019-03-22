@@ -32,7 +32,6 @@ char			*tuning_f_3(int a, char *holder, t_nigga **nig)
 char			*tuning_f_2(double num, t_nigga **nig)
 {
 	char		*holder;
-	char		*buf_2;
 	long long	i;
 	long long	buf;
 	long long	a;
@@ -95,15 +94,21 @@ void			tuning_f(t_nigga **nig, va_list args)
 
 	part_1 = NULL;
 	part_2 = NULL;
+	buf = NULL;
 	num = casting_f(nig, args);
-	part_1 = tuning_f_1(num, nig);
-	part_2 = tuning_f_2(num, nig);
-	(*nig)->sign = num < 0 ? '-' : '+';
-	if ((*nig)->p_s || (*nig)->hash)
+	if ((num != num) || (num * 89 == num && num != 0))
+		nan_inf_function(num, nig);
+	else
 	{
-		buf = part_1;
-		part_1 = ft_strjoin(part_1, ".");
-		free(buf);
+		part_1 = tuning_f_1(num, nig);
+		part_2 = tuning_f_2(num, nig);
+		(*nig)->sign = num < 0 ? '-' : '+';
+		if ((*nig)->p_s || (*nig)->hash)
+		{
+			buf = part_1;
+			part_1 = ft_strjoin(part_1, ".");
+			free(buf);
+		}
+		tuning_f_cleaning(buf, part_1, part_2, nig);
 	}
-	tuning_f_cleaning(buf, part_1, part_2, nig);
 }

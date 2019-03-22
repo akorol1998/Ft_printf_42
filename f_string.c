@@ -87,19 +87,15 @@ void		buf_tuning_f_part_1(char *buf, t_nigga **nig)
 		free(trash);
 	}
 	else
-	{
 		(*nig)->out = ft_strdup(buf);
-		free(buf);
-	}
 }
 
 void		buf_tuning_f(char *str, t_nigga **nig)
 {
 	char	*buf;
-	char	*trash;
 
 	buf = NULL;
-	if ((*nig)->m_s > ft_strlen(str))
+	if ((*nig)->m_s > (int)ft_strlen(str))
 	{
 		buf = string_tuning_f(buf, str, nig);
 	}
@@ -111,4 +107,6 @@ void		buf_tuning_f(char *str, t_nigga **nig)
 			buf = join_sign_f(str, nig);
 	}
 	buf_tuning_f_part_1(buf, nig);
+	if (buf)
+		free(buf);
 }

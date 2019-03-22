@@ -34,6 +34,7 @@ void		process_piece(char const *str, t_nigga **nig)
 		check_min_width(str, nig);
 		(*nig)->p_s = 0;
 	}
+	// printf("addres {%p} min [%i], max [%i]\n", (*nig), (*nig)->m_s, (*nig)->p_s);
 }
 
 int			find_greater(int a, int b)
@@ -43,6 +44,9 @@ int			find_greater(int a, int b)
 
 char const	*find_width_digits(char const *str, t_nigga **nig)
 {
+	t_nigga *none;
+
+	none = *nig;
 	while (*str && *str != '.')
 	{
 		if (ft_isdigit(*str))
@@ -54,7 +58,10 @@ char const	*find_width_digits(char const *str, t_nigga **nig)
 
 char const	*find_precision_digits(int *f, char const *str, t_nigga **nig)
 {
-	while (*str)
+	t_nigga *none;
+
+	none = *nig;
+	while (*str && (*str) != *(*nig)->conv)
 	{
 		if (!ft_isdigit(*str))
 			(*f)++;
@@ -62,5 +69,5 @@ char const	*find_precision_digits(int *f, char const *str, t_nigga **nig)
 			return (str);
 		str++;
 	}
-	return (NULL);
+	return (str ? str : NULL);
 }

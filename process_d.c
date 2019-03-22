@@ -43,7 +43,6 @@ char	*condition_a_part_1(t_nigga **nig)
 
 char	*condition_a_part_2(t_nigga **nig)
 {
-	char	*trash;
 	char	*temp;
 
 	temp = ft_strnew((*nig)->m_s);
@@ -94,7 +93,6 @@ char	*condition_a(int g, int len, char *digits, t_nigga **nig)
 	{
 		temp = condition_a_part_1(nig);
 		custom_strcpy(temp + ft_strlen(temp) - ft_strlen(digits), digits);
-		ft_putstr(temp);
 	}
 	else if ((*nig)->zero && !(*nig)->p_s && (*nig)->minus != '-')
 	{
@@ -103,7 +101,7 @@ char	*condition_a(int g, int len, char *digits, t_nigga **nig)
 	}
 	else
 		temp = condition_a_part_3(digits, nig);
-	g = ft_strlen(temp) > g ? ft_strlen(temp) : g;
+	g = (int)ft_strlen(temp) > g ? (int)ft_strlen(temp) : g;
 	box = ft_strnew(g);
 	fill2(box, g);
 	if ((*nig)->minus)

@@ -46,7 +46,7 @@ void			zero_tunage_2(char **tmp, t_nigga **nig)
 	char		*trash;
 
 	trash = NULL;
-	if (((*nig)->hash && (*nig)->p_s > ft_strlen(*tmp)) ||
+	if (((*nig)->hash && (*nig)->p_s > (int)ft_strlen(*tmp)) ||
 		((*tmp)[0] != '0' && (*tmp)[1] != 'x' && (*nig)->hash))
 	{
 		trash = *tmp;
@@ -64,7 +64,7 @@ void			zero_tunage(char **tmp, t_nigga **nig)
 {
 	char		*arr1;
 
-	if ((*nig)->p_s > ft_strlen(*tmp))
+	if ((*nig)->p_s > (int)ft_strlen(*tmp))
 	{
 		arr1 = ft_strnew((*nig)->p_s);
 		fill2(arr1, (*nig)->p_s);

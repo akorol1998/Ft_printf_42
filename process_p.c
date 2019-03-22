@@ -17,12 +17,11 @@ void		converter_p(t_nigga **nig, va_list args)
 	char			*tmp;
 	char			*final;
 
-	if (*(*nig)->conv == 'p')
-		tmp = ft_itoa_base(va_arg(args, unsigned long), 16);
+	tmp = ft_itoa_base(va_arg(args, unsigned long), 16);
 	final = tmp;
 	tmp = ft_strjoin("0x", final);
 	free(final);
-	if ((*nig)->m_s > ft_strlen(tmp))
+	if ((*nig)->m_s > (int)ft_strlen(tmp))
 	{
 		final = ft_strnew((*nig)->m_s);
 		fill2(final, (*nig)->m_s);
@@ -43,7 +42,6 @@ void		converter_p(t_nigga **nig, va_list args)
 void		process_piece_p(char const *fmt, t_nigga **nig, va_list args)
 {
 	char	*buf;
-	char	*p;
 
 	buf = (char *)fmt;
 	while (buf && *buf && !ft_isdigit(*buf))

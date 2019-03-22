@@ -25,10 +25,8 @@ long double	casting_f(t_nigga **nig, va_list args)
 
 void		piece_f_shit(char const *str, t_nigga **nig, va_list args)
 {
-	char	*buf;
 	char	*p;
 	int		i;
-	int		size;
 
 	i = -1;
 	p = ft_strchr(str, '.');

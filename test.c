@@ -15,7 +15,8 @@
 int				ending_output(char *main, va_list args, t_nigga *nig)
 {
 	t_nigga		*node;
-
+	int			i;
+	
 	ft_putstr(main);
 	while (nig)
 	{
@@ -25,7 +26,8 @@ int				ending_output(char *main, va_list args, t_nigga *nig)
 	}
 	free(main);
 	va_end(args);
-	return (ft_strlen(main));
+	i = main ? ft_strlen(main) : 0;
+	return (i);
 }
 
 int				concatenating(t_nigga *nig, va_list args)
@@ -33,7 +35,6 @@ int				concatenating(t_nigga *nig, va_list args)
 	char		*main;
 	char		*trash;
 	t_nigga		*node;
-	int			i;
 
 	node = nig;
 	main = NULL;
@@ -51,6 +52,7 @@ int				concatenating(t_nigga *nig, va_list args)
 			free(node->out);
 		node = node->next;
 	}
+	
 	return (ending_output(main, args, nig));
 }
 
@@ -59,8 +61,6 @@ int				pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 	char const	*point;
 	char const	*loc;
 	t_nigga		*head;
-	t_nigga		*del;
-	int			i;
 
 	point = ft_strdup(fmt);
 	loc = point;
@@ -87,18 +87,4 @@ int				ft_printf(const char *restrict fmt, ...)
 	fill_my_nigga(&nig);
 	va_start(args, fmt);
 	return (pick_up_args(args, fmt, &nig));
-}
-
-int				main(void)
-{
-
-	char		*str = "kick-ass";
-	int 		i = 465;
-	double  	d = 213214.7932;
-	char		c = 76;
-
-	ft_printf("\n[%15.7lo%% re45gre %15.21s ef", i, str);
-	system("leaks a.out");
-	printf("\n[%15.7lo%% re45gre %15.21s ef", i, str);
-	return (0);
 }

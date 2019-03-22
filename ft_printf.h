@@ -36,6 +36,9 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void				nan_inf_string(char *str, t_nigga **nig);
+void				buf_tuning_f_part_1(char *buf, t_nigga **nig);
+void				nan_inf_function(double num, t_nigga **nig);
 long double			casting_f(t_nigga **nig, va_list args);
 void				tuning_f(t_nigga **nig, va_list args);
 void				check_weather_o(char *digits, char **temp, t_nigga **nig);
@@ -79,7 +82,7 @@ void				process_piece_s(char const *fmt, t_nigga **nig,
 void				fill2(char *str, int len);
 void				pre_tuner(char const **str, t_nigga **nig);
 void				align_c(char *buf, t_nigga **nig);
-void				conversion_c(char *buf, t_nigga **nig, va_list args);
+char				*conversion_c(char *buf, t_nigga **nig, va_list args);
 int					separation_vol3(char const *str, t_nigga **nig);
 void				separation_vol2(char const *str, int *min, int len);
 int					separation(char const *str, int len);

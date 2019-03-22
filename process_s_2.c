@@ -57,7 +57,6 @@ void		pre_tuner(char const **str, t_nigga **nig)
 void		pick_width(char *fmt, t_nigga **nig)
 {
 	int		i;
-	int		res;
 	char	*buf;
 
 	i = 0;
@@ -71,7 +70,6 @@ void		pick_width(char *fmt, t_nigga **nig)
 void		pick_precision(char *fmt, t_nigga **nig)
 {
 	int		i;
-	int		res;
 	char	*buf;
 
 	i = 0;

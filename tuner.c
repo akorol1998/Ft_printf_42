@@ -53,7 +53,7 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		else if (c == 'c')
 		{
 			buf = process_piece_c(*point, nig);
-			conversion_c(buf, nig, args);
+			buf = conversion_c(buf, nig, args);
 		}
 		else if (c == 's')
 			process_piece_s(*point, nig, args);
