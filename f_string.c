@@ -16,16 +16,22 @@ char		*join_sign_f(char *str, t_nigga **nig)
 {
 	char	*buf;
 
-	buf = str;
+
 	if ((*nig)->sign == '-')
 	{
+		buf = str;
 		str = ft_strjoin("-", buf);
+		free(buf);
 	}
 	else if ((*nig)->plus)
 	{
+		buf = str;
 		str = ft_strjoin("+", buf);
+		free(buf);
 	}
-	return (str);
+	else
+		buf = ft_strdup(str);
+	return (buf);
 }
 
 void		add_sign_f(char *str, t_nigga **nig)

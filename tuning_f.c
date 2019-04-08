@@ -69,9 +69,12 @@ char			*tuning_f_1(double num, t_nigga **nig)
 	return (mod_itoa(var, nig));
 }
 
-void			tuning_f_cleaning(char *buf, char *part_1,
+void			tuning_f_cleaning(char *part_1,
 	char *part_2, t_nigga **nig)
 {
+	char	*buf;
+
+	buf = NULL;
 	if ((*nig)->p_s > 0)
 	{
 		buf = part_1;
@@ -80,7 +83,7 @@ void			tuning_f_cleaning(char *buf, char *part_1,
 	}
 	if (part_2)
 		free(part_2);
-	buf_tuning_f(part_1, nig);
+	buf_tuning_f(part_1, nig);	
 	if (part_1)
 		free(part_1);
 }
@@ -109,6 +112,6 @@ void			tuning_f(t_nigga **nig, va_list args)
 			part_1 = ft_strjoin(part_1, ".");
 			free(buf);
 		}
-		tuning_f_cleaning(buf, part_1, part_2, nig);
+		tuning_f_cleaning(part_1, part_2, nig);
 	}
 }

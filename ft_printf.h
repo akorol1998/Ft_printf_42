@@ -45,7 +45,7 @@ void				check_weather_o(char *digits, char **temp, t_nigga **nig);
 char				*open_u_conversion(t_nigga **nig, va_list args);
 char				*condition_b(char *digits, t_nigga **nig);
 char				*condition_a(int g, int len, char *digits, t_nigga **nig);
-void				zero_tunage(char **tmp, t_nigga **nig);
+char				*zero_tunage(char *tmp, t_nigga **nig);
 char				*cond_a(int g, int len, char *digits, t_nigga **nig);
 char				*cond_b(char *digits, t_nigga **nig);
 char				*cond_part_2(t_nigga **nig);

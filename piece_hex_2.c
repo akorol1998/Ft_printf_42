@@ -14,14 +14,20 @@
 
 char			*string_hex_tuning(int len, char *buf, char *tmp, t_nigga **nig)
 {
+	char	*new;
+
 	buf = ft_strnew(len);
 	fill2(buf, len);
-	zero_tunage(&tmp, nig);
+	new = zero_tunage(tmp, nig);
 	if ((*nig)->minus)
-		custom_strcpy(buf, tmp);
+	{
+		custom_strcpy(buf, new);
+	}
 	else
-		custom_strcpy(buf + ft_strlen(buf) - ft_strlen(tmp), tmp);
-	free(tmp);
+	{
+		custom_strcpy(buf + ft_strlen(buf) - ft_strlen(new), new);
+	}
+	free(new);
 	return (buf);
 }
 
@@ -36,10 +42,15 @@ char			*hex_setup_2(int len, char *tmp, t_nigga **nig)
 		{
 			if ((*nig)->m_s - len < 2)
 				(*nig)->m_s++;
+			{
 			buf = string_hex_tuning((*nig)->m_s, buf, tmp, nig);
+
+			}
 		}
 		else
+		{
 			buf = string_hex_tuning((*nig)->p_s + 2, buf, tmp, nig);
+		}
 	}
 	else
 		buf = ft_strjoin("0x", tmp);
@@ -54,17 +65,16 @@ char			*hex_setup(char *tmp, t_nigga **nig)
 	buf = NULL;
 	len = ft_strlen(tmp);
 	if ((*nig)->hash)
+	{
 		buf = hex_setup_2(len, tmp, nig);
+	}
 	else
 	{
 		if ((*nig)->m_s > len || (*nig)->p_s > len)
 			buf = string_hex_tuning(ft_max((*nig)->m_s,
 				(*nig)->p_s), buf, tmp, nig);
 		else
-		{
 			buf = ft_strdup(tmp);
-			free(tmp);
-		}
 	}
 	return (buf);
 }
@@ -76,6 +86,7 @@ void			tuning_hex(t_nigga **nig, va_list args)
 
 	tmp = hex_converter(nig, args);
 	result = hex_setup(tmp, nig);
+	free(tmp);
 	if (*(*nig)->conv == 'X')
 		hex_capital(result);
 	if ((*nig)->out)

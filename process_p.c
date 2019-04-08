@@ -20,6 +20,7 @@ void		converter_p(t_nigga **nig, va_list args)
 	tmp = ft_itoa_base(va_arg(args, unsigned long), 16);
 	final = tmp;
 	tmp = ft_strjoin("0x", final);
+	// printf("\nP conversion [%s]\n", tmp);
 	free(final);
 	if ((*nig)->m_s > (int)ft_strlen(tmp))
 	{
@@ -47,6 +48,5 @@ void		process_piece_p(char const *fmt, t_nigga **nig, va_list args)
 	while (buf && *buf && !ft_isdigit(*buf))
 		buf++;
 	pick_width(buf, nig);
-	ft_putnbr((*nig)->plus);
 	converter_p(nig, args);
 }

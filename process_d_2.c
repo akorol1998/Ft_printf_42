@@ -28,7 +28,9 @@ void		conversion_d(t_nigga **nig, va_list args)
 		transfer = condition_a(g, len, digits, nig);
 	}
 	else
+	{
 		transfer = condition_b(digits, nig);
+	}
 	if ((*nig)->out)
 	{
 		buf = (*nig)->out;

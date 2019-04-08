@@ -33,6 +33,7 @@ void		piece_f_shit(char const *str, t_nigga **nig, va_list args)
 	(*nig)->p_s = 6;
 	if (p)
 	{
+
 		if (ft_isdigit(*(p + 1)))
 		{
 			(*nig)->p_s = separation_vol3(p, nig);

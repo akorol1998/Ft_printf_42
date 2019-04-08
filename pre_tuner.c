@@ -29,6 +29,7 @@ char		*condition_b_part_1(char *temp, t_nigga **nig)
 	}
 	if (trash)
 		free(trash);
+	// system("leaks a.out");
 	return (temp);
 }
 
@@ -46,6 +47,7 @@ char		*condition_b(char *digits, t_nigga **nig)
 	{
 		trash = temp;
 		temp = ft_strjoin(" ", trash);
+		free(trash);
 	}
 	return (condition_b_part_1(temp, nig));
 }

@@ -99,4 +99,11 @@ printf     --> t 0X000AB   876 et FF11FF11FF1!
 ret = 31
 [KO]
 -------------------------------------
+TEST : %----24p et hello %2p %12p, &ret, &p_all_01, NULL
+ft_printf  --> 0000x7ffee22d2824           et hello 0x10d931ca0          0x0
+ret = 58
+printf     --> 0x7ffee22d2824           et hello 0x10d931ca0          0x0
+ret = 58
+[KO]
+-------------------------------------
 

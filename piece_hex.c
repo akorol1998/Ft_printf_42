@@ -41,37 +41,38 @@ void			hex_capital(char *buf)
 	}
 }
 
-void			zero_tunage_2(char **tmp, t_nigga **nig)
+char			*zero_tunage_2(char *arg, t_nigga **nig)
 {
-	char		*trash;
+	char		*var;
 
-	trash = NULL;
-	if (((*nig)->hash && (*nig)->p_s > (int)ft_strlen(*tmp)) ||
-		((*tmp)[0] != '0' && (*tmp)[1] != 'x' && (*nig)->hash))
+	var = NULL;
+	if (((*nig)->hash && (*nig)->p_s == (int)ft_strlen(arg)) ||
+		(arg[0] != '0' && arg[1] != 'x' && (*nig)->hash))
+		var = ft_strjoin("0x", arg);
+	else if (arg[1] != 'x' && (*nig)->hash)
 	{
-		trash = *tmp;
-		*tmp = ft_strjoin("0x", trash);
-		free(trash);
+		arg[0] = '0';
+		arg[1] = 'x';
+		var = ft_strdup(arg);
 	}
-	if ((*tmp)[1] != 'x' && (*nig)->hash)
-	{
-		(*tmp)[0] = '0';
-		(*tmp)[1] = 'x';
-	}
+	else
+		var = ft_strdup(arg);
+	return (var);
 }
 
-void			zero_tunage(char **tmp, t_nigga **nig)
+char			*zero_tunage(char *tmp, t_nigga **nig)
 {
 	char		*arr1;
+	char		*var;
 
-	if ((*nig)->p_s > (int)ft_strlen(*tmp))
-	{
+	var = NULL;
+	arr1 = NULL;
+	if ((*nig)->p_s > (int)ft_strlen(tmp))
+	{ß
 		arr1 = ft_strnew((*nig)->p_s);
 		fill2(arr1, (*nig)->p_s);
 		fill_wz_zero(arr1);
-		custom_strcpy(arr1 + (*nig)->p_s - ft_strlen(*tmp), *tmp);
-		free(*tmp);
-		(*tmp) = arr1;
+		custom_strcpy(arr1 + (*nig)->p_s - ft_strlen(tmp), tmp);
 	}
 	else if (!(*nig)->p_s && !(*nig)->dot && (*nig)->zero &&
 		(*nig)->minus != '-')
@@ -79,11 +80,14 @@ void			zero_tunage(char **tmp, t_nigga **nig)
 		arr1 = ft_strnew((*nig)->m_s);
 		fill2(arr1, (*nig)->m_s);
 		fill_wz_zero(arr1);
-		custom_strcpy(arr1 + (*nig)->m_s - ft_strlen(*tmp), *tmp);
-		free(*tmp);
-		(*tmp) = arr1;
+		custom_strcpy(arr1 + (*nig)->m_s - ft_strlen(tmp), tmp);
 		if ((*nig)->hash)
-			(*tmp)[1] = 'x';
+			arr1[1] = 'x';
 	}
-	zero_tunage_2(tmp, nig);
+	else
+		arr1 = ft_strdup(tmp);
+	var = zero_tunage_2(arr1, nig);
+	free(arr1);
+	// system("leaks a.out");
+	return (var);
 }

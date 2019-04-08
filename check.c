@@ -39,27 +39,36 @@ void		check_min_width(char const *str, t_nigga **nig)
 	int		i;
 	int		count;
 	int		pos;
+	int		a;
 
 	i = 0;
 	count = 0;
 	pos = 0;
+	a = 0;
 	str = find_width_digits(str, nig);
 	while (str && str[i] && str[i] != '.' && str[i] != *(*nig)->conv)
 	{
 		if (ft_isdigit(str[i]))
 		{
+
 			if (!ft_isdigit(str[i - 1]))
 			{
 				pos = i;
 				count = 0;
 			}
 			count++;
+			a = check_min_width_2(count, str, pos, nig);
+			// printf("a digit [%d]\n", a);
+			// printf("STRING [%s]\n", str + i);
+			if (a)
+			{
+				// ft_putstr("a here\n");
+				(*nig)->m_s = a;
+			}
 		}
 		i++;
 	}
-	if (count)
-		i = check_min_width_2(count, str, pos, nig);
-	(*nig)->m_s = i;
+	// ft_putstr("==== end ====\n");
 }
 
 void		check_precision(char const *str, t_nigga **nig)
