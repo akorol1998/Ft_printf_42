@@ -20,13 +20,20 @@ char		*take_piece(char *point)
 	return (pos);
 }
 
+// char		*
+
 void		process_piece(char const *str, t_nigga **nig)
 {
 	char	*p;
+	char	*area;
 
-	if ((p = ft_strchr(str, '.')))
+
+	area = ft_strsub(str, 0, (*nig)->conv - str);
+	// printf("%ld", (*nig)->conv - str);
+	if ((p = ft_strchr(area, '.')))
 	{
-		check_min_width(str, nig);
+		// printf("heeeey22222");
+		check_min_width(area, nig);
 		check_precision(p + 1, nig);
 	}
 	else
@@ -34,6 +41,7 @@ void		process_piece(char const *str, t_nigga **nig)
 		check_min_width(str, nig);
 		(*nig)->p_s = 0;
 	}
+	free(area);
 	// printf("addres {%p} min [%i], max [%i]\n", (*nig), (*nig)->m_s, (*nig)->p_s);
 }
 
@@ -50,7 +58,10 @@ char const	*find_width_digits(char const *str, t_nigga **nig)
 	while (*str && *str != '.')
 	{
 		if (ft_isdigit(*str))
+		{
+			// printf("heeeey");
 			return (str);
+		}
 		str++;
 	}
 	return (NULL);

@@ -14,9 +14,9 @@
 
 int				main(void)
 {
-	ft_printf("%20.ld et %.4hhi !\n", 0x11ffaa147, (signed char)-8);
-	printf("%20.ld et %.4hhi !\n", 0x11ffaa147, (signed char)-8);
-
+	ft_printf("t %#7.5X", 1234);
+	printf("t %#7.5X", 1234);
+	//ft_printf("%f", 10.97);
 	return (0);
 }
 

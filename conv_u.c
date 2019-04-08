@@ -17,15 +17,19 @@ char			*open_u_conversion(t_nigga **nig, va_list args)
 	char		*buf;
 
 	if ((*nig)->width == 'l')
-		buf = mod_itoa(va_arg(args, unsigned long), nig);
+		buf = ft_itoa_base(va_arg(args, unsigned long), 10);
 	else if ((*nig)->width == 'L')
-		buf = mod_itoa(va_arg(args, unsigned long long), nig);
+	{
+		// printf("ARBRAKADABRA \n");
+		buf = ft_itoa_base(va_arg(args, unsigned long long), 10);
+	}
 	else if ((*nig)->width == 'h')
-		buf = mod_itoa((unsigned short)va_arg(args, int), nig);
+		buf = ft_itoa_base((unsigned short)va_arg(args, int), 10);
 	else if ((*nig)->width == 'H')
-		buf = mod_itoa((unsigned char)va_arg(args, int), nig);
+		buf = ft_itoa_base((unsigned char)va_arg(args, int), 10);
 	else
-		buf = mod_itoa(va_arg(args, unsigned), nig);
+		buf = ft_itoa_base(va_arg(args, unsigned), 10);
+	// printf(",,%s,,\n", buf);
 	return (buf);
 }
 

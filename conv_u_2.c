@@ -38,9 +38,11 @@ char			*cond_a(int g, int len, char *digits, t_nigga **nig)
 		temp = cond_part_1(nig);
 		custom_strcpy(temp + ft_strlen(temp) - ft_strlen(digits), digits);
 	}
-	else if ((*nig)->zero && !(*nig)->p_s && (*nig)->minus != '-')
+	else if ((*nig)->zero && !(*nig)->p_s &&
+		(*nig)->minus != '-' && !(*nig)->dot)
 	{
 		temp = cond_part_2(nig);
+		printf("Heeeeeeyy NIGGA  [%c] \n", (*nig)->dot);
 		custom_strcpy(temp + ft_strlen(temp) - ft_strlen(digits), digits);
 	}
 	else
@@ -75,6 +77,7 @@ void			conv_u(t_nigga **nig, va_list args)
 		digits = open_u_conversion(nig, args);
 	else
 		digits = open_o_conv(nig, args);
+	printf("digits [%s], prec[%d] width[%d]", digits, (*nig)->p_s, (*nig)->m_s);
 	g = find_greater((*nig)->m_s, (*nig)->p_s);
 	if (g > (int)ft_strlen(digits))
 	{
