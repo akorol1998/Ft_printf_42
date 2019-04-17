@@ -31,6 +31,7 @@ void	fill_my_nigga(t_nigga **nig)
 	(*nig)->dot = 0;
 	(*nig)->next = NULL;
 	(*nig)->arg = 0;
+	(*nig)->slashz = 0;
 }
 
 void	fill_zero(char *buf, int size, int fill)

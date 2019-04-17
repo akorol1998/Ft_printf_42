@@ -36,6 +36,19 @@ void	tuner_part_2(char const **point, t_nigga **nig, va_list args)
 	(*nig) = (*nig)->next;
 }
 
+char	*tuner_inner(char *buf, char const **point, va_list args, t_nigga **nig)
+{
+	char	c;
+
+	c = *(*nig)->conv;
+	buf = process_piece_c(*point, nig);
+	if (c == '%')
+		buf = conversion_percent(buf, nig);
+	else
+		buf = conversion_c(buf, nig, args);
+	return (buf);
+}
+
 void	tuner(char const **point, t_nigga **nig, va_list args)
 {
 	char	*buf;
@@ -52,11 +65,7 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 		}
 		else if (c == 'c' || c == '%')
 		{
-			buf = process_piece_c(*point, nig);
-			if (c == '%')
-				buf = conversion_percent(buf, nig);
-			else	
-				buf = conversion_c(buf, nig, args);
+			buf = tuner_inner(buf, point, args, nig);
 		}
 		else if (c == 's')
 			process_piece_s(*point, nig, args);

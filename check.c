@@ -63,7 +63,6 @@ void		check_min_width(char const *str, t_nigga **nig)
 	count = 0;
 	pos = 0;
 	a = 0;
-	// str = find_width_digits(str, nig);
 	while (str && str[i] && str[i] != *(*nig)->conv)
 	{
 		if (ft_isdigit(str[i]) && !ft_isdigit(str[i - 1]))

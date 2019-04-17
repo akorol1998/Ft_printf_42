@@ -104,23 +104,6 @@ char			*process_piece_c(char const *str, t_nigga **nig)
 	area = ft_strsub(str, 0, (*nig)->conv - str);
 	check_min_width(area, nig);
 	free(area);
-	// char		*buf;
-	// char		*p;
-	// int			i;
-	// int			size;
-
-	// i = -1;
-	// p = ft_strchr(str, '.');
-	// size = 0;
-	// if (p)
-	// {
-	// 	if (ft_isdigit(*(p + 1)))
-	// 		size = separation(str, p - str);
-	// 	else
-	// 		size = separation_vol3(str, nig);
-	// }
-	// else
-	// 	size = separation_vol3(str, nig);
 	area = fill_for_c(nig);
 	return (area);
 }

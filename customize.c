@@ -115,8 +115,4 @@ void			customize_flags(char const *s, t_nigga **lopata)
 	{
 		(*lopata)->conv = s + i;
 	}
-	// if ((*lopata)->conv && *(*lopata)->conv == '%')
-	// 	{
-
-	// 	}
 }

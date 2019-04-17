@@ -16,7 +16,6 @@ char		*join_sign_f(char *str, t_nigga **nig)
 {
 	char	*buf;
 
-
 	if ((*nig)->sign == '-')
 	{
 		buf = ft_strjoin("-", str);

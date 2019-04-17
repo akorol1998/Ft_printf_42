@@ -15,18 +15,21 @@
 int				ending_output(char *main, va_list args, t_nigga *nig)
 {
 	t_nigga		*node;
+	int			slashz;
 	int			i;
-	
+
 	ft_putstr(main);
+	slashz = 0;
 	while (nig)
 	{
 		node = nig;
+		slashz += node->slashz;
 		nig = nig->next;
 		free(node);
 	}
-	free(main);
 	va_end(args);
-	i = main ? ft_strlen(main) : 0;
+	free(main);
+	i = main ? ft_strlen(main) + slashz : 0;
 	return (i);
 }
 
@@ -52,7 +55,6 @@ int				concatenating(t_nigga *nig, va_list args)
 			free(node->out);
 		node = node->next;
 	}
-	
 	return (ending_output(main, args, nig));
 }
 
@@ -70,7 +72,6 @@ int				pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 		loc = customize_string(loc, lopata);
 		if (*loc)
 			loc++;
-			// loc = double_percent_sign(loc, lopata);
 		customize_flags(loc, lopata);
 		if ((*lopata)->conv)
 			tuner(&loc, lopata, args);

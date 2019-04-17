@@ -20,30 +20,13 @@ char		*take_piece(char *point)
 	return (pos);
 }
 
-// char		*
-
 void		process_piece(char const *str, t_nigga **nig)
 {
-	// char	*p;
 	char	*area;
-
 
 	area = ft_strsub(str, 0, (*nig)->conv - str);
 	check_min_width(area, nig);
 	free(area);
-	// // printf("%ld", (*nig)->conv - str);
-	// if ((p = ft_strchr(area, '.')))
-	// {
-	// 	// printf("heeeey22222");
-	// 	check_min_width(area, nig);
-	// 	check_precision(p + 1, nig);
-	// }
-	// else
-	// {
-	// 	check_min_width(str, nig);
-	// 	(*nig)->p_s = 0;
-	// }
-	// printf("addres {%p} min [%i], max [%i]\n", (*nig), (*nig)->m_s, (*nig)->p_s);
 }
 
 int			find_greater(int a, int b)
@@ -60,7 +43,6 @@ char const	*find_width_digits(char const *str, t_nigga **nig)
 	{
 		if (ft_isdigit(*str))
 		{
-			// printf("heeeey");
 			return (str);
 		}
 		str++;

@@ -33,12 +33,16 @@ typedef	struct		s_nigga
 	int				hash;
 	int				zero;
 	int				dot;
+	int				slashz;
 	struct s_nigga	*next;
 }					t_nigga;
 
-void		tuning_f_small_part(char **part_1, char **part_2,
+int					round_f(long long buf, long long buf2, double *onum);
+int					replace_function(long long *buf, long long buf2,
+	double *onum);
+void				tuning_f_small_part(char **part_1, char **part_2,
 	double num, t_nigga **nig);
-char				*tuning_f_2(double num, t_nigga **nig);
+char				*tuning_f_2(double num, double *onum, t_nigga **nig);
 char				*tuning_f_1(double num, t_nigga **nig);
 void				zero_case_pure_function(t_nigga **nig);
 void				zero_case_function(t_nigga **nig);

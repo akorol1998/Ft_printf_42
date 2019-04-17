@@ -52,30 +52,27 @@ char		*conversion_percent(char *buf, t_nigga **nig)
 
 char		*conversion_c(char *buf, t_nigga **nig, va_list args)
 {
-	int		flag;
 	char	c;
 
-	flag = 0;
-	if (ft_strlen(buf))
-	{
-		if ((*nig)->minus)
-		{
-			c = va_arg(args, int);
-			if (c == '\0')
-				buf[ft_strlen(buf) - 1] = '\0';
-			else
-				buf[0] = c;
-		}
-		else
-			buf[ft_strlen(buf) - 1] = va_arg(args, int);
-	}
+	c = va_arg(args, int);
+	if (c == '\0')
+		zero_case_pure_function(nig);
 	else
 	{
-		free(buf);
-		buf = ft_strnew(1);
-		buf[0] = va_arg(args, int);
-		flag = 1;
+		if (ft_strlen(buf))
+		{
+			if ((*nig)->minus)
+				buf[0] = c;
+			else
+				buf[ft_strlen(buf) - 1] = c;
+		}
+		else
+		{
+			free(buf);
+			buf = ft_strnew(1);
+			buf[0] = c;
+		}
+		align_c(buf, nig);
 	}
-	align_c(buf, nig);
 	return (buf);
 }

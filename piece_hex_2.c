@@ -43,14 +43,11 @@ char			*hex_setup_2(int len, char *tmp, t_nigga **nig)
 			if ((*nig)->m_s - len < 2)
 				(*nig)->m_s++;
 			{
-			buf = string_hex_tuning((*nig)->m_s, buf, tmp, nig);
-
+				buf = string_hex_tuning((*nig)->m_s, buf, tmp, nig);
 			}
 		}
 		else
-		{
 			buf = string_hex_tuning((*nig)->p_s + 2, buf, tmp, nig);
-		}
 	}
 	else
 		buf = ft_strjoin("0x", tmp);
@@ -71,8 +68,10 @@ char			*hex_setup(char *tmp, t_nigga **nig)
 	else
 	{
 		if ((*nig)->m_s > len || (*nig)->p_s > len)
+		{
 			buf = string_hex_tuning(ft_max((*nig)->m_s,
 				(*nig)->p_s), buf, tmp, nig);
+		}
 		else
 			buf = ft_strdup(tmp);
 	}
@@ -115,23 +114,5 @@ void			piece_hex_shit(char const *str, t_nigga **nig, va_list args)
 	area = ft_strsub(str, 0, (*nig)->conv - str);
 	check_min_width(area, nig);
 	free(area);
-
-	// char		*p;
-	// int			i;
-
-	// i = -1;
-	// p = ft_strchr(str, '.');
-	// if (p)
-	// {
-	// 	if (ft_isdigit(*(p + 1)))
-	// 	{
-			// (*nig)->p_s = separation_vol3(p, nig);
-			// (*nig)->m_s = separation(str, p - str);
-	// 	}
-	// 	else
-			// (*nig)->m_s = separation_vol3(str, nig);
-	// }
-	// else
-	// 	(*nig)->m_s = separation_vol3(str, nig);
 	tuning_hex(nig, args);
 }

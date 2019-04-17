@@ -29,7 +29,6 @@ char		*condition_b_part_1(char *temp, t_nigga **nig)
 	}
 	if (trash)
 		free(trash);
-	// system("leaks a.out");
 	return (temp);
 }
 

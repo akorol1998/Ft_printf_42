@@ -20,7 +20,6 @@ char			*open_u_conversion(t_nigga **nig, va_list args)
 		buf = ft_itoa_base(va_arg(args, unsigned long), 10);
 	else if ((*nig)->width == 'L')
 	{
-		// printf("ARBRAKADABRA \n");
 		buf = ft_itoa_base(va_arg(args, unsigned long long), 10);
 	}
 	else if ((*nig)->width == 'h')
@@ -29,7 +28,6 @@ char			*open_u_conversion(t_nigga **nig, va_list args)
 		buf = ft_itoa_base((unsigned char)va_arg(args, int), 10);
 	else
 		buf = ft_itoa_base(va_arg(args, unsigned), 10);
-	// printf(",,%s,,\n", buf);
 	return (buf);
 }
 

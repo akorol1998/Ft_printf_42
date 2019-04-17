@@ -24,13 +24,9 @@ void		conversion_d(t_nigga **nig, va_list args)
 	g = find_greater((*nig)->m_s, (*nig)->p_s);
 	len = ft_strlen(digits);
 	if (g > len)
-	{
 		transfer = condition_a(g, len, digits, nig);
-	}
 	else
-	{
 		transfer = condition_b(digits, nig);
-	}
 	if ((*nig)->out)
 	{
 		buf = (*nig)->out;

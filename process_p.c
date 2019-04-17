@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	converter_p_part1(char *final, char *tmp, t_nigga **nig)
+void		converter_p_part1(char *final, char *tmp, t_nigga **nig)
 {
 	final = ft_strnew((*nig)->m_s);
 	fill2(final, (*nig)->m_s);
@@ -54,12 +54,6 @@ void		converter_p(t_nigga **nig, va_list args)
 
 void		process_piece_p(char const *fmt, t_nigga **nig, va_list args)
 {
-	// char	*buf;
-
-	// buf = (char *)fmt;
-	// while (buf && *buf && !ft_isdigit(*buf))
-	// 	buf++;
-	// pick_width(buf, nig);
 	process_piece(fmt, nig);
 	converter_p(nig, args);
 }

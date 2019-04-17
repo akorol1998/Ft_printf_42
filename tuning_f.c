@@ -12,11 +12,20 @@
 
 #include "ft_printf.h"
 
-char			*tuning_f_3(long long a, char *holder, t_nigga **nig)
+char			*tuning_f_3(long long a, long long flag,
+	char *holder, t_nigga **nig)
 {
 	char		*buf;
 	char		*buf_2;
 
+	if (flag)
+	{
+		buf = ft_strnew((*nig)->p_s);
+		fill2(buf, (*nig)->p_s);
+		fill_wz_zero(buf);
+		free(holder);
+		return (buf);
+	}
 	if (a == 0)
 		return (holder);
 	else
@@ -29,11 +38,12 @@ char			*tuning_f_3(long long a, char *holder, t_nigga **nig)
 	}
 }
 
-char			*tuning_f_2(double num, t_nigga **nig)
+char			*tuning_f_2(double num, double *onum, t_nigga **nig)
 {
 	char		*holder;
 	long long	i;
 	long long	buf;
+	long long	buf2;
 	long long	a;
 
 	i = -1;
@@ -48,11 +58,12 @@ char			*tuning_f_2(double num, t_nigga **nig)
 		a = num;
 		buf += a % 10;
 	}
-	a *= a < 0 ? -1 : 1;
 	num *= num < 0 ? -1 : 1;
+	buf2 = buf;
 	if (((a = num * 10) % 10) > 4 && (*nig)->p_s > 0)
 		buf += buf < 0 ? -1 : 1;
-	return (tuning_f_3(buf, holder, nig));
+	buf2 = replace_function(&buf, buf2, onum);
+	return (tuning_f_3(buf, buf2, holder, nig));
 }
 
 char			*tuning_f_1(double num, t_nigga **nig)
@@ -83,7 +94,7 @@ void			tuning_f_cleaning(char *part_1,
 	}
 	if (part_2)
 		free(part_2);
-	buf_tuning_f(part_1, nig);	
+	buf_tuning_f(part_1, nig);
 	if (part_1)
 	{
 		free(part_1);

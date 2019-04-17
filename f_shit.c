@@ -32,28 +32,6 @@ void		piece_f_shit(char const *str, t_nigga **nig, va_list args)
 	if (!(*nig)->dot)
 		(*nig)->p_s = 6;
 	free(area);
-	// char	*p;
-	// int		i;
-
-	// i = -1;
-	// p = ft_strchr(str, '.');
-	// (*nig)->p_s = 6;
-	// if (p)
-	// {
-
-	// 	if (ft_isdigit(*(p + 1)))
-	// 	{
-	// 		(*nig)->p_s = separation_vol3(p, nig);
-	// 		(*nig)->m_s = separation(str, p - str);
-	// 	}
-	// 	else
-	// 	{
-	// 		(*nig)->m_s = separation_vol3(str, nig);
-	// 		(*nig)->p_s = 0;
-	// 	}
-	// }
-	// else
-	// 	(*nig)->m_s = separation_vol3(str, nig);
 	tuning_f(nig, args);
 }
 
@@ -86,9 +64,11 @@ void		tuning_f_small_part(char **part_1, char **part_2,
 	double num, t_nigga **nig)
 {
 	int64_t data;
+	double	mynum;
 
+	mynum = num;
+	(*part_2) = tuning_f_2(mynum, &num, nig);
 	(*part_1) = tuning_f_1(num, nig);
-	(*part_2) = tuning_f_2(num, nig);
 	if (num == 0)
 	{
 		data = *((int64_t *)&num);
