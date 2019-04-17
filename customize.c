@@ -62,10 +62,18 @@ char const		*double_percent_sign(char const *fmt, t_nigga **nig)
 
 void			custom_width(char const *s, t_nigga **nig)
 {
-	if (*s != *(s + 1))
-		(*nig)->width = *s;
+	int			i;
+	char		c;
+
+	i = 0;
+	c = s[i];
+	s++;
+	while (s[i] && s[i] != c)
+		i++;
+	if (s[i] != c)
+		(*nig)->width = c;
 	else
-		(*nig)->width = (*s - 32);
+		(*nig)->width = c - 32;
 }
 
 void			customize_flags_2(char const *s, int i, t_nigga **lopata)
@@ -95,16 +103,20 @@ void			customize_flags(char const *s, t_nigga **lopata)
 
 	i = 0;
 	while (s[i] && (s[i] != 'c' && s[i] != 's' && s[i] != 'p' &&
-		s[i] != 'd' && s[i] != 'i' && s[i] != 'o' &&
-		s[i] != 'u' && s[i] != 'x' && s[i] != 'f' && s[i] != 'X'))
+		s[i] != 'd' && s[i] != 'i' && s[i] != 'o' && s[i] != 'u'
+		&& s[i] != 'x' && s[i] != 'f' && s[i] != 'X' && s[i] != '%'))
 	{
 		customize_flags_2(s, i, lopata);
 		i++;
 	}
 	if (s[i] && (s[i] == 'c' || s[i] == 's' || s[i] == 'p' ||
-		s[i] == 'd' || s[i] == 'i' || s[i] == 'o' ||
-		s[i] == 'u' || s[i] == 'x' || s[i] == 'f' || s[i] == 'X'))
+		s[i] == 'd' || s[i] == 'i' || s[i] == 'o' || s[i] == '%'
+		|| s[i] == 'u' || s[i] == 'x' || s[i] == 'f' || s[i] == 'X'))
 	{
 		(*lopata)->conv = s + i;
 	}
+	// if ((*lopata)->conv && *(*lopata)->conv == '%')
+	// 	{
+
+	// 	}
 }

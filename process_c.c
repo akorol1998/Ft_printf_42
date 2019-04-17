@@ -56,7 +56,7 @@ int				separation_vol3(char const *str, t_nigga **nig)
 
 	min = 0;
 	i = 0;
-	while (str[i] && str[i] != *(*nig)->conv)
+	while (str && str[i] && str[i] != *(*nig)->conv)
 	{
 		j = 0;
 		while (str[i + j] && ft_isdigit(str[i + j]) &&
@@ -75,11 +75,13 @@ int				separation_vol3(char const *str, t_nigga **nig)
 	return (min);
 }
 
-char			*fill_for_c(int size, t_nigga **nig)
+char			*fill_for_c(t_nigga **nig)
 {
+	int			size;
 	char		*tab;
 	int			i;
 
+	size = (*nig)->m_s;
 	tab = ft_strnew(size);
 	i = -1;
 	if ((*nig)->zero && !(*nig)->minus)
@@ -97,23 +99,28 @@ char			*fill_for_c(int size, t_nigga **nig)
 
 char			*process_piece_c(char const *str, t_nigga **nig)
 {
-	char		*buf;
-	char		*p;
-	int			i;
-	int			size;
+	char		*area;
 
-	i = -1;
-	p = ft_strchr(str, '.');
-	size = 0;
-	if (p)
-	{
-		if (ft_isdigit(*(p + 1)))
-			size = separation(str, p - str);
-		else
-			size = separation_vol3(str, nig);
-	}
-	else
-		size = separation_vol3(str, nig);
-	buf = fill_for_c(size, nig);
-	return (buf);
+	area = ft_strsub(str, 0, (*nig)->conv - str);
+	check_min_width(area, nig);
+	free(area);
+	// char		*buf;
+	// char		*p;
+	// int			i;
+	// int			size;
+
+	// i = -1;
+	// p = ft_strchr(str, '.');
+	// size = 0;
+	// if (p)
+	// {
+	// 	if (ft_isdigit(*(p + 1)))
+	// 		size = separation(str, p - str);
+	// 	else
+	// 		size = separation_vol3(str, nig);
+	// }
+	// else
+	// 	size = separation_vol3(str, nig);
+	area = fill_for_c(nig);
+	return (area);
 }

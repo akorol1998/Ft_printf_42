@@ -34,6 +34,24 @@ int			check_min_width_2(int count, char const *str,
 	return (i);
 }
 
+int			precision_call(char const *str, t_nigga **nig)
+{
+	int		i;
+	char	*buf;
+
+	i = 0;
+	str++;
+	while (str && ft_isdigit(str[i]))
+		i++;
+	buf = ft_strsub(str, 0, i);
+	if (i)
+		(*nig)->p_s = ft_atoi(buf);
+	else
+		(*nig)->p_s = 0;
+	free(buf);
+	return (i);
+}
+
 void		check_min_width(char const *str, t_nigga **nig)
 {
 	int		i;
@@ -45,30 +63,22 @@ void		check_min_width(char const *str, t_nigga **nig)
 	count = 0;
 	pos = 0;
 	a = 0;
-	str = find_width_digits(str, nig);
-	while (str && str[i] && str[i] != '.' && str[i] != *(*nig)->conv)
+	// str = find_width_digits(str, nig);
+	while (str && str[i] && str[i] != *(*nig)->conv)
 	{
-		if (ft_isdigit(str[i]))
+		if (ft_isdigit(str[i]) && !ft_isdigit(str[i - 1]))
 		{
-
-			if (!ft_isdigit(str[i - 1]))
-			{
-				pos = i;
-				count = 0;
-			}
-			count++;
-			a = check_min_width_2(count, str, pos, nig);
-			// printf("a digit [%d]\n", a);
-			// printf("STRING [%s]\n", str + i);
-			if (a)
-			{
-				// ft_putstr("a here\n");
-				(*nig)->m_s = a;
-			}
+			pos = i;
+			count = 0;
 		}
+		count++;
+		a = check_min_width_2(count, str, pos, nig);
+		if (a)
+			(*nig)->m_s = a;
+		if (str[i] == '.')
+			i += precision_call(str + i, nig);
 		i++;
 	}
-	// ft_putstr("==== end ====\n");
 }
 
 void		check_precision(char const *str, t_nigga **nig)

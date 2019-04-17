@@ -40,6 +40,7 @@ SRC =   check.c\
 		test.c\
 		tuner.c\
 		tuning_f.c\
+		zero_case.c\
 
 CFLAGS = -Wextra -Wall -Werror
 

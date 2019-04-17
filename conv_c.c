@@ -27,7 +27,7 @@ void		align_c(char *buf, t_nigga **nig)
 		(*nig)->out = ft_strdup(buf);
 }
 
-char		*conversion_c(char *buf, t_nigga **nig, va_list args)
+char		*conversion_percent(char *buf, t_nigga **nig)
 {
 	int		flag;
 
@@ -35,7 +35,37 @@ char		*conversion_c(char *buf, t_nigga **nig, va_list args)
 	if (ft_strlen(buf))
 	{
 		if ((*nig)->minus)
-			buf[0] = va_arg(args, int);
+			buf[0] = '%';
+		else
+			buf[ft_strlen(buf) - 1] = '%';
+	}
+	else
+	{
+		free(buf);
+		buf = ft_strnew(1);
+		buf[0] = '%';
+		flag = 1;
+	}
+	align_c(buf, nig);
+	return (buf);
+}
+
+char		*conversion_c(char *buf, t_nigga **nig, va_list args)
+{
+	int		flag;
+	char	c;
+
+	flag = 0;
+	if (ft_strlen(buf))
+	{
+		if ((*nig)->minus)
+		{
+			c = va_arg(args, int);
+			if (c == '\0')
+				buf[ft_strlen(buf) - 1] = '\0';
+			else
+				buf[0] = c;
+		}
 		else
 			buf[ft_strlen(buf) - 1] = va_arg(args, int);
 	}

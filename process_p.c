@@ -12,41 +12,54 @@
 
 #include "ft_printf.h"
 
+void	converter_p_part1(char *final, char *tmp, t_nigga **nig)
+{
+	final = ft_strnew((*nig)->m_s);
+	fill2(final, (*nig)->m_s);
+	if (!(*nig)->minus)
+		custom_strcpy(final + (*nig)->m_s - ft_strlen(tmp), tmp);
+	else
+		custom_strcpy(final, tmp);
+	last_piece(final, nig);
+	free(tmp);
+}
+
 void		converter_p(t_nigga **nig, va_list args)
 {
 	char			*tmp;
 	char			*final;
 
 	tmp = ft_itoa_base(va_arg(args, unsigned long), 16);
-	final = tmp;
-	tmp = ft_strjoin("0x", final);
-	// printf("\nP conversion [%s]\n", tmp);
-	free(final);
-	if ((*nig)->m_s > (int)ft_strlen(tmp))
+	if (tmp[0] == '0')
 	{
-		final = ft_strnew((*nig)->m_s);
-		fill2(final, (*nig)->m_s);
-		if (!(*nig)->minus)
-			custom_strcpy(final + (*nig)->m_s - ft_strlen(tmp), tmp);
-		else
-			custom_strcpy(final, tmp);
-		last_piece(final, nig);
+		zero_case_function(nig);
 		free(tmp);
 	}
 	else
 	{
 		final = tmp;
-		last_piece(final, nig);
+		tmp = ft_strjoin("0x", final);
+		free(final);
+		if ((*nig)->m_s > (int)ft_strlen(tmp))
+		{
+			converter_p_part1(final, tmp, nig);
+		}
+		else
+		{
+			final = tmp;
+			last_piece(final, nig);
+		}
 	}
 }
 
 void		process_piece_p(char const *fmt, t_nigga **nig, va_list args)
 {
-	char	*buf;
+	// char	*buf;
 
-	buf = (char *)fmt;
-	while (buf && *buf && !ft_isdigit(*buf))
-		buf++;
-	pick_width(buf, nig);
+	// buf = (char *)fmt;
+	// while (buf && *buf && !ft_isdigit(*buf))
+	// 	buf++;
+	// pick_width(buf, nig);
+	process_piece(fmt, nig);
 	converter_p(nig, args);
 }

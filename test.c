@@ -69,7 +69,8 @@ int				pick_up_args(va_list args, char const *fmt, t_nigga **lopata)
 	{
 		loc = customize_string(loc, lopata);
 		if (*loc)
-			loc = double_percent_sign(loc, lopata);
+			loc++;
+			// loc = double_percent_sign(loc, lopata);
 		customize_flags(loc, lopata);
 		if ((*lopata)->conv)
 			tuner(&loc, lopata, args);

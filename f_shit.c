@@ -25,28 +25,35 @@ long double	casting_f(t_nigga **nig, va_list args)
 
 void		piece_f_shit(char const *str, t_nigga **nig, va_list args)
 {
-	char	*p;
-	int		i;
+	char		*area;
 
-	i = -1;
-	p = ft_strchr(str, '.');
-	(*nig)->p_s = 6;
-	if (p)
-	{
+	area = ft_strsub(str, 0, (*nig)->conv - str);
+	check_min_width(area, nig);
+	if (!(*nig)->dot)
+		(*nig)->p_s = 6;
+	free(area);
+	// char	*p;
+	// int		i;
 
-		if (ft_isdigit(*(p + 1)))
-		{
-			(*nig)->p_s = separation_vol3(p, nig);
-			(*nig)->m_s = separation(str, p - str);
-		}
-		else
-		{
-			(*nig)->m_s = separation_vol3(str, nig);
-			(*nig)->p_s = 0;
-		}
-	}
-	else
-		(*nig)->m_s = separation_vol3(str, nig);
+	// i = -1;
+	// p = ft_strchr(str, '.');
+	// (*nig)->p_s = 6;
+	// if (p)
+	// {
+
+	// 	if (ft_isdigit(*(p + 1)))
+	// 	{
+	// 		(*nig)->p_s = separation_vol3(p, nig);
+	// 		(*nig)->m_s = separation(str, p - str);
+	// 	}
+	// 	else
+	// 	{
+	// 		(*nig)->m_s = separation_vol3(str, nig);
+	// 		(*nig)->p_s = 0;
+	// 	}
+	// }
+	// else
+	// 	(*nig)->m_s = separation_vol3(str, nig);
 	tuning_f(nig, args);
 }
 
@@ -63,7 +70,6 @@ char		*remainder_zeros(double *num, long long *i, t_nigga **nig)
 	{
 		copy *= 10;
 		counter++;
-		ft_putnbr(counter);
 	}
 	buffer = ft_strnew(counter);
 	fill2(buffer, counter);
@@ -74,4 +80,21 @@ char		*remainder_zeros(double *num, long long *i, t_nigga **nig)
 		counter--;
 	}
 	return (buffer);
+}
+
+void		tuning_f_small_part(char **part_1, char **part_2,
+	double num, t_nigga **nig)
+{
+	int64_t data;
+
+	(*part_1) = tuning_f_1(num, nig);
+	(*part_2) = tuning_f_2(num, nig);
+	if (num == 0)
+	{
+		data = *((int64_t *)&num);
+		if (data < 0)
+			(*nig)->sign = '-';
+	}
+	else
+		(*nig)->sign = num < 0 ? '-' : '+';
 }

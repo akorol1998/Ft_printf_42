@@ -85,39 +85,53 @@ void			tuning_hex(t_nigga **nig, va_list args)
 	char		*result;
 
 	tmp = hex_converter(nig, args);
-	result = hex_setup(tmp, nig);
-	free(tmp);
-	if (*(*nig)->conv == 'X')
-		hex_capital(result);
-	if ((*nig)->out)
+	if (tmp[0] == '0')
 	{
-		tmp = (*nig)->out;
-		(*nig)->out = ft_strjoin((*nig)->out, result);
+		zero_case_pure_function(nig);
 		free(tmp);
 	}
 	else
-		(*nig)->out = ft_strdup(result);
-	free(result);
+	{
+		result = hex_setup(tmp, nig);
+		free(tmp);
+		if (*(*nig)->conv == 'X')
+			hex_capital(result);
+		if ((*nig)->out)
+		{
+			tmp = (*nig)->out;
+			(*nig)->out = ft_strjoin((*nig)->out, result);
+			free(tmp);
+		}
+		else
+			(*nig)->out = ft_strdup(result);
+		free(result);
+	}
 }
 
 void			piece_hex_shit(char const *str, t_nigga **nig, va_list args)
 {
-	char		*p;
-	int			i;
+	char		*area;
 
-	i = -1;
-	p = ft_strchr(str, '.');
-	if (p)
-	{
-		if (ft_isdigit(*(p + 1)))
-		{
-			(*nig)->p_s = separation_vol3(p, nig);
-			(*nig)->m_s = separation(str, p - str);
-		}
-		else
-			(*nig)->m_s = separation_vol3(str, nig);
-	}
-	else
-		(*nig)->m_s = separation_vol3(str, nig);
+	area = ft_strsub(str, 0, (*nig)->conv - str);
+	check_min_width(area, nig);
+	free(area);
+
+	// char		*p;
+	// int			i;
+
+	// i = -1;
+	// p = ft_strchr(str, '.');
+	// if (p)
+	// {
+	// 	if (ft_isdigit(*(p + 1)))
+	// 	{
+			// (*nig)->p_s = separation_vol3(p, nig);
+			// (*nig)->m_s = separation(str, p - str);
+	// 	}
+	// 	else
+			// (*nig)->m_s = separation_vol3(str, nig);
+	// }
+	// else
+	// 	(*nig)->m_s = separation_vol3(str, nig);
 	tuning_hex(nig, args);
 }

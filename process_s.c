@@ -67,18 +67,24 @@ void		process_piece_s(char const *fmt, t_nigga **nig, va_list args)
 {
 	char	*buf;
 	char	*p;
+	char	*s;
+	int		i;
 
 	buf = (char *)fmt;
+	s = ft_strchr(buf, *(*nig)->conv);
+	buf = ft_strsub(buf, 0, s - buf);
 	p = ft_strchr(buf, '.');
 	if (p)
 	{
 		(*nig)->dot = 1;
 		pick_precision(++p, nig);
 	}
-	while (buf && *buf && !ft_isdigit(*buf) && *buf != '.')
-		buf++;
-	if (*buf == '.')
+	i = 0;
+	while (buf[i] && buf[i] && !ft_isdigit(buf[i]) && buf[i] != '.')
+		i++;
+	if (buf[i] == '.')
 		(*nig)->m_s = 0;
-	pick_width(buf, nig);
+	pick_width(buf + i, nig);
 	length_comparator(nig, args);
+	free(buf);
 }

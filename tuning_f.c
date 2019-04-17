@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char			*tuning_f_3(int a, char *holder, t_nigga **nig)
+char			*tuning_f_3(long long a, char *holder, t_nigga **nig)
 {
 	char		*buf;
 	char		*buf_2;
@@ -85,7 +85,9 @@ void			tuning_f_cleaning(char *part_1,
 		free(part_2);
 	buf_tuning_f(part_1, nig);	
 	if (part_1)
+	{
 		free(part_1);
+	}
 }
 
 void			tuning_f(t_nigga **nig, va_list args)
@@ -103,14 +105,13 @@ void			tuning_f(t_nigga **nig, va_list args)
 		nan_inf_function(num, nig);
 	else
 	{
-		part_1 = tuning_f_1(num, nig);
-		part_2 = tuning_f_2(num, nig);
-		(*nig)->sign = num < 0 ? '-' : '+';
+		tuning_f_small_part(&part_1, &part_2, num, nig);
 		if ((*nig)->p_s || (*nig)->hash)
 		{
 			buf = part_1;
 			part_1 = ft_strjoin(part_1, ".");
 			free(buf);
+			buf = NULL;
 		}
 		tuning_f_cleaning(part_1, part_2, nig);
 	}

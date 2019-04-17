@@ -36,6 +36,13 @@ typedef	struct		s_nigga
 	struct s_nigga	*next;
 }					t_nigga;
 
+void		tuning_f_small_part(char **part_1, char **part_2,
+	double num, t_nigga **nig);
+char				*tuning_f_2(double num, t_nigga **nig);
+char				*tuning_f_1(double num, t_nigga **nig);
+void				zero_case_pure_function(t_nigga **nig);
+void				zero_case_function(t_nigga **nig);
+char				*conversion_percent(char *buf, t_nigga **nig);
 void				nan_inf_string(char *str, t_nigga **nig);
 void				buf_tuning_f_part_1(char *buf, t_nigga **nig);
 void				nan_inf_function(double num, t_nigga **nig);

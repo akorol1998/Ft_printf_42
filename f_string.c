@@ -19,18 +19,16 @@ char		*join_sign_f(char *str, t_nigga **nig)
 
 	if ((*nig)->sign == '-')
 	{
-		buf = str;
-		str = ft_strjoin("-", buf);
-		free(buf);
+		buf = ft_strjoin("-", str);
 	}
 	else if ((*nig)->plus)
 	{
-		buf = str;
-		str = ft_strjoin("+", buf);
-		free(buf);
+		buf = ft_strjoin("+", str);
 	}
 	else
+	{
 		buf = ft_strdup(str);
+	}
 	return (buf);
 }
 
@@ -102,9 +100,7 @@ void		buf_tuning_f(char *str, t_nigga **nig)
 
 	buf = NULL;
 	if ((*nig)->m_s > (int)ft_strlen(str))
-	{
 		buf = string_tuning_f(buf, str, nig);
-	}
 	else
 	{
 		if ((*nig)->blank && !(*nig)->plus && (*nig)->sign != '-')

@@ -68,7 +68,7 @@ char			*zero_tunage(char *tmp, t_nigga **nig)
 	var = NULL;
 	arr1 = NULL;
 	if ((*nig)->p_s > (int)ft_strlen(tmp))
-	{ß
+	{
 		arr1 = ft_strnew((*nig)->p_s);
 		fill2(arr1, (*nig)->p_s);
 		fill_wz_zero(arr1);

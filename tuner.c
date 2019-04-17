@@ -50,10 +50,13 @@ void	tuner(char const **point, t_nigga **nig, va_list args)
 			process_piece(*point, nig);
 			conversion_d(nig, args);
 		}
-		else if (c == 'c')
+		else if (c == 'c' || c == '%')
 		{
 			buf = process_piece_c(*point, nig);
-			buf = conversion_c(buf, nig, args);
+			if (c == '%')
+				buf = conversion_percent(buf, nig);
+			else	
+				buf = conversion_c(buf, nig, args);
 		}
 		else if (c == 's')
 			process_piece_s(*point, nig, args);
